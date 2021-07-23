@@ -6,6 +6,7 @@ import { User } from 'contexts/UserContext/reducer';
 import PATHS from './paths';
 
 const Home = lazy(() => import('../../screens/Dashboard'));
+const Register = lazy(() => import('../../screens/Register'));
 // Add imports for screens above (FOR GENERATORS, DO NOT REMOVE)
 
 const MAIN_PUBLIC_PATH = PATHS.login;
@@ -16,11 +17,18 @@ const MAIN_PRIVATE_PATH = PATHS.home;
 export const ROUTES = [
   // Leaving this as an example for then the Login screen exists
   {
-    exact: false,
+    exact: true,
     path: PATHS.login,
     component: () => <span>login</span>,
     title: 'Routes:loginTitle',
     description: 'Routes:loginDescription',
+    redirectTo: (user: User | null) => (user ? MAIN_PRIVATE_PATH : undefined)
+  },
+  {
+    exact: true,
+    path: PATHS.register,
+    component: Register,
+    title: 'Routes:registerTitle',
     redirectTo: (user: User | null) => (user ? MAIN_PRIVATE_PATH : undefined)
   },
   {

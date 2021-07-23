@@ -17,7 +17,8 @@ export interface Credentials {
 
 export const INITIAL_STATE: UserState = {
   // TODO: set to null when using in project and populate with backend response using actionCreators
-  user: { id: 1, sessionToken: 'aSessionToken' }
+  // user: { id: 1, sessionToken: 'aSessionToken' }
+  user: null
 };
 
 enum ActionTypes {

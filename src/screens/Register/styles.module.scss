@@ -1,0 +1,71 @@
+@import 'scss/variables/colors';
+
+.container {
+  margin: 24px auto;
+}
+
+.title {
+  color: $black;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.link-to-account {
+  color: $greenFern;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
+
+  &:hover {
+    color: $greenGoblin;
+    text-decoration: underline;
+  }
+}
+
+.form-input {
+  border: solid 1px rgba($black, 0.15);
+  font-size: 20px;
+  height: auto;
+  line-height: 25px;
+  margin-bottom: 5px;
+  padding: 12px 24px;
+
+  &:focus {
+    border-bottom: 1px solid $blueCornflower;
+    border-color: $blueCornflower;
+    outline: none;
+  }
+
+  &.input-error {
+    border-bottom: solid 2px $redMatrix;
+  }
+}
+
+.error {
+  color: $redMatrix;
+  height: auto;
+}
+
+.hide-error {
+  display: none;
+}
+
+.sign-up-btn {
+  align-self: flex-end;
+  background-color: $greenFern;
+  border-radius: 5px;
+  color: $white;
+  font-size: 20px;
+  line-height: 25px;
+  padding: 12px 24px;
+
+  &:hover {
+    background-color: $greenApple;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
