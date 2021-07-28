@@ -20,10 +20,9 @@ export interface RegistrationUser {
   };
 }
 
-export const setCurrentUserToken = (currentUser: User) => {
-  // TODO: Implement call to authentication API here
-  // api.setHeader('Authorization', currentUser.sessionToken);
-  LocalStorageService.setValue(TOKEN_FIELD_NAME, currentUser.sessionToken);
+export const setCurrentUserToken = (token: string) => {
+  api.setHeader('Authorization', token);
+  LocalStorageService.setValue(TOKEN_FIELD_NAME, token);
 };
 
 export const getCurrentUserToken = () => LocalStorageService.getValue(TOKEN_FIELD_NAME);

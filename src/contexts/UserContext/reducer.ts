@@ -1,13 +1,14 @@
 import { produce } from 'immer';
 import { Reducer } from 'react';
 
+import { UserProfile } from 'types/User';
+
 export interface User {
   id: number;
   sessionToken: string;
 }
-
 export interface UserState {
-  user: User | null;
+  user: UserProfile | null;
 }
 
 export interface Credentials {
@@ -16,8 +17,6 @@ export interface Credentials {
 }
 
 export const INITIAL_STATE: UserState = {
-  // TODO: set to null when using in project and populate with backend response using actionCreators
-  // user: { id: 1, sessionToken: 'aSessionToken' }
   user: null
 };
 
@@ -30,7 +29,7 @@ enum ActionTypes {
 
 interface SetUser {
   type: ActionTypes.SET_USER;
-  payload: User;
+  payload: UserProfile;
 }
 
 interface ResetUser {
@@ -40,7 +39,7 @@ interface ResetUser {
 export type Action = SetUser | ResetUser;
 
 export const actionCreators = {
-  setUser: (user: User): SetUser => ({ type: ActionTypes.SET_USER, payload: user }),
+  setUser: (user: UserProfile): SetUser => ({ type: ActionTypes.SET_USER, payload: user }),
   resetUser: (): ResetUser => ({ type: ActionTypes.RESET_USER })
 };
 
