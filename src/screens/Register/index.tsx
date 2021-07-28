@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from 'react-query';
 
 import { signup } from 'services/AuthService';
 import UserForm from 'components/UserForm';
@@ -10,12 +11,14 @@ import styles from './styles.module.scss';
 function Register() {
   const { t } = useTranslation('Register');
 
+  const mutation = useMutation((params: { user: UserFormKeys }) => signup(params));
+
   const onSubmit = (values: UserFormKeys) => {
     const params = {
       user: values
     };
 
-    signup(params);
+    mutation.mutate(params);
   };
 
   return (
