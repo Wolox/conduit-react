@@ -5,6 +5,7 @@ import { actionCreators as authActions } from 'contexts/UserContext/reducer';
 import { useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { logout, removeCurrentUserToken } from 'services/AuthService';
 import FormInput from 'components/FormInput';
+import Layout from 'components/Layout';
 
 import logo from './assets/logo.svg';
 import styles from './styles.module.scss';
@@ -41,31 +42,33 @@ function Home() {
   });
 
   return (
-    <div className={styles.app}>
-      <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
-        <p className={styles.text}>{t('Home:loggedIn')}</p>
-        <p className={styles.text}>{t('Home:techIs', { tech })}</p>
-        <form className="column center m-bottom-10" onSubmit={onSubmit}>
-          <FormInput
-            className="m-bottom-2"
-            placeholder={t('Home:newTech')}
-            inputRef={register()}
-            name="tech"
-            inputType="text"
-          />
-          <button className={styles.appLink} type="submit">
-            {t('Home:setNewTech')}
+    <Layout>
+      <div className={styles.app}>
+        <header className={styles.appHeader}>
+          <img src={logo} className={styles.appLogo} alt="logo" />
+          <p className={styles.text}>{t('Home:loggedIn')}</p>
+          <p className={styles.text}>{t('Home:techIs', { tech })}</p>
+          <form className="column center m-bottom-10" onSubmit={onSubmit}>
+            <FormInput
+              className="m-bottom-2"
+              placeholder={t('Home:newTech')}
+              inputRef={register()}
+              name="tech"
+              inputType="text"
+            />
+            <button className={styles.appLink} type="submit">
+              {t('Home:setNewTech')}
+            </button>
+          </form>
+          <button type="button" onClick={handleChangeLanguage} className={`m-bottom-4 ${styles.appLink}`}>
+            {t('Home:changeLang')}
           </button>
-        </form>
-        <button type="button" onClick={handleChangeLanguage} className={`m-bottom-4 ${styles.appLink}`}>
-          {t('Home:changeLang')}
-        </button>
-        <button type="button" className={styles.appLink} onClick={handleLogout}>
-          {t('Home:logout')}
-        </button>
-      </header>
-    </div>
+          <button type="button" className={styles.appLink} onClick={handleLogout}>
+            {t('Home:logout')}
+          </button>
+        </header>
+      </div>
+    </Layout>
   );
 }
 
