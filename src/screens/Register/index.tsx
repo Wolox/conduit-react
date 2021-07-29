@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 
-import { setCurrentUserToken, signup } from 'services/AuthService';
+import { setApiTokenHeader, setCurrentUserToken, signup } from 'services/AuthService';
 import UserForm from 'components/UserForm';
 import { UserFormKeys } from 'components/UserForm/constants';
 import { useDispatch as useUserDispatch } from 'contexts/UserContext';
@@ -16,16 +16,19 @@ function Register() {
 
   const { mutate } = useMutation((params: { user: UserFormKeys }) => signup(params), {
     onSettled: (data) => {
-      if (data?.ok) {
+      if (data?.data && data?.ok) {
+        const {
+          data: { user }
+        } = data;
         userDispatch(
           authActions.setUser({
-            id: data?.data?.user?.id,
-            username: data?.data?.user.email,
-            email: data?.data?.user.email,
-            sessionToken: data?.data?.user.token
+            user
           })
         );
-        setCurrentUserToken(data?.data.user.token);
+        if (user.token) {
+          setApiTokenHeader(user.token);
+          setCurrentUserToken(user.token);
+        }
       }
     }
   });
