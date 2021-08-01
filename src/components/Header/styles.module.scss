@@ -1,7 +1,9 @@
+@import 'scss/fonts/_fonts';
+
 .contentHeader{
 
     .logo{
-        font-family: titillium web,sans-serif;
+        font-family: $Titillium;
         font-size: 1.5rem!important;
         padding-top: 0!important;
         margin-right: 2rem!important;
