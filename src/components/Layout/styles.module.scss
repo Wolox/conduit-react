@@ -6,6 +6,10 @@
   padding-bottom: $heigth-footer;
   position: relative;
 
+  .header{
+    box-shadow: 0 8px 8px -8px $gray;
+  }
+
   .footer {
     align-items: center;
     background-color: $gray-dark;
