@@ -1,8 +1,8 @@
 import { create } from 'apisauce';
 
-const baseURL = 'http://wolox.com';
+const baseURL = process.env.REACT_APP_BASE_URL;
 
-if (baseURL === 'http://wolox.com') {
+if (baseURL === process.env.REACT_APP_BASE_URL) {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
 }
 
@@ -11,12 +11,12 @@ const STATUS_CODES = {
 };
 
 const api = create({
-  /*
-   * TODO Add this if you need it
-   * baseURL: process.env.API_BASE_URL,
-   */
   baseURL,
-  timeout: 15000
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  }
 });
 
 // If you need to add more monitors consider calling api.addMonitor from your component
