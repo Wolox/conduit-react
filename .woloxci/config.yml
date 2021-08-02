@@ -5,7 +5,7 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - npx cypress run
+    - npm cypress run
   lint:
     - npm run ts-check
     - npm run lint
