@@ -5,8 +5,6 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - npm init -y
-    - npm install cypress
     - npx cypress run
   lint:
     - npm run ts-check
