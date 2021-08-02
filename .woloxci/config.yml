@@ -9,7 +9,7 @@ cache:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - node_modules/cypress/bin/cypress run
+    - npx cypress run
   lint:
     - npm run ts-check
     - npm run lint
