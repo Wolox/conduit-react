@@ -1,6 +1,6 @@
 config:
   dockerfile: .woloxci/Dockerfile
-  project_name: <%= projectName %>
+  project_name: conduit-react
 
 steps:
   lint:
@@ -8,6 +8,8 @@ steps:
     - npm run ts-check
     - npm run lint
     - npm run lint-scss
+  cypress:
+    - npx cypress run
 
 environment:
   GIT_COMMITTER_NAME: a
