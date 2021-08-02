@@ -2,9 +2,11 @@ import { render, screen } from '@testing-library/react';
 
 import Layout from '.';
 
-const component = <div>Children</div>;
-
 test('renders children without errors', () => {
-  render(<Layout children={component} />);
+  render(
+    <Layout>
+      <div>Children</div>
+    </Layout>
+  );
   expect(screen.getByText('Children')).toBeInTheDocument();
 });

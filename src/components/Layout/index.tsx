@@ -1,3 +1,5 @@
+import Footer from 'components/Footer';
+
 import styles from './styles.module.scss';
 
 interface Props {
@@ -9,7 +11,9 @@ function Layout({ children }: Props) {
     <div className={styles.container}>
       <header className={styles.header}>Header Component</header>
       <div className={styles.content}>{children}</div>
-      <footer className={styles.footer}>Footer Component</footer>
+      <footer className={styles.footer}>
+        <Footer />
+      </footer>
     </div>
   );
 }

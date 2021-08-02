@@ -1,5 +1,5 @@
-
 @import 'scss/variables/_footer';
+@import 'scss/variables/_colors';
 
 .container {
   min-height: 100vh;
@@ -7,8 +7,12 @@
   position: relative;
 
   .footer {
+    align-items: center;
+    background-color: $gray-dark;
     bottom: 0;
+    display: flex;
     height: $heigth-footer;
+    justify-content: center;
     position: absolute;
     width: 100%;
   }
