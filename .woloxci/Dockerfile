@@ -7,5 +7,5 @@ COPY package.json .
 RUN npm install
 RUN npm install cypress
 ENV PATH /home/node/node_modules/.bin:$PATH
-
+RUN npm ci
 WORKDIR /home/node/app
