@@ -1,6 +1,6 @@
 config:
   dockerfile: .woloxci/Dockerfile
-  project_name: <%= projectName %>
+  project_name: conduit-react
 
 steps:
   lint:
