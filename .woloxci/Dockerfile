@@ -20,7 +20,7 @@ COPY package.json .
 
 ENV PATH /home/node/node_modules/.bin:$PATH
 
-RUN npm install
+RUN npm ci
 
 WORKDIR /home/node/app
 
