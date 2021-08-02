@@ -1,15 +1,10 @@
 config:
   dockerfile: .woloxci/Dockerfile
   project_name: conduit-react
-  
-cache:
-  directories:
-  - "$HOME/.cache/Cypress"
 
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - npm ci
     - npx cypress run
   lint:
     - npm run ts-check
