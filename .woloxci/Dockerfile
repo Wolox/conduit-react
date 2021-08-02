@@ -17,6 +17,7 @@ RUN apt update && apt install -y \
 WORKDIR /home/node
 
 COPY package.json .
+COPY package-lock.json .
 
 ENV PATH /home/node/node_modules/.bin:$PATH
 
