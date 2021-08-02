@@ -5,7 +5,7 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - whoami
+    - who
     - npx cypress install
     - npx cypress run
   lint:
