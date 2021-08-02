@@ -1,0 +1,15 @@
+
+@import 'scss/variables/_footer';
+
+.container {
+  min-height: 100vh;
+  padding-bottom: $heigth-footer;
+  position: relative;
+
+  .footer {
+    bottom: 0;
+    height: $heigth-footer;
+    position: absolute;
+    width: 100%;
+  }
+}
