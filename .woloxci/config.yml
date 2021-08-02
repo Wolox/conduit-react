@@ -4,7 +4,7 @@ config:
   
 cache:
   directories:
-  - "$HOME/.npm"
+  - "$HOME/.cache/Cypress"
 
 steps:
   cypress:
