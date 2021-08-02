@@ -5,7 +5,7 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - sudo chown -R 498:497 "/.npm"
+    - chown -R 498:497 "/.npm"
     - npm install cypress
     - npx cypress run
   lint:
