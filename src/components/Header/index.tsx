@@ -27,14 +27,14 @@ function Header() {
           <li className={styles.item}>
             <Link to={PATHS.home} className={classLink(pathname, PATHS.home)}>
               <FontAwesomeIcon icon={faHome} size="xs" className={styles.icon} />
-              <span>{t('Header:home')}</span>
+              <span className={styles.text}>{t('Header:home')}</span>
             </Link>
           </li>
           {items.map(({ text, href, icon }) => (
             <li className={styles.item} key={href}>
               <Link to={href} className={classLink(pathname, href)}>
                 <FontAwesomeIcon icon={icon} size="xs" className={styles.icon} />
-                <span>{t(text)}</span>
+                <span className={styles.text}>{t(text)}</span>
               </Link>
             </li>
           ))}
