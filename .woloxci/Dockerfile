@@ -8,6 +8,6 @@ COPY package-lock.json .
 
 ENV PATH /home/node/node_modules/.bin:$PATH
 
-RUN npm ci
+RUN npm install
 
 WORKDIR /home/node/app
