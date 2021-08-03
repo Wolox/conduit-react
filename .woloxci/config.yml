@@ -1,6 +1,10 @@
 config:
   dockerfile: .woloxci/Dockerfile
   project_name: conduit-react
+  
+cache:
+  paths:
+    - cache/Cypress
 
 steps:
   cypress:
