@@ -3,10 +3,9 @@ config:
   project_name: conduit-react
 
 steps:
-  lint:
-    - npm run ts-check
-    - npm run lint
-    - npm run lint-scss
+    - ln -sfn /home/node/node_modules node_modules
+  cypress:
+    - npx cypress run
 
 environment:
   GIT_COMMITTER_NAME: a
