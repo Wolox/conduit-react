@@ -19,7 +19,18 @@ function WrappedRoutes({ userState }: { userState: UserState }) {
 // That's why we use window to navigate
 
 describe('when there is a user', () => {
-  const userState = { user: { id: 1, sessionToken: 'token' } };
+  const userState: UserState = {
+    user: {
+      user: {
+        id: 1,
+        username: 'Felipe',
+        email: 'piperiver7@gmail.com',
+        bio: null,
+        image: null,
+        token: null
+      }
+    }
+  };
 
   test('shows Home screen when being on the home path', async () => {
     window.history.pushState({}, '', PATHS.home);

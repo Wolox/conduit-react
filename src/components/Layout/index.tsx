@@ -1,4 +1,5 @@
 import Footer from 'components/Footer';
+import Header from 'components/Header';
 
 import styles from './styles.module.scss';
 
@@ -9,7 +10,9 @@ interface Props {
 function Layout({ children }: Props) {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>Header Component</header>
+      <header className={styles.header}>
+        <Header />
+      </header>
       <div className={styles.content}>{children}</div>
       <footer className={styles.footer}>
         <Footer />
