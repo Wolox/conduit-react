@@ -7,8 +7,8 @@
   position: relative;
 
   .header{
-    box-shadow: 0 8px 8px -8px $gray;
     background-color: $white;
+    box-shadow: 0 8px 8px -8px $gray;
     position: sticky;
     top: 0;
     z-index: 1
