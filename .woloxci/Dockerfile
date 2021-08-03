@@ -3,8 +3,13 @@ FROM node:14
 WORKDIR /home/node
 
 COPY package.json .
+COPY package-lock.json .
 
-RUN npm install
 ENV PATH /home/node/node_modules/.bin:$PATH
 
+RUN npm ci
+
 WORKDIR /home/node/app
+
+
+

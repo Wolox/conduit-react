@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { lazy } from 'react';
 
-import { User } from 'contexts/UserContext/reducer';
+import { UserProfile } from 'types/User';
 
 import PATHS from './paths';
 
 const Home = lazy(() => import('../../screens/Dashboard'));
+const Register = lazy(() => import('../../screens/Register'));
 // Add imports for screens above (FOR GENERATORS, DO NOT REMOVE)
 
 const MAIN_PUBLIC_PATH = PATHS.login;
@@ -16,12 +17,19 @@ const MAIN_PRIVATE_PATH = PATHS.home;
 export const ROUTES = [
   // Leaving this as an example for then the Login screen exists
   {
-    exact: false,
+    exact: true,
     path: PATHS.login,
     component: () => <span>login</span>,
     title: 'Routes:loginTitle',
     description: 'Routes:loginDescription',
-    redirectTo: (user: User | null) => (user ? MAIN_PRIVATE_PATH : undefined)
+    redirectTo: (user: UserProfile | null) => (user ? MAIN_PRIVATE_PATH : undefined)
+  },
+  {
+    exact: true,
+    path: PATHS.register,
+    component: Register,
+    title: 'Routes:registerTitle',
+    redirectTo: (user: UserProfile | null) => (user ? MAIN_PRIVATE_PATH : undefined)
   },
   {
     exact: false,
@@ -29,6 +37,6 @@ export const ROUTES = [
     component: Home,
     title: 'Routes:homeTitle',
     description: 'Routes:homeDescription',
-    redirectTo: (user: User | null) => (user ? undefined : MAIN_PUBLIC_PATH)
+    redirectTo: (user: UserProfile | null) => (user ? undefined : MAIN_PUBLIC_PATH)
   }
 ];

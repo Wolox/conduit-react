@@ -2,7 +2,10 @@ const paths = {
   home: '/',
   login: '/login',
   recoverPassword: '/recover_password',
-  registration: '/registration'
+  register: '/register',
+  editor: '/editor',
+  settings: '/settings',
+  profile: '/profile'
 };
 
 export default paths;

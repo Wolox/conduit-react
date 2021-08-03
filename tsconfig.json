@@ -22,7 +22,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src",
-    "plopfile.js"
+    "plopfile.js",
+    "**/src/**/*"
   ]
 }

@@ -5,12 +5,14 @@ i18next.addResources('es', 'Routes', {
   homeTitle: 'Nombre de la app',
   homeDescription: '',
   loginTitle: 'Iniciar sesión',
-  loginDescription: ''
+  loginDescription: '',
+  registerTitle: 'Registrarse'
 });
 
 i18next.addResources('en', 'Routes', {
   homeTitle: 'Name of the app',
   homeDescription: '',
   loginTitle: 'Sign in',
-  loginDescription: ''
+  loginDescription: '',
+  registerTitle: 'Sign up'
 });

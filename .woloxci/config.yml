@@ -4,12 +4,9 @@ config:
 
 steps:
   lint:
-    - ln -sfn /home/node/node_modules node_modules
     - npm run ts-check
     - npm run lint
     - npm run lint-scss
-  cypress:
-    - npx cypress run
 
 environment:
   GIT_COMMITTER_NAME: a

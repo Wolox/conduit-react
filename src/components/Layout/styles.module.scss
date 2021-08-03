@@ -1,0 +1,27 @@
+@import 'scss/variables/_footer';
+@import 'scss/variables/_colors';
+
+.container {
+  min-height: 100vh;
+  padding-bottom: $heigth-footer;
+  position: relative;
+
+  .header{
+    background-color: $white;
+    box-shadow: 0 8px 8px -8px $gray;
+    position: sticky;
+    top: 0;
+    z-index: 1
+  }
+
+  .footer {
+    align-items: center;
+    background-color: $gray-dark;
+    bottom: 0;
+    display: flex;
+    height: $heigth-footer;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+  }
+}
