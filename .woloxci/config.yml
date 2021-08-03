@@ -5,7 +5,7 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - sudo npm install -g cypress@latest --save-dev
+    - npm install -g cypress@latest --save-dev
     - npx cypress run
   lint:
     - npm run ts-check
