@@ -5,8 +5,8 @@ RUN mkdir /home/node/.npm-global \
  && echo "export PATH=/home/node/.npm-global/bin:$PATH" >> /home/node/.profile
 RUN . /home/node/.profile
 
-RUN chown -R $(whoami)  $(npm config get prefix)
-RUN chown -R $(whoami)  /home/node/
+RUN chown -R 498:497  $(npm config get prefix)
+RUN chown -R 498:497  /home/node/
 
 COPY package.json .
 
