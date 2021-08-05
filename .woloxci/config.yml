@@ -4,6 +4,7 @@ config:
 
 steps:
   cypress:
+    - npm install --unsafe-perm=true --allow-root cypress
     - ln -sfn /home/node/node_modules node_modules
     - npx cypress run
   lint:
