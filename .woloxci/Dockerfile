@@ -8,6 +8,8 @@ RUN . /home/node/.profile
 RUN chown -R 498:497  $(npm config get prefix)
 RUN chown -R 498:497  /home/node/
 
+USER 498
+
 COPY package.json .
 
 RUN npm install 
