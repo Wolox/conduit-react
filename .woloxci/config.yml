@@ -9,7 +9,7 @@ steps:
     - rm package-lock.json
     - rm -r node_modules
     - npm cache clean --force
-    - npm install cypress --save-dev
+    - npm install
     - npx cypress run
   lint:
     - npm run ts-check
