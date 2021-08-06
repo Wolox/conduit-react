@@ -4,6 +4,10 @@ config:
 
 steps:
   cypress:
+    - mkdir /home/node/.npm-global \
+        && npm config set prefix '/home/node/.npm-global' \
+        && echo "export PATH=/home/node/.npm-global/bin:$PATH" >> /home/node/.profile
+    - . /home/node/.profile    
     - npx cypress run
   lint:
     - ln -sfn /home/node/node_modules node_modules
