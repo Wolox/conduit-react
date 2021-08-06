@@ -5,7 +5,6 @@ config:
 steps:
   cypress:
     - . /home/node/.profile
-    - echo "~"
     - npx cypress run
   lint:
     - ln -sfn /home/node/node_modules node_modules
