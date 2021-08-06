@@ -6,6 +6,7 @@ steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
     - . /home/node/.profile
+    - npm cache clean --force
     - npm install cypress --save-dev
     - npx cypress run
   lint:
