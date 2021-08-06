@@ -6,8 +6,6 @@ steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
     - . /home/node/.profile
-    - npm cache clean --force
-    - npm install -g --unsafe-perm --save-dev
     - npx cypress run
   lint:
     - npm run ts-check
