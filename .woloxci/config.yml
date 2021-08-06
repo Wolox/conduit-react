@@ -6,7 +6,8 @@ steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
     - . /home/node/.profile
-    - export NODE_TLS_REJECT_UNAUTHORIZED='0'
+    - npm cache clean
+    - npm install -g --unsafe-perm --save-dev
     - npx cypress run
   lint:
     - npm run ts-check
