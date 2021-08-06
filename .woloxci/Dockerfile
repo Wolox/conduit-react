@@ -11,3 +11,5 @@ RUN chown -R 498:0 /.npm
 COPY package.json .
 
 RUN npm install 
+
+WORKDIR /home/node/app
