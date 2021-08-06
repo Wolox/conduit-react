@@ -6,6 +6,8 @@ steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
     - . /home/node/.profile
+    - rm package-lock.json
+    - rm -r node_modules
     - npm cache clean --force
     - npm install cypress --save-dev
     - npx cypress run
