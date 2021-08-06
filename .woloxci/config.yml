@@ -5,8 +5,6 @@ config:
 steps:
   cypress:
     - . /home/node/.profile
-    - chown -R 498:0  $(npm config get prefix)
-    - chown -R 498:0  /home/node/
     - npx cypress run
   lint:
     - ln -sfn /home/node/node_modules node_modules
