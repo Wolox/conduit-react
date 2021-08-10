@@ -1,3 +1,5 @@
+export const WHITE = '#FFF';
+
 export interface UserFormKeys {
   username: string;
   email: string;

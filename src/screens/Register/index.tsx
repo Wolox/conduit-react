@@ -4,6 +4,7 @@ import { useMutation } from 'react-query';
 
 import { setApiTokenHeader, setCurrentUserToken, signup } from 'services/AuthService';
 import UserForm from 'components/UserForm';
+import Layout from 'components/Layout';
 import { UserFormKeys } from 'components/UserForm/constants';
 import { useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { actionCreators as authActions } from 'contexts/UserContext/reducer';
@@ -14,7 +15,7 @@ function Register() {
   const { t } = useTranslation('Register');
   const userDispatch = useUserDispatch();
 
-  const { mutate } = useMutation((params: { user: UserFormKeys }) => signup(params), {
+  const { mutate, isLoading } = useMutation((params: { user: UserFormKeys }) => signup(params), {
     onSettled: (data) => {
       if (data?.data && data?.ok) {
         const {
@@ -42,15 +43,17 @@ function Register() {
   };
 
   return (
-    <div className={`full-width column center ${styles.container}`}>
-      <h1 className={`m-bottom-2 ${styles.title}`}>{t('signUp')}</h1>
-      <Link to="/login" className={styles.linkToAccount}>
-        {t('haveAccount')}
-      </Link>
-      <div className="half-width">
-        <UserForm formSubmit={onSubmit} />
+    <Layout>
+      <div className={`full-width column center ${styles.container}`}>
+        <h1 className={`m-bottom-2 ${styles.title}`}>{t('signUp')}</h1>
+        <Link to="/login" className={styles.linkToAccount}>
+          {t('haveAccount')}
+        </Link>
+        <div className="half-width">
+          <UserForm formSubmit={onSubmit} isLoading={isLoading} />
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

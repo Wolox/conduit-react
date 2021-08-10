@@ -1,17 +1,20 @@
+/* eslint-disable import/no-named-as-default */
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import Spinner from 'react-spinkit';
 import cn from 'classnames';
 
 import FormInput from 'components/FormInput';
 
-import { INPUTS, UserFormKeys } from './constants';
+import { INPUTS, UserFormKeys, WHITE } from './constants';
 import styles from './styles.module.scss';
 
 interface Props {
   formSubmit: (values: UserFormKeys) => void;
+  isLoading?: boolean;
 }
 
-function UserForm({ formSubmit }: Props) {
+function UserForm({ formSubmit, isLoading }: Props) {
   const { t } = useTranslation('UserForm');
 
   const {
@@ -41,11 +44,22 @@ function UserForm({ formSubmit }: Props) {
             inputRef={register(value.validations)}
             name={key}
             inputType={value.type}
+            disabled={isLoading}
           />
         );
       })}
-      <button type="submit" className={styles.signUpBtn}>
-        {t('Register:signUp')}
+      <button
+        type="submit"
+        className={cn(styles.signUpBtn, {
+          [styles.disabledBtn]: isLoading
+        })}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <Spinner name="circle" color={WHITE} className={styles.loaderBtn} fadeIn="half" />
+        ) : (
+          t('Register:signUp')
+        )}
       </button>
     </form>
   );
