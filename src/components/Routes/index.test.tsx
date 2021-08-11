@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { StateContext } from 'contexts/UserContext';
 import { UserState } from 'contexts/UserContext/reducer';
@@ -8,10 +9,14 @@ import PATHS from './paths';
 import Routes from '.';
 
 function WrappedRoutes({ userState }: { userState: UserState }) {
+  const queryClient = new QueryClient();
+
   return (
-    <StateContext.Provider value={userState}>
-      <Routes />
-    </StateContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <StateContext.Provider value={userState}>
+        <Routes />
+      </StateContext.Provider>
+    </QueryClientProvider>
   );
 }
 

@@ -6,7 +6,7 @@ import { UserProfile } from 'types/User';
 import PATHS from './paths';
 
 const Home = lazy(() => import('../../screens/Dashboard'));
-const Register = lazy(() => import('../../screens/Register'));
+const Register = lazy(() => import('../../screens/Authentication/Register'));
 // Add imports for screens above (FOR GENERATORS, DO NOT REMOVE)
 
 const MAIN_PUBLIC_PATH = PATHS.login;
