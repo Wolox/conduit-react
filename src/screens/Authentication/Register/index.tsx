@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
+import cn from 'classnames';
 
 import { setApiTokenHeader, setCurrentUserToken, signup } from 'services/AuthService';
 import UserForm from 'components/UserForm';
@@ -49,7 +50,7 @@ function Register() {
         <Link to="/login" className={styles.linkToAccount}>
           {t('haveAccount')}
         </Link>
-        <div className="half-width">
+        <div className={cn('half-width', styles.formContainer)}>
           <UserForm formSubmit={onSubmit} isLoading={isLoading} />
         </div>
       </div>
