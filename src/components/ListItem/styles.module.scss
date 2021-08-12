@@ -1,0 +1,25 @@
+@import 'scss/variables/_colors';
+
+.item{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 1.5rem;
+
+    .title{
+        color: $gray-dark;
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .description{
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .more{
+        color: $gray;
+    }
+}

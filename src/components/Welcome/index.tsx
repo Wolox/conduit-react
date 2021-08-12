@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.scss';
@@ -12,4 +13,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default memo(Welcome);

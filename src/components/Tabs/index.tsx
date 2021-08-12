@@ -1,39 +1,40 @@
 import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 
-import { useSelector, useDispatch } from 'contexts/TabsContext';
+import { useDispatch, useSelector } from 'contexts/TabsContext';
 import { actionCreators } from 'contexts/TabsContext/reducer';
 
 import styles from './styles.module.scss';
+import { Tab } from './types';
 
-function Tabs() {
+interface Props {
+  tabs: Tab[];
+}
+
+function Tabs({ tabs }: Props) {
   const { t } = useTranslation();
-  const { tabs, active, tag } = useSelector((state) => state);
+  const { hashtag, tabActive } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  const distpatch = useDispatch();
-
-  const handleChangeTab = (text: string) => {
-    if (text !== active) {
-      distpatch(actionCreators.activeTab(text));
-    }
+  const handleChangeTab = (tab: Tab) => {
+    dispatch(actionCreators.activeTab(tab));
   };
-
-  const activeClass = (text: string) => (text === active ? styles.active : '');
 
   return (
     <div>
       <ul className={styles.tabs}>
-        {tabs.map((tab) => (
+        {tabs.map((actualTab) => (
           <li
-            key={tab.text}
-            onClick={() => handleChangeTab(tab.text)}
-            className={`${styles.tab} ${activeClass(tab.text)}`}
+            key={actualTab.text}
+            onClick={() => handleChangeTab(actualTab)}
+            className={`${styles.tab} ${tabActive.text === actualTab.text && styles.active}`}
           >
-            {t(tab.text)}
+            {t(actualTab.text)}
           </li>
         ))}
-        {tag && (
-          <li onClick={() => handleChangeTab(tag.text)} className={`${styles.tab} ${styles.active}`}>
-            #{t(tag.text)}
+        {hashtag && (
+          <li key={hashtag.text} className={`${styles.tab} ${styles.active}`}>
+            {t(hashtag.text)}
           </li>
         )}
       </ul>
@@ -41,4 +42,4 @@ function Tabs() {
   );
 }
 
-export default Tabs;
+export default memo(Tabs);

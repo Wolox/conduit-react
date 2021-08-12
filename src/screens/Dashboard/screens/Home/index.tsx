@@ -1,29 +1,27 @@
-import React, { useEffect } from 'react';
-
 import Layout from 'components/Layout';
 import Tabs from 'components/Tabs';
-import { useDispatch, withContextProvider, useSelector } from 'contexts/TabsContext';
-import { actionCreators } from 'contexts/TabsContext/reducer';
-import { CONFIG_TAB_GLOBAL, CONFIG_TAB_MY_POSTS } from 'components/Tabs/constants';
+import { useSelector as useSelectorUser } from 'contexts/UserContext';
+import List from 'components/List';
+import Welcome from 'components/Welcome';
+import { useSelector as useSelectorTabs, withContextProvider } from 'contexts/TabsContext';
+
+import styles from './styles.module.scss';
+import { TABS_LOGIN, TABS_LOGOUT } from './constants';
 
 function Home() {
-  const distpatch = useDispatch();
-  const { tabs } = useSelector((state) => state);
-
-  useEffect(() => {
-    if (tabs.length === 0) {
-      distpatch(
-        actionCreators.addTabs({
-          tabs: [CONFIG_TAB_GLOBAL, CONFIG_TAB_MY_POSTS],
-          active: CONFIG_TAB_GLOBAL.text
-        })
-      );
-    }
-  }, [distpatch, tabs.length]);
-
+  const { user } = useSelectorUser((state) => state);
+  const { tabActive } = useSelectorTabs((state) => state);
+  const { data } = tabActive.list();
   return (
     <Layout>
-      <Tabs />
+      <Welcome />
+      <div className={styles.content}>
+        <div className={styles.contentList}>
+          <Tabs tabs={user ? TABS_LOGIN : TABS_LOGOUT} />
+          <List list={data?.data} />
+        </div>
+        <div className={styles.contentTags}>Tags</div>
+      </div>
     </Layout>
   );
 }
