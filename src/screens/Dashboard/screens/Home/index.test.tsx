@@ -1,11 +1,20 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import * as AuthService from 'services/AuthService';
 
 import Home from '.';
 
 const reactI18next = jest.requireMock('react-i18next');
+
+const renderHome = () => {
+  render(
+    <Router>
+      <Home />
+    </Router>
+  );
+};
 
 describe('Home component', () => {
   afterAll(() => {
@@ -18,7 +27,7 @@ describe('Home component', () => {
     jest.spyOn(AuthService, 'logout').mockImplementationOnce(logout);
     jest.spyOn(AuthService, 'removeCurrentUserToken').mockImplementationOnce(removeCurrentUserToken);
 
-    render(<Home />);
+    renderHome();
 
     const logoutButton = screen.getByRole('button', { name: /Home:logout/ });
     userEvent.click(logoutButton);
@@ -28,7 +37,7 @@ describe('Home component', () => {
   });
 
   test('sets the tech when tech is typed', async () => {
-    render(<Home />);
+    renderHome();
 
     userEvent.type(screen.getByPlaceholderText(/Home:newTech/), 'Angular');
     await waitFor(() => userEvent.click(screen.getByRole('button', { name: /Home:setNewTech/ })));
@@ -36,7 +45,7 @@ describe('Home component', () => {
   });
 
   test('does not set tech if not typed', async () => {
-    render(<Home />);
+    renderHome();
 
     userEvent.type(screen.getByPlaceholderText(/Home:newTech/), '');
     await waitFor(() => userEvent.click(screen.getByRole('button', { name: /Home:setNewTech/ })));
@@ -53,7 +62,11 @@ describe('Home component', () => {
       }
     });
 
-    const { rerender } = render(<Home />);
+    const { rerender } = render(
+      <Router>
+        <Home />
+      </Router>
+    );
 
     const logoutButton = screen.getByRole('button', { name: /Home:changeLang/ });
     // Calls once for first lang change to "en"
@@ -70,10 +83,10 @@ describe('Home component', () => {
     });
 
     // Rerender the component again to take the new spy mock
-    rerender(<Home />);
+    renderHome();
     // Calls a second time to change lang to return lang to "es"
     userEvent.click(logoutButton);
-    await waitFor(() => expect(changeLanguage).toHaveBeenCalledWith('es'));
+    await waitFor(() => expect(changeLanguage).toHaveBeenCalledWith('en'));
 
     spy.mockClear();
   });

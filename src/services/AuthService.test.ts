@@ -2,6 +2,7 @@ import { ApiResponse } from 'apisauce';
 
 // import api from 'config/api';
 import { User } from 'contexts/UserContext/reducer';
+import { UserProfile } from 'types/User';
 
 import {
   getCurrentUserToken,
@@ -36,8 +37,8 @@ describe('when there is no current user', () => {
   });
 
   test('#setCurrentUserToken sets the current user in local memory', () => {
-    setCurrentUserToken(someUser);
-    expect(storage.sessionToken).toBe(someUser.sessionToken);
+    setCurrentUserToken('token');
+    expect(storage.sessionToken).toBe('token');
     // TODO: Implement call to authentication API here
     // expect(api.headers.Authorization).toBe(someUser.sessionToken);
   });
@@ -85,12 +86,18 @@ const registrationUser = {
   email: 'joen.doe@domain.com'
 };
 
+const registrationUserType = {
+  user: {
+    username: 'John',
+    email: 'joen.doe@domain.com',
+    password: '123456'
+  }
+};
+
 test('#signup with a valid password returns a promise with a user id and token', async () => {
   const response = (await signup({
-    ...registrationUser,
-    password: '12346578',
-    passwordConfirmation: '12345678'
-  })) as ApiResponse<User>;
+    ...registrationUserType
+  })) as ApiResponse<UserProfile>;
   // eslint-disable-next-line no-magic-numbers
   expect(response.data?.id).toBe(1234);
   expect(response.data?.sessionToken).toBe('token');
