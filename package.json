@@ -86,6 +86,7 @@
     "eslint-plugin-testing-library": "^3.10.2",
     "husky": "^4.3.8",
     "minimist": "^1.2.0",
+    "msw": "^0.34.0",
     "mutationobserver-shim": "^0.3.7",
     "plop": "^2.7.4",
     "postcss-html": "^0.36.0",

@@ -2,12 +2,10 @@ import { ApiResponse } from 'apisauce';
 
 // import api from 'config/api';
 import { User } from 'contexts/UserContext/reducer';
-import { UserProfile } from 'types/User';
 
 import {
   getCurrentUserToken,
   login,
-  signup,
   logout,
   removeCurrentUserToken,
   setCurrentUserToken
@@ -75,41 +73,6 @@ test('#login with a valid password returns a promise with a user id and token', 
 // TODO: This test exists to complete coverage. After unmocking the AuthService it can be erased
 test('#login with an invalid password returns a promise with a user id and and invalid token', async () => {
   const response = (await login({ username: 'john.doe', password: 'asd1' })) as ApiResponse<User>;
-  // eslint-disable-next-line no-magic-numbers
-  expect(response.data?.id).toBe(1234);
-  expect(response.data?.sessionToken).toBe('invalid');
-});
-
-const registrationUser = {
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'joen.doe@domain.com'
-};
-
-const registrationUserType = {
-  user: {
-    username: 'John',
-    email: 'joen.doe@domain.com',
-    password: '123456'
-  }
-};
-
-test('#signup with a valid password returns a promise with a user id and token', async () => {
-  const response = (await signup({
-    ...registrationUserType
-  })) as ApiResponse<UserProfile>;
-  // eslint-disable-next-line no-magic-numbers
-  expect(response.data?.id).toBe(1234);
-  expect(response.data?.sessionToken).toBe('token');
-});
-
-// TODO: This test exists to complete coverage. After unmocking the AuthService it can be erased
-test('#signup with an invalid password returns a promise with a user id and and invalid token', async () => {
-  const response = (await signup({
-    ...registrationUser,
-    password: 'asd1',
-    passwordConfirmation: 'asd1'
-  })) as ApiResponse<User>;
   // eslint-disable-next-line no-magic-numbers
   expect(response.data?.id).toBe(1234);
   expect(response.data?.sessionToken).toBe('invalid');
