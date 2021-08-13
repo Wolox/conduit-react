@@ -1,0 +1,48 @@
+@import "scss/variables/_colors";
+@import "scss/variables/_content";
+
+.banner {
+  background-color: $mine-shaft;
+  min-height: 20vh;
+  width: 100vw;
+}
+
+.container {
+  padding: 15px;
+  margin: 0 auto;
+  max-width: $max-content;
+  width: 95vw;
+}
+
+.title {
+  color: $white;
+  font-family: source sans pro, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.user-icon {
+  border-radius: 32px;
+  margin-right: 0.5em;
+  height: 32px;
+  width: 32px;
+}
+
+.user-link {
+  color: $white;
+  font-family: source sans pro, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.date {
+  color: $silver;
+  font-family: source sans pro, sans-serif;
+  font-size: 0.8rem;
+}

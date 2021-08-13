@@ -5,7 +5,8 @@ const paths = {
   register: '/register',
   editor: '/editor',
   settings: '/settings',
-  profile: '/profile'
+  profile: '/profile',
+  article: '/article/:slug'
 };
 
 export default paths;
