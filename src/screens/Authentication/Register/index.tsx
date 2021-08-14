@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
@@ -9,12 +10,14 @@ import Layout from 'components/Layout';
 import { UserFormKeys } from 'components/UserForm/constants';
 import { useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { actionCreators as authActions } from 'contexts/UserContext/reducer';
+import { BackError } from 'utils/types';
 
 import styles from './styles.module.scss';
 
 function Register() {
   const { t } = useTranslation('Register');
   const userDispatch = useUserDispatch();
+  const [errors, setErrors] = useState<BackError | undefined>({});
 
   const { mutate, isLoading } = useMutation((params: { user: UserFormKeys }) => signup(params), {
     onSettled: (data) => {
@@ -22,15 +25,17 @@ function Register() {
         const {
           data: { user }
         } = data;
-        userDispatch(
-          authActions.setUser({
-            user
-          })
-        );
-        if (user.token) {
+        if (user) {
+          userDispatch(
+            authActions.setUser({
+              ...user
+            })
+          );
           setApiTokenHeader(user.token);
           setCurrentUserToken(user.token);
         }
+      } else if (data?.data) {
+        setErrors(data.data.errors);
       }
     }
   });
@@ -40,6 +45,7 @@ function Register() {
       user: values
     };
 
+    setErrors(undefined);
     mutate(params);
   };
 
@@ -51,7 +57,7 @@ function Register() {
           {t('haveAccount')}
         </Link>
         <div className={cn('half-width', styles.formContainer)}>
-          <UserForm formSubmit={onSubmit} isLoading={isLoading} />
+          <UserForm formSubmit={onSubmit} isLoading={isLoading} backErrors={errors} />
         </div>
       </div>
     </Layout>

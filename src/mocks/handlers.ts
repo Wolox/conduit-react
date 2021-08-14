@@ -1,10 +1,12 @@
 /* eslint-disable no-magic-numbers */
 import { rest } from 'msw';
 
-import api from 'config/api';
+import api, { STATUS_CODES } from 'config/api';
 
 import { userProfileMock } from './user';
 
-const handlers = [rest.post('/users', (req, res, ctx) => res(ctx.status(200), ctx.json(userProfileMock)))];
+const handlers = [
+  rest.post('/users', (req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(userProfileMock)))
+];
 
 export { handlers, rest, api };

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Spinner from 'react-spinkit';
 import cn from 'classnames';
 
+import { BackError } from 'utils/types';
 import FormInput from 'components/FormInput';
 
 import { INPUTS, UserFormKeys, WHITE } from './constants';
@@ -12,9 +13,10 @@ import styles from './styles.module.scss';
 interface Props {
   formSubmit: (values: UserFormKeys) => void;
   isLoading?: boolean;
+  backErrors?: BackError;
 }
 
-function UserForm({ formSubmit, isLoading }: Props) {
+function UserForm({ formSubmit, isLoading, backErrors }: Props) {
   const { t } = useTranslation('UserForm');
 
   const {
@@ -38,8 +40,8 @@ function UserForm({ formSubmit, isLoading }: Props) {
             inputClassName={cn('full-width', styles.formInput, {
               [styles.inputError]: errors[inputKey]
             })}
-            errorClassName={errors[inputKey] ? styles.error : styles.hideError}
-            error={errors[inputKey]?.message}
+            errorClassName={backErrors?.[key] || errors[inputKey] ? styles.error : styles.hideError}
+            error={errors[inputKey]?.message || (backErrors?.[key] && backErrors?.[key][0])}
             placeholder={t(value.placeholder)}
             inputRef={register(value.validations)}
             name={key}

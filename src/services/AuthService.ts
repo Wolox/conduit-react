@@ -2,6 +2,7 @@ import { ApiResponse } from 'apisauce';
 
 import api from 'config/api';
 import { User, Credentials } from 'contexts/UserContext/reducer';
+import { BackError } from 'utils/types';
 import { UserProfile } from 'types/User';
 
 import LocalStorageService from './LocalStorageService';
@@ -11,6 +12,11 @@ const TIMEOUT_TIME = 1000;
 
 export interface LoginError {
   message: string;
+}
+
+export interface AuthResponse {
+  user?: UserProfile;
+  errors?: BackError;
 }
 
 export interface RegistrationUser {
@@ -47,10 +53,10 @@ export const login = (credentials: Credentials): Promise<ApiResponse<User, Login
     }, TIMEOUT_TIME);
   });
 
-export const signup = (user: RegistrationUser): Promise<ApiResponse<UserProfile, LoginError>> =>
+export const signup = (user: RegistrationUser): Promise<ApiResponse<AuthResponse>> =>
   api.post('/users', user);
 
-export const getUser = (): Promise<ApiResponse<UserProfile, LoginError>> => api.get('/user');
+export const getUser = (): Promise<ApiResponse<AuthResponse>> => api.get('/user');
 
 export const logout = (): Promise<ApiResponse<User, LoginError>> =>
   new Promise((resolve) => {

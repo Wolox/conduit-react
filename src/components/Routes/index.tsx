@@ -22,11 +22,13 @@ function Routes() {
         const {
           data: { user }
         } = data;
-        userDispatch(
-          authActions.setUser({
-            user
-          })
-        );
+        if (user) {
+          userDispatch(
+            authActions.setUser({
+              ...user
+            })
+          );
+        }
       }
     }
   });
