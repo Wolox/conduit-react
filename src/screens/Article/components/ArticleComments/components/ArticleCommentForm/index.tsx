@@ -22,7 +22,7 @@ function ArticleCommentForm({ formData }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
-      <textarea className={`full-width ${styles.textArea}`} placeholder="Write a comment..." />
+      <textarea className={`full-width ${styles.textArea}`} placeholder={t('formPlaceholder')} />
       <div className={`row space-between ${styles.footer}`}>
         <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
         <button className={styles.button} type="submit">

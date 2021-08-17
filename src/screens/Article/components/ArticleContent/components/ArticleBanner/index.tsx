@@ -8,13 +8,14 @@ import styles from './styles.module.scss';
 
 interface Props {
   bannerData: {
+    avatar?: string;
     articleDate: string;
     userName: string;
   };
 }
 
 function ArticleBanner({ bannerData }: Props) {
-  const { articleDate, userName } = bannerData;
+  const { avatar, articleDate, userName } = bannerData;
   const { slug } = useParams<ArticleParams>();
   const userToRedirect = generatePath(PATHS.user, { username: userName });
 
@@ -24,7 +25,7 @@ function ArticleBanner({ bannerData }: Props) {
         <h1 className={`m-bottom-6 ${styles.title}`}>{slug}</h1>
         <div className={`row ${styles.articleMeta}`}>
           <Link to={userToRedirect}>
-            <img className={styles.userIcon} src={userPlaceholder} alt={userName} />
+            <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
           </Link>
           <div className="column middle">
             <Link className={styles.userLink} to={userToRedirect}>

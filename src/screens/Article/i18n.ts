@@ -5,7 +5,8 @@ i18next.addResources('es', 'Article', {
   or: ' o ',
   signUp: 'regístrese',
   loggetOutMessage: ' para agregar comentarios sobre este artículo.',
-  postComment: 'Publicar comentario'
+  postComment: 'Publicar comentario',
+  formPlaceholder: 'Escribe un comentario...'
 });
 
 i18next.addResources('en', 'Article', {
@@ -13,5 +14,6 @@ i18next.addResources('en', 'Article', {
   or: ' or ',
   signUp: 'sign up',
   loggetOutMessage: ' to add comments on this article.',
-  postComment: 'Post comment'
+  postComment: 'Post comment',
+  formPlaceholder: 'Write a comment...'
 });
