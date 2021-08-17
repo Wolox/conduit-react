@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
+import PATHS from 'components/Routes/paths';
 import type { CommentData } from 'interfaces/articleInterfaces';
 
 import styles from './styles.module.scss';
@@ -11,15 +12,16 @@ type Props = {
 
 function ArticleComment({ commentData }: Props) {
   const { avatar, content, date, userName } = commentData;
+  const userToRedirect = generatePath(PATHS.user, { username: userName });
 
   return (
     <div className={styles.cardContainer}>
       <p className={styles.cardComment}>{content}</p>
       <div className={`row middle ${styles.cardFooter}`}>
-        <Link to={`/user/${userName}`}>
+        <Link to={userToRedirect}>
           <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
         </Link>
-        <Link className={styles.userLink} to={`/user/${userName}`}>
+        <Link className={styles.userLink} to={userToRedirect}>
           {userName}
         </Link>
         <span className={styles.date}>{date}</span>

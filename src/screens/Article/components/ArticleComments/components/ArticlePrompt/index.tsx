@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import PATHS from 'components/Routes/paths';
+
 import styles from './styles.module.scss';
 
 function ArticlePrompt() {
@@ -8,11 +10,11 @@ function ArticlePrompt() {
 
   return (
     <div className={styles.container}>
-      <Link className={styles.link} to="/login">
+      <Link className={styles.link} to={PATHS.login}>
         {t('logIn')}
       </Link>
       <span className={styles.text}>{t('or')}</span>
-      <Link className={styles.link} to="/register">
+      <Link className={styles.link} to={PATHS.register}>
         {t('signUp')}
       </Link>
       <span className={styles.text}>{t('loggetOutMessage')}</span>

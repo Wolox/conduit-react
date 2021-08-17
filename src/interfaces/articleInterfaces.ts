@@ -16,3 +16,7 @@ export interface CommentData {
   date: string;
   userName: string;
 }
+
+export interface ArticleParams {
+  slug: string;
+}
