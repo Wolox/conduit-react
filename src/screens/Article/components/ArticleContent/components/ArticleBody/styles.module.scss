@@ -1,3 +1,4 @@
+@import 'scss/fonts/_fonts';
 @import 'scss/variables/_colors';
 @import 'scss/variables/_content';
 
@@ -11,7 +12,7 @@
 
 .content {
   color: $outer-space;
-  font-family: serif;
+  font-family: $source-serif-pro;
   font-size: 19px;
   line-height: 29px;
   padding: 29px 0 64px;
