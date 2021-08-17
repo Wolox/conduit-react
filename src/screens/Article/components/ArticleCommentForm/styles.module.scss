@@ -1,0 +1,45 @@
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+
+.container {
+  border: 1px solid $mercury;
+  border-radius: 4px;
+  max-width: 728px;
+  margin: 0 auto 12px;
+  width: calc(95vw - 2px);
+}
+
+.text-area {
+  font-family: $source-sans-pro;
+  font-size: 16px;
+  height: 115px;
+  line-height: 20px;
+  padding: 20px;
+  resize: vertical;
+}
+
+.footer {
+  background-color: $wild-sand;
+  border-top: 1px solid $mercury;
+  padding: 12px 20px;
+}
+
+.user-icon {
+  border-radius: 20px;
+  margin-right: 4px;
+  height: 20px;
+  width: 20px;
+}
+
+.button {
+  background-color: $greenFern;
+  border-radius: 3px;
+  color: $white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+
+  &:hover {
+    background-color: $greenGoblin;
+  }
+}

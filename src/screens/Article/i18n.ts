@@ -4,12 +4,14 @@ i18next.addResources('es', 'Article', {
   logIn: 'Inicie sesión',
   or: ' o ',
   signUp: 'regístrese',
-  loggetOutMessage: ' para agregar comentarios sobre este artículo.'
+  loggetOutMessage: ' para agregar comentarios sobre este artículo.',
+  postComment: 'Publicar comentario'
 });
 
 i18next.addResources('en', 'Article', {
   logIn: 'Sign in',
   or: ' or ',
   signUp: 'sign up',
-  loggetOutMessage: ' to add comments on this article.'
+  loggetOutMessage: ' to add comments on this article.',
+  postComment: 'Post comment'
 });
