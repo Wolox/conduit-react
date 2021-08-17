@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
-import type { CommentData } from 'interfaces/commentInterfaces';
+import type { CommentData } from 'interfaces/articleInterfaces';
 
 import styles from './styles.module.scss';
 

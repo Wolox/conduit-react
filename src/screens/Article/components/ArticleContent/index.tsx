@@ -1,16 +1,16 @@
-import styles from './styles.module.scss';
+import { MOCKED_ARTICLE } from 'screens/Article/constants';
 
-interface Props {
-  textContent: string;
-}
+import ArticleBanner from './components/ArticleBanner';
+import ArticleBody from './components/ArticleBody';
 
-function ArticleContent({ textContent }: Props) {
+function ArticleContent() {
+  const { date: ArticleDate, content: ArticleText, author: ArticleAuthor } = MOCKED_ARTICLE;
+
   return (
-    <article className="full-width">
-      <div className={styles.container}>
-        <p className={styles.content}>{textContent}</p>
-      </div>
-    </article>
+    <>
+      <ArticleBanner bannerData={{ articleDate: ArticleDate, userName: ArticleAuthor }} />
+      <ArticleBody textContent={ArticleText} />
+    </>
   );
 }
 
