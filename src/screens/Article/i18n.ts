@@ -1,9 +1,15 @@
 import i18next from 'i18next';
 
 i18next.addResources('es', 'Article', {
-  article: 'Article screen slug: '
+  logIn: 'Inicie sesión',
+  or: ' o ',
+  signUp: 'regístrese',
+  loggetOutMessage: ' para agregar comentarios sobre este artículo.'
 });
 
 i18next.addResources('en', 'Article', {
-  article: 'Article screen slug: '
+  logIn: 'Sign in',
+  or: ' or ',
+  signUp: 'sign up',
+  loggetOutMessage: ' to add comments on this article.'
 });

@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 
@@ -18,13 +17,12 @@ interface RouteParams {
 
 function ArticleBanner({ bannerData }: Props) {
   const { articleDate, userName } = bannerData;
-  const { t } = useTranslation('Article');
   const { slug } = useParams<RouteParams>();
 
   return (
     <div className={`row middle center full-width ${styles.banner}`}>
       <div className={`column start space-between ${styles.container}`}>
-        <h1 className={`m-bottom-6 ${styles.title}`}>{`${t('article')} ${slug}`}</h1>
+        <h1 className={`m-bottom-6 ${styles.title}`}>{slug}</h1>
         <div className={`row ${styles.articleMeta}`}>
           <Link to={`/${userName}`}>
             <img className={styles.userIcon} src={userPlaceholder} alt={userName} />
