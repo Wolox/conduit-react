@@ -26,14 +26,12 @@ function WrappedRoutes({ userState }: { userState: UserState }) {
 describe('when there is a user', () => {
   const userState: UserState = {
     user: {
-      user: {
-        id: 1,
-        username: 'Felipe',
-        email: 'piperiver7@gmail.com',
-        bio: null,
-        image: null,
-        token: null
-      }
+      id: 1,
+      username: 'Felipe',
+      email: 'piperiver7@gmail.com',
+      bio: null,
+      image: null,
+      token: 'token'
     }
   };
 
@@ -50,6 +48,6 @@ describe('when there is no user', () => {
   test('redirects to Login screen when on the home path', async () => {
     window.history.pushState({}, '', PATHS.home);
     render(<WrappedRoutes userState={userState} />);
-    await waitFor(() => expect(screen.getByText(/login/)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/conduit/)).toBeInTheDocument());
   });
 });

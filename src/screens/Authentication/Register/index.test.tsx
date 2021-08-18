@@ -51,7 +51,7 @@ describe('#Register', () => {
     userEvent.type(screen.getByPlaceholderText('Username'), 'User');
     userEvent.type(screen.getByPlaceholderText('Email'), 'mock@user.com');
     userEvent.type(screen.getByPlaceholderText('Password'), '123456');
-    userEvent.click(screen.getByRole('button', { name: /Register:signUp/i }));
+    userEvent.click(screen.getByRole('button'));
 
     await waitFor(() => expect(history.entries[history.index].pathname).toBe('/'));
   });
@@ -71,8 +71,8 @@ describe('#Register', () => {
     userEvent.type(screen.getByPlaceholderText('Username'), 'User');
     userEvent.type(screen.getByPlaceholderText('Email'), 'mock@user.com');
     userEvent.type(screen.getByPlaceholderText('Password'), '123456');
-    userEvent.click(screen.getByRole('button', { name: /Register:signUp/i }));
+    userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText('has already been taken')).toBeInTheDocument();
+    expect(await screen.findByText('username has already been taken')).toBeInTheDocument();
   });
 });
