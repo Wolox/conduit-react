@@ -3,13 +3,7 @@ import { ApiResponse } from 'apisauce';
 // import api from 'config/api';
 import { User } from 'contexts/UserContext/reducer';
 
-import {
-  getCurrentUserToken,
-  login,
-  logout,
-  removeCurrentUserToken,
-  setCurrentUserToken
-} from './AuthService';
+import { getCurrentUserToken, logout, removeCurrentUserToken, setCurrentUserToken } from './AuthService';
 
 // TODO: Right now AuthService is mocked. Once it's implemented, mock it in the tests
 // by using MSW (https://mswjs.io/)
@@ -61,21 +55,6 @@ describe('when there is a current user', () => {
     removeCurrentUserToken();
     expect(storage.sessionToken).toBe(undefined);
   });
-});
-
-test('#login with a valid password returns a promise with a user id and token', async () => {
-  const response = (await login({ username: 'john.doe', password: '12345678' })) as ApiResponse<User>;
-  // eslint-disable-next-line no-magic-numbers
-  expect(response.data?.id).toBe(1234);
-  expect(response.data?.sessionToken).toBe('token');
-});
-
-// TODO: This test exists to complete coverage. After unmocking the AuthService it can be erased
-test('#login with an invalid password returns a promise with a user id and and invalid token', async () => {
-  const response = (await login({ username: 'john.doe', password: 'asd1' })) as ApiResponse<User>;
-  // eslint-disable-next-line no-magic-numbers
-  expect(response.data?.id).toBe(1234);
-  expect(response.data?.sessionToken).toBe('invalid');
 });
 
 test('#logout returns an empty sessionToken and the user id', async () => {

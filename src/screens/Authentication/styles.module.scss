@@ -23,6 +23,16 @@
   }
 }
 
+.errors-list-item {
+  color: $redMatrix;
+  list-style-type: disc;
+  margin: 0 0 16px 18px;
+}
+
+.errorIcon {
+  color: $redMatrix;
+}
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;

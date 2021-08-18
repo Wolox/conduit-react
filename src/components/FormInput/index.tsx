@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   disabled?: boolean;
   error?: string;
+  showErrorWithoutText?: boolean;
   errorClassName?: string;
   inputClassName?: string;
   isTextarea?: boolean;
@@ -27,6 +28,7 @@ function FormInput({
   className = '',
   disabled = false,
   error = '',
+  showErrorWithoutText = false,
   errorClassName = '',
   inputClassName = '',
   isTextarea = false,
@@ -45,7 +47,9 @@ function FormInput({
 }: Props) {
   const InputComponent = isTextarea ? 'textarea' : 'input';
   const showError =
-    (touched === undefined || touched) && error && (submitCount === undefined || submitCount > 0);
+    (touched === undefined || touched) &&
+    (error || showErrorWithoutText) &&
+    (submitCount === undefined || submitCount > 0);
 
   return (
     <div className={`column start ${className}`}>
