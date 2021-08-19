@@ -20,3 +20,9 @@ export interface Articles {
   articles: Article[];
   articlesCount: number;
 }
+
+export interface DataEndpointArticles {
+  limit: number;
+  offset: number;
+  user?: string;
+}

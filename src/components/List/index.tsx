@@ -1,16 +1,21 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ListItem from 'components/ListItem';
 import { Articles } from 'types/Article';
 
+import styles from './styles.module.scss';
+
 interface Props {
-  list: Articles | undefined;
+  data: Articles | undefined;
 }
 
-function List({ list }: Props) {
+function List({ data }: Props) {
+  const { t } = useTranslation();
   return (
     <div>
-      {list?.articles && list.articles.map((article) => <ListItem article={article} key={article.slug} />)}
+      {data?.articles && data.articles.map((article) => <ListItem article={article} key={article.slug} />)}
+      {data?.articlesCount === 0 && <div className={styles.emptyMessage}>{t('List:empty')}</div>}
     </div>
   );
 }

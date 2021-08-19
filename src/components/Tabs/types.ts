@@ -1,9 +1,9 @@
 import { ApiResponse } from 'apisauce';
 import { UseQueryResult } from 'react-query';
 
-import { Articles } from 'types/Article';
+import { Articles, DataEndpointArticles } from 'types/Article';
 
-export interface Tab<T = void> {
+export interface Tab {
   text: string;
-  list: (data?: T) => UseQueryResult<ApiResponse<Articles>>;
+  list: (payload: DataEndpointArticles) => UseQueryResult<ApiResponse<Articles>>;
 }
