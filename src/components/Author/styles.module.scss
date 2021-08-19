@@ -1,54 +1,58 @@
 @import 'scss/variables/_colors';
 
-.container{
-    position: relative;
+.container {
+  position: relative;
 
-    .container-author{
-        align-items: center;
-        display:flex;
-        flex-direction: row;
+  .container-author {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 
-        .image{
-            border-radius: 30px;
-            display: inline-block;
-            height: 32px;
-            margin-right: 5px;
-            vertical-align: middle;
-            width: 32px;
-        }
-
-        .username{
-            color: $greenFern;
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-        }
+    .image {
+      border-radius: 30px;
+      display: inline-block;
+      height: 32px;
+      margin-right: 5px;
+      vertical-align: middle;
+      width: 32px;
     }
 
-    .container-button{
-        align-items: center;
-        display: flex;
-        height: 100%;
-        justify-content: center;
-        position: absolute;
-        right: 15px;
-        top: 0;
-
-        .like{
-            border-radius: 3px;
-            border: 1px solid $greenFern;
-            color: $greenFern;
-            padding: 4px 6px;
-
-            &:hover{
-                background: $greenFern;
-                color: $white;
-            }
-
-            .icon{
-                margin-right: 3px;
-            }
-        }
+    .username {
+      color: $greenFern;
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
     }
-    
+  }
+
+  .container-button {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    right: 15px;
+    top: 0;
+
+    .like {
+      border-radius: 3px;
+      border: 1px solid $greenFern;
+      color: $greenFern;
+      padding: 4px 6px;
+
+      &:hover {
+        background: $greenFern;
+        color: $white;
+      }
+    }
+
+    .active {
+      background: $greenFern;
+      color: $white;
+    }
+
+    .icon {
+      margin-right: 3px;
+    }
+  }
 }

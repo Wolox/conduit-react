@@ -1,7 +1,7 @@
 import { ApiResponse } from 'apisauce';
 
 import api from 'config/api';
-import { Articles } from 'types/Article';
+import { Articles, ResponseFavorites } from 'types/Article';
 
 export interface Error {
   message: string;
@@ -20,6 +20,11 @@ export interface ArticlesFavorites extends Paginated {
   favorited: string;
 }
 
+interface FavoritesAddRemove {
+  slug: string;
+  isFavorite: boolean;
+}
+
 export const articles = (payload: Paginated): Promise<ApiResponse<Articles>> => api.get('/articles', payload);
 
 export const feed = (payload: Paginated): Promise<ApiResponse<Articles>> =>
@@ -30,3 +35,9 @@ export const articlesByAuthor = (payload: ArticlesByAuthor): Promise<ApiResponse
 
 export const articlesFavorites = (payload: ArticlesFavorites): Promise<ApiResponse<Articles>> =>
   api.get('/articles', payload);
+
+export const addRemoveFavorites = ({
+  slug,
+  isFavorite
+}: FavoritesAddRemove): Promise<ApiResponse<ResponseFavorites>> =>
+  isFavorite ? api.delete(`/articles/${slug}/favorite`) : api.post(`/articles/${slug}/favorite`);

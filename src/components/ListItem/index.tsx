@@ -17,6 +17,8 @@ function ListItem({ article }: Props) {
         username={article.author.username}
         date={article.createdAt}
         favorites={article.favoritesCount}
+        isFavorited={article.favorited}
+        slug={article.slug}
       />
       <h1 className={styles.title}>{article.title}</h1>
       <p className={styles.description}>{article.description}</p>

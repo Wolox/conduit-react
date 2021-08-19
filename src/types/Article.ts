@@ -26,3 +26,7 @@ export interface DataEndpointArticles {
   offset: number;
   user?: string;
 }
+
+export interface ResponseFavorites {
+  article: Article;
+}
