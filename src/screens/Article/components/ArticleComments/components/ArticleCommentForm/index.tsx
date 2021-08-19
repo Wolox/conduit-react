@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 
@@ -22,8 +23,8 @@ function ArticleCommentForm({ formData }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
-      <textarea className={`full-width ${styles.textArea}`} placeholder={t('formPlaceholder')} />
-      <div className={`row space-between ${styles.footer}`}>
+      <textarea className={cn('full-width', styles.textArea)} placeholder={t('formPlaceholder')} />
+      <div className={cn('row space-between', styles.footer)}>
         <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
         <button className={styles.button} type="submit">
           {t('postComment')}

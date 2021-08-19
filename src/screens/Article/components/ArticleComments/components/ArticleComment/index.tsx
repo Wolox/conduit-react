@@ -1,4 +1,5 @@
 import { generatePath, Link } from 'react-router-dom';
+import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
@@ -17,7 +18,7 @@ function ArticleComment({ commentData }: Props) {
   return (
     <div className={styles.cardContainer}>
       <p className={styles.cardComment}>{content}</p>
-      <div className={`row middle ${styles.cardFooter}`}>
+      <div className={cn('row middle', styles.cardFooter)}>
         <Link to={userToRedirect}>
           <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
         </Link>

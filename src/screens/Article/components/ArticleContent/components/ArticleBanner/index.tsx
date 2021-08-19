@@ -1,4 +1,5 @@
 import { generatePath, Link, useParams } from 'react-router-dom';
+import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
@@ -20,10 +21,10 @@ function ArticleBanner({ bannerData }: Props) {
   const userToRedirect = generatePath(PATHS.user, { username: userName });
 
   return (
-    <div className={`row middle center full-width ${styles.banner}`}>
-      <div className={`column start space-between ${styles.container}`}>
-        <h1 className={`m-bottom-6 ${styles.title}`}>{slug}</h1>
-        <div className={`row ${styles.articleMeta}`}>
+    <div className={cn('row middle center full-width', styles.banner)}>
+      <div className={cn('column start space-between', styles.container)}>
+        <h1 className={cn('m-bottom-6', styles.title)}>{slug}</h1>
+        <div className="row">
           <Link to={userToRedirect}>
             <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
           </Link>
