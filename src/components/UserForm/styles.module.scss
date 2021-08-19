@@ -9,18 +9,18 @@
   padding: 12px 24px;
 
   &:focus {
-    border-bottom: 1px solid $blueCornflower;
-    border-color: $blueCornflower;
+    border-bottom: 1px solid $blue-corn-flower;
+    border-color: $blue-corn-flower;
     outline: none;
   }
 
   &.input-error {
-    border-bottom: solid 2px $redMatrix;
+    border-bottom: solid 2px $red-matrix;
   }
 }
 
 .error {
-  color: $redMatrix;
+  color: $red-matrix;
   height: auto;
 }
 
@@ -30,7 +30,7 @@
 
 .sign-up-btn {
   align-self: flex-end;
-  background-color: $greenFern;
+  background-color: $green-fern;
   border-radius: 5px;
   color: $white;
   font-size: 20px;
@@ -38,6 +38,6 @@
   padding: 12px 24px;
 
   &:hover {
-    background-color: $greenApple;
+    background-color: $green-apple;
   }
 }

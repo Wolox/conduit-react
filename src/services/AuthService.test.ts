@@ -36,7 +36,7 @@ describe('when there is no current user', () => {
   });
 
   test('#setCurrentUserToken sets the current user in local memory', () => {
-    setCurrentUserToken(someUser);
+    setCurrentUserToken(someUser.sessionToken);
     expect(storage.sessionToken).toBe(someUser.sessionToken);
     // TODO: Implement call to authentication API here
     // expect(api.headers.Authorization).toBe(someUser.sessionToken);
@@ -87,9 +87,11 @@ const registrationUser = {
 
 test('#signup with a valid password returns a promise with a user id and token', async () => {
   const response = (await signup({
-    ...registrationUser,
-    password: '12346578',
-    passwordConfirmation: '12345678'
+    user: {
+      ...registrationUser,
+      username: 'Mario',
+      password: '12346578'
+    }
   })) as ApiResponse<User>;
   // eslint-disable-next-line no-magic-numbers
   expect(response.data?.id).toBe(1234);
@@ -99,9 +101,11 @@ test('#signup with a valid password returns a promise with a user id and token',
 // TODO: This test exists to complete coverage. After unmocking the AuthService it can be erased
 test('#signup with an invalid password returns a promise with a user id and and invalid token', async () => {
   const response = (await signup({
-    ...registrationUser,
-    password: 'asd1',
-    passwordConfirmation: 'asd1'
+    user: {
+      ...registrationUser,
+      username: 'Luigi',
+      password: 'asd1'
+    }
   })) as ApiResponse<User>;
   // eslint-disable-next-line no-magic-numbers
   expect(response.data?.id).toBe(1234);
