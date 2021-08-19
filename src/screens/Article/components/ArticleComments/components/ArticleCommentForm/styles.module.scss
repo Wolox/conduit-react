@@ -32,7 +32,7 @@
 }
 
 .button {
-  background-color: $greenFern;
+  background-color: $green-fern;
   border-radius: 3px;
   color: $white;
   font-size: 14px;
@@ -40,6 +40,6 @@
   padding: 8px;
 
   &:hover {
-    background-color: $greenGoblin;
+    background-color: $green-goblin;
   }
 }
