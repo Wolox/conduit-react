@@ -48,6 +48,6 @@ describe('when there is no user', () => {
   test('redirects to Login screen when on the home path', async () => {
     window.history.pushState({}, '', PATHS.home);
     render(<WrappedRoutes userState={userState} />);
-    await waitFor(() => expect(screen.getByText(/conduit/)).toBeInTheDocument());
+    expect(await screen.findByText(/conduit/)).toBeInTheDocument();
   });
 });

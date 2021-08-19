@@ -8,6 +8,7 @@ import { login, setApiTokenHeader, setCurrentUserToken } from 'services/AuthServ
 import UserForm from 'components/UserForm';
 import Layout from 'components/Layout';
 import { UserFormKeys } from 'components/UserForm/constants';
+import paths from 'components/Routes/paths';
 import { useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { actionCreators as authActions } from 'contexts/UserContext/reducer';
 import { BackError } from 'utils/types';
@@ -54,7 +55,7 @@ function Register() {
     <Layout>
       <div className={`full-width column center ${styles.container}`}>
         <h1 className={`m-bottom-2 ${styles.title}`}>{t('signIn')}</h1>
-        <Link to="/register" className={styles.linkToAccount}>
+        <Link to={paths.register} className={styles.linkToAccount}>
           {t('needAccount')}
         </Link>
         <div className={cn('half-width', styles.formContainer)}>

@@ -1,8 +1,6 @@
-/* eslint-disable complexity */
-/* eslint-disable import/no-named-as-default */
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import Spinner from 'react-spinkit';
+import Loading from 'react-spinkit';
 import cn from 'classnames';
 
 import { BackError } from 'utils/types';
@@ -69,7 +67,7 @@ function UserForm({ formSubmit, isLoading, backErrors, formType }: Props) {
         disabled={isLoading}
       >
         {isLoading ? (
-          <Spinner name="circle" color={WHITE} className={styles.loaderBtn} fadeIn="half" />
+          <Loading name="circle" color={WHITE} className={styles.loaderBtn} fadeIn="half" />
         ) : (
           t(`Auth:${ACTION_BY_TYPE[formType]}`)
         )}
