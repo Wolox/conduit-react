@@ -23,11 +23,7 @@ function Routes() {
           data: { user }
         } = data;
         if (user) {
-          userDispatch(
-            authActions.setUser({
-              ...user
-            })
-          );
+          userDispatch(authActions.setUser(user));
         }
       }
     }

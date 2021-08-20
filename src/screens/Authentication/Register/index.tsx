@@ -28,11 +28,7 @@ function Register() {
           data: { user }
         } = data;
         if (user) {
-          userDispatch(
-            authActions.setUser({
-              ...user
-            })
-          );
+          userDispatch(authActions.setUser(user));
           setApiTokenHeader(user.token);
           setCurrentUserToken(user.token);
         }
