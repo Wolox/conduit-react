@@ -4,7 +4,7 @@ import PATHS from 'components/Routes/paths';
 
 import { ItemsMenu } from './types';
 
-const itemsMenu: ItemsMenu[] = [
+export const ITEMS_MENU: ItemsMenu[] = [
   {
     text: 'Header:signIn',
     href: PATHS.login,
@@ -38,5 +38,3 @@ const itemsMenu: ItemsMenu[] = [
 ];
 
 export const SIZE_ICONS = 'xs';
-
-export default itemsMenu;
