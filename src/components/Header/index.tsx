@@ -6,11 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'contexts/UserContext';
 import PATHS from 'components/Routes/paths';
 
-import itemsMenu from './constants';
+import itemsMenu, { SIZE_ICONS } from './constants';
 import styles from './styles.module.scss';
 
 function Header() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('Header');
   const user = useSelector((state) => state.user);
 
   const items = itemsMenu.filter(({ isProtected }) => (user && isProtected) || (!user && !isProtected));
@@ -23,13 +23,13 @@ function Header() {
           <li className={styles.item}>
             <NavLink to={PATHS.home} activeClassName={styles.active} className={styles.link}>
               <FontAwesomeIcon icon={faHome} size="xs" className={styles.icon} />
-              <span className={styles.text}>{t('Header:home')}</span>
+              <span className={styles.text}>{t('home')}</span>
             </NavLink>
           </li>
           {items.map(({ text, href, icon }) => (
             <li className={styles.item} key={href}>
               <NavLink to={href} activeClassName={styles.active} className={styles.link}>
-                <FontAwesomeIcon icon={icon} size="xs" className={styles.icon} />
+                <FontAwesomeIcon icon={icon} size={SIZE_ICONS} className={styles.icon} />
                 <span className={styles.text}>{t(text)}</span>
               </NavLink>
             </li>

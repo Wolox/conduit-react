@@ -2,7 +2,9 @@ import { faEdit, faCog, faUser, faSignInAlt, faUserPlus } from '@fortawesome/fre
 
 import PATHS from 'components/Routes/paths';
 
-const itemsMenu = [
+import { ItemsMenu } from './types';
+
+const itemsMenu: ItemsMenu[] = [
   {
     text: 'Header:signIn',
     href: PATHS.login,
@@ -34,5 +36,7 @@ const itemsMenu = [
     icon: faCog
   }
 ];
+
+export const SIZE_ICONS = 'xs';
 
 export default itemsMenu;

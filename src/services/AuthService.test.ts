@@ -29,8 +29,8 @@ describe('when there is no current user', () => {
   });
 
   test('#setCurrentUserToken sets the current user in local memory', () => {
-    setCurrentUserToken('token');
-    expect(storage.sessionToken).toBe('token');
+    setCurrentUserToken(someUser.sessionToken);
+    expect(storage.sessionToken).toBe(someUser.sessionToken);
     // TODO: Implement call to authentication API here
     // expect(api.headers.Authorization).toBe(someUser.sessionToken);
   });
