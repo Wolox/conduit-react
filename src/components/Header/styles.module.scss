@@ -12,22 +12,21 @@
   padding: 15px;
 }
 
-  .logo {
-    color: $greenFern;
-    cursor: pointer;
-    font-family: $Titillium;
-    font-size: 30px;
-    font-weight: 600;
-  }
+.logo {
+  color: $greenFern;
+  cursor: pointer;
+  font-family: $Titillium;
+  font-size: 30px;
+  font-weight: 600;
+}
 
-  .list-items {
-    display: flex;
-    justify-content: flex-end;
-  }
+.list-items {
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .item {
-    margin: 0 10px;
-  }
+.item {
+  margin: 0 10px;
 }
 
 .link {
