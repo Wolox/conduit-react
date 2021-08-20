@@ -13,9 +13,9 @@
 }
 
 .logo {
-  color: $greenFern;
+  color: $green-fern;
   cursor: pointer;
-  font-family: $Titillium;
+  font-family: $titillium;
   font-size: 30px;
   font-weight: 600;
 }
@@ -51,12 +51,12 @@
 }
 
 .active {
-  color: $greenApple;
+  color: $green-apple;
   font-weight: 600;
   opacity: 1;
 
   .text {
-    color: $greenApple;
+    color: $green-apple;
     font-weight: 600;
   }
 }
