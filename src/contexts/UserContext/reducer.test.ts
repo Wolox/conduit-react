@@ -2,21 +2,37 @@ import { actionCreators, reducer } from './reducer';
 
 const EMPTY_STATE = { user: null };
 
+const INITIAL_USER = {
+  user: {
+    id: 1,
+    username: 'Mario',
+    email: 'mario@bros.com',
+    bio: null,
+    image: null,
+    token: null
+  }
+};
+
+const NEW_USER = {
+  user: {
+    ...INITIAL_USER.user,
+    id: 2,
+    username: 'Luigi',
+    email: 'luigi@bros.com'
+  }
+};
+
 test('setUser action sets the new user when there is no user', () => {
-  const newUser = { id: 1, sessionToken: 'aToken' };
-  const newState = reducer(EMPTY_STATE, actionCreators.setUser(newUser));
-  expect(newState).toEqual({ user: newUser });
+  const newState = reducer(EMPTY_STATE, actionCreators.setUser(INITIAL_USER));
+  expect(newState).toEqual({ user: INITIAL_USER });
 });
 
 test('setUser action sets the new user when there is a user user', () => {
-  const initialState = { user: { id: 1, sessionToken: 'token1' } };
-  const newUser = { id: 2, sessionToken: 'token2' };
-  const newState = reducer(initialState, actionCreators.setUser(newUser));
-  expect(newState).toEqual({ user: newUser });
+  const newState = reducer({ user: INITIAL_USER }, actionCreators.setUser(NEW_USER));
+  expect(newState).toEqual({ user: NEW_USER });
 });
 
 test('resetUser action removes the user', () => {
-  const initialState = { user: { id: 1, sessionToken: 'token1' } };
-  const newState = reducer(initialState, actionCreators.resetUser());
+  const newState = reducer({ user: INITIAL_USER }, actionCreators.resetUser());
   expect(newState).toEqual({ user: null });
 });

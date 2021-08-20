@@ -3,77 +3,73 @@
 @import 'scss/variables/_content';
 @import 'scss/margins';
 
-.content-header{
+.content-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: $max-content;
+  padding: 15px;
+}
+
+.logo {
+  color: $green-fern;
+  cursor: pointer;
+  font-family: $titillium;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.list-items {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item {
+  margin: 0 10px;
+
+  .link {
     align-items: center;
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: $max-content;
-    padding: 15px;
+    font-size: 18px;
+    justify-content: flex-start;
+    opacity: 0.5;
 
-    .logo{
-        color: $greenFern;
-        cursor: pointer;
-        font-family: $Titillium;
-        font-size: 30px;
-        font-weight: bold;
+    .text {
+      color: $black;
+      font-size: 18px;
     }
 
-    .list-items{
-        display: flex;
-        justify-content: flex-end;
-
-        .item{
-            margin: 0 10px;
-
-            .link{
-                align-items: center;
-                display: flex;
-                font-size: 18px;
-                justify-content: flex-start;
-                opacity: 0.5;
-                
-                .text{
-                    color: $black;
-                    font-size: 18px;
-                }
-
-                &:hover{
-                    opacity: 0.7;
-                }
-
-                .icon{
-                    margin-right: 3px;
-                }
-            }
-
-            .active{
-                color: $greenApple;
-                font-weight: bold;
-                opacity: 1;
-
-                .text{
-                    color: $greenApple;
-                    font-weight: bold;    
-                }
-                
-            }
-
-            
-        }
+    &:hover {
+      opacity: 0.7;
     }
+
+    .icon {
+      margin-right: 3px;
+    }
+  }
+
+  .active {
+    color: $green-apple;
+    font-weight: 600;
+    opacity: 1;
+
+    .text {
+      color: $green-apple;
+      font-weight: 600;
+    }
+  }
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .content-header{
-      
-      .logo{
-          font-size: 30px;
-      }
-    
-      .link{
-            font-size: 30px !important;
-            text-indent: -9000px;
-      }
+  .content-header {
+    .logo {
+      font-size: 30px;
+    }
+
+    .link {
+      font-size: 30px;
+      text-indent: -9000px;
+    }
   }
 }

@@ -1,10 +1,11 @@
-FROM node:14-alpine3.14
+FROM node:14
 
 WORKDIR /home/node
 
 COPY package.json .
 
-RUN npm install
 ENV PATH /home/node/node_modules/.bin:$PATH
+
+RUN npm install
 
 WORKDIR /home/node/app

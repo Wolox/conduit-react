@@ -5,13 +5,12 @@ config:
 steps:
   cypress:
     - ln -sfn /home/node/node_modules node_modules
-    - npm install cypress
     - npx cypress run
   lint:
     - npm run ts-check
     - npm run lint
     - npm run lint-scss
-
+    
 environment:
   GIT_COMMITTER_NAME: a
   GIT_COMMITTER_EMAIL: b
