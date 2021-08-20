@@ -5,13 +5,16 @@
   min-height: 100vh;
   padding-bottom: $heigth-footer;
   position: relative;
+  padding-top: 76px;
 
-  .header{
+  .header {
     box-shadow: 0 8px 8px -8px $gray-shadow;
     background-color: $white;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 1
+    left: 0;
+    right: 0;
+    z-index: 1;
   }
 
   .footer {
