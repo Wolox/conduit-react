@@ -18,7 +18,7 @@
     }
 
     .username {
-      color: $greenFern;
+      color: $green-fern;
       display: block;
       font-size: 16px;
       font-weight: 600;
@@ -36,18 +36,18 @@
 
     .like {
       border-radius: 3px;
-      border: 1px solid $greenFern;
-      color: $greenFern;
+      border: 1px solid $green-fern;
+      color: $green-fern;
       padding: 4px 6px;
 
       &:hover {
-        background: $greenFern;
+        background: $green-fern;
         color: $white;
       }
     }
 
     .active {
-      background: $greenFern;
+      background: $green-fern;
       color: $white;
     }
 
