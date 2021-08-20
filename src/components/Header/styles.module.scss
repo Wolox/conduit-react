@@ -16,48 +16,48 @@
     cursor: pointer;
     font-family: $Titillium;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 600;
   }
 
   .list-items {
     display: flex;
     justify-content: flex-end;
+  }
 
-    .item {
-      margin: 0 10px;
+  .item {
+    margin: 0 10px;
+  }
+}
 
-      .link {
-        align-items: center;
-        display: flex;
-        font-size: 18px;
-        justify-content: flex-start;
-        opacity: 0.5;
+.link {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  justify-content: flex-start;
+  opacity: 0.5;
 
-        .text {
-          color: $black;
-          font-size: 18px;
-        }
+  .text {
+    color: $black;
+    font-size: 18px;
+  }
 
-        &:hover {
-          opacity: 0.7;
-        }
+  &:hover {
+    opacity: 0.7;
+  }
 
-        .icon {
-          margin-right: 3px;
-        }
-      }
+  .icon {
+    margin-right: 3px;
+  }
+}
 
-      .active {
-        color: $greenApple;
-        font-weight: bold;
-        opacity: 1;
+.active {
+  color: $greenApple;
+  font-weight: 600;
+  opacity: 1;
 
-        .text {
-          color: $greenApple;
-          font-weight: bold;
-        }
-      }
-    }
+  .text {
+    color: $greenApple;
+    font-weight: 600;
   }
 }
 
@@ -68,8 +68,11 @@
     }
 
     .link {
-      font-size: 30px !important;
-      text-indent: -9000px;
+      font-size: 30px;
+
+      .text {
+        display: none;
+      }
     }
   }
 }
