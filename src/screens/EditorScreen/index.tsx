@@ -1,12 +1,15 @@
+import Layout from 'components/Layout';
+
 import ContentEditor from './components/ContentEditor';
 import styles from './styles.module.scss';
 
 function Editor() {
   return (
-    <div className={styles.editorContainer}>
-      <h1>Editor</h1>
-      <ContentEditor />
-    </div>
+    <Layout>
+      <div className={styles.editorContainer}>
+        <ContentEditor />
+      </div>
+    </Layout>
   );
 }
 
