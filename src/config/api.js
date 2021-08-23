@@ -6,8 +6,10 @@ if (baseURL === 'http://wolox.com' || !baseURL) {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
 }
 
-const STATUS_CODES = {
-  unauthorized: 401
+export const STATUS_CODES = {
+  ok: 200,
+  unauthorized: 401,
+  unprocessableEntity: 422
 };
 
 const api = create({

@@ -1,3 +1,14 @@
+import { FORM_TYPE } from 'screens/Authentication/constants';
+
+export const WHITE = '#FFF';
+export const USERNAME = 'username';
+export const EMAIL_OR_PASSWORD = 'email or password';
+
+export const ACTION_BY_TYPE = {
+  [FORM_TYPE.LOGIN]: 'signIn',
+  [FORM_TYPE.REGISTER]: 'signUp'
+};
+
 export interface UserFormKeys {
   username: string;
   email: string;
