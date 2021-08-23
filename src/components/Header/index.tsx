@@ -6,14 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'contexts/UserContext';
 import PATHS from 'components/Routes/paths';
 
-import itemsMenu, { SIZE_ICONS } from './constants';
+import { SIZE_ICONS, ITEMS_MENU } from './constants';
 import styles from './styles.module.scss';
 
 function Header() {
   const { t } = useTranslation('Header');
   const user = useSelector((state) => state.user);
 
-  const items = itemsMenu.filter(({ isProtected }) => (user && isProtected) || (!user && !isProtected));
+  const items = ITEMS_MENU.filter(({ isProtected }) => (user && isProtected) || (!user && !isProtected));
 
   return (
     <div className={styles.contentHeader}>
