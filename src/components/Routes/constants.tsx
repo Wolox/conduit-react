@@ -5,9 +5,10 @@ import { UserProfile } from 'types/User';
 
 import PATHS from './paths';
 
-const Home = lazy(() => import('../../screens/Dashboard'));
-const Login = lazy(() => import('../../screens/Authentication/Login'));
-const Register = lazy(() => import('../../screens/Authentication/Register'));
+const Home = lazy(() => import('screens/Dashboard'));
+const EditorScreen = lazy(() => import('screens/EditorScreen'));
+const Login = lazy(() => import('screens/Authentication/Login'));
+const Register = lazy(() => import('screens/Authentication/Register'));
 // Add imports for screens above (FOR GENERATORS, DO NOT REMOVE)
 
 const MAIN_PUBLIC_PATH = PATHS.login;
@@ -31,6 +32,13 @@ export const ROUTES = [
     component: Register,
     title: 'Routes:registerTitle',
     redirectTo: (user: UserProfile | null) => (user ? MAIN_PRIVATE_PATH : undefined)
+  },
+  {
+    exact: true,
+    path: PATHS.editor,
+    component: EditorScreen,
+    title: 'Routes:editorTitle',
+    redirectTo: (user: UserProfile | null) => (user ? undefined : MAIN_PUBLIC_PATH)
   },
   {
     exact: false,
