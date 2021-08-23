@@ -1,3 +1,22 @@
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+
 .editor-container {
-  width: 95%;
+  margin: 0 auto;
+  width: 95vw;
+
+  h1,
+  h2,
+  h3,
+  p,
+  span {
+    color: $black;
+    display: block;
+    font: $unset;
+    font-weight: 500;
+  }
+
+  strong {
+    font-weight: 700;
+  }
 }
