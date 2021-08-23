@@ -11,11 +11,11 @@ interface Props {
 }
 
 function List({ data }: Props) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('List');
   return (
     <div>
       {data?.articles && data.articles.map((article) => <ListItem article={article} key={article.slug} />)}
-      {data?.articlesCount === 0 && <div className={styles.emptyMessage}>{t('List:empty')}</div>}
+      {data?.articlesCount === 0 && <div className={styles.emptyMessage}>{t('empty')}</div>}
     </div>
   );
 }

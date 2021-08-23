@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Author from 'components/Author';
 import { Article } from 'types/Article';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 function ListItem({ article }: Props) {
+  const { t } = useTranslation('ListItem');
   return (
     <div className={styles.item}>
       <Author
@@ -22,7 +24,7 @@ function ListItem({ article }: Props) {
       />
       <h1 className={styles.title}>{article.title}</h1>
       <p className={styles.description}>{article.description}</p>
-      <span className={styles.more}>Read more...</span>
+      <span className={styles.more}>{t('read')}</span>
     </div>
   );
 }

@@ -1,18 +1,18 @@
 @import 'scss/variables/_content';
 
-.content{
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    max-width: $max-content;
+.content {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  max-width: $max-content;
 
-    .content-list{
-        width: 70%;
-    }
+  .content-list {
+    width: 70%;
+  }
 
-    .content-tags{
-        padding-top: 30px;
-        text-align: center;
-        width: 30%;
-    }
+  .content-tags {
+    padding-top: 30px;
+    text-align: center;
+    width: 30%;
+  }
 }

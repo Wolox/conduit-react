@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { articles, articlesByAuthor, articlesFavorites, feed } from 'services/ArticleService';
 import { DataEndpointArticles } from 'types/Article';
 
-import { ARTICLES_KEY, FEED_KEY } from './constants';
+import { ARTICLES_KEY, BY_AUTHOR_KEY, FAVORITES_KEY, FEED_KEY } from './constants';
 
 export const useArticles = (data: DataEndpointArticles) =>
   useQuery([ARTICLES_KEY, data], () =>
@@ -22,7 +22,7 @@ export const useFeed = (data: DataEndpointArticles) =>
   );
 
 export const useArticlesByAuthor = (data: DataEndpointArticles) =>
-  useQuery([ARTICLES_KEY, data], () =>
+  useQuery([BY_AUTHOR_KEY, data], () =>
     articlesByAuthor({
       limit: data.limit,
       offset: data.offset,
@@ -31,7 +31,7 @@ export const useArticlesByAuthor = (data: DataEndpointArticles) =>
   );
 
 export const useArticlesFavorites = (data: DataEndpointArticles) =>
-  useQuery([ARTICLES_KEY, data], () =>
+  useQuery([FAVORITES_KEY, data], () =>
     articlesFavorites({
       limit: data.limit,
       offset: data.offset,

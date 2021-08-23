@@ -12,7 +12,7 @@ interface Props {
 }
 
 function Tabs({ tabs }: Props) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('Tabs');
   const { hashtag, tabActive } = useSelector((state) => state);
   const dispatch = useDispatch();
 

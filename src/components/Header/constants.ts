@@ -36,5 +36,3 @@ export const ITEMS_MENU: ItemsMenu[] = [
     icon: faCog
   }
 ];
-
-export const SIZE_ICONS = 'xs';

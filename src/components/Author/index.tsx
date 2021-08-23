@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { memo, useCallback } from 'react';
 import { useMutation } from 'react-query';
 
+import { SIZE_ICONS_XS } from 'constants/icons';
 import { addRemoveFavorites } from 'services/ArticleService';
 
 import styles from './styles.module.scss';
@@ -44,7 +45,7 @@ function Author({ image, username, date, favorites, isFavorited, slug }: Props) 
           className={`${styles.like} ${favorited && styles.active}`}
           onClick={() => handleClickFavorited(favorited)}
         >
-          <FontAwesomeIcon icon={faHeart} size="xs" className={styles.icon} />
+          <FontAwesomeIcon icon={faHeart} size={SIZE_ICONS_XS} className={styles.icon} />
           {count}
         </button>
       </div>
