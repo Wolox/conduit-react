@@ -4,16 +4,29 @@
   height: 20vh;
   min-height: 175px;
 
+  // These styles modify the div with class .ql-toolbar from the react-quill library
+
   div:nth-of-type(1) {
     background-color: $mercury;
     border-radius: 5px 5px 0 0 / 5px 5px 0 0;
   }
 
+  // These styles modify the div with class .ql-container from the react-quill library
+
   div:nth-of-type(2) {
     border-radius: 0 0 5px 5px / 0 0 5px 5px;
+    height: auto;
+    max-height: 50vh;
+    min-height: 160px;
+
+    // These styles modify the div with class .ql-editor from the react-quill library
 
     div:nth-of-type(1) {
       background-color: initial;
+      max-height: 50vh;
+      min-height: 160px;
+      overflow-y: scroll;
+      resize: vertical;
     }
   }
 }
