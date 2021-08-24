@@ -1,6 +1,7 @@
 @import 'scss/variables/_colors';
 
-.container {
+%container {
+  display: contents;
   height: 20vh;
   min-height: 175px;
 
@@ -16,6 +17,7 @@
   div:nth-of-type(2) {
     border-radius: 0 0 5px 5px / 0 0 5px 5px;
     height: auto;
+    margin-bottom: 25px;
     max-height: 50vh;
     min-height: 160px;
 
@@ -28,5 +30,39 @@
       overflow-y: scroll;
       resize: vertical;
     }
+  }
+}
+
+.container-isfocused {
+
+  @extend %container;
+
+  div:nth-of-type(1) {
+    border-left-color: $blue-corn-flower;
+    border-right-color: $blue-corn-flower;
+    border-top-color: $blue-corn-flower;
+  }
+
+  div:nth-of-type(2) {
+    border-bottom-color: $blue-corn-flower;
+    border-left-color: $blue-corn-flower;
+    border-right-color: $blue-corn-flower;
+  }
+}
+
+.container-notfocused {
+
+  @extend %container;
+
+  div:nth-of-type(1) {
+    border-left-color: $gray;
+    border-right-color: $gray;
+    border-top-color: $gray;
+  }
+
+  div:nth-of-type(2) {
+    border-bottom-color: $gray;
+    border-left-color: $gray;
+    border-right-color: $gray;
   }
 }

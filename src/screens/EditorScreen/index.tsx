@@ -1,13 +1,13 @@
 import Layout from 'components/Layout';
 
-import ContentEditor from './components/ContentEditor';
+import NewArticleForm from './components/NewArticleForm';
 import styles from './styles.module.scss';
 
 function Editor() {
   return (
     <Layout>
       <div className={styles.editorContainer}>
-        <ContentEditor />
+        <NewArticleForm />
       </div>
     </Layout>
   );

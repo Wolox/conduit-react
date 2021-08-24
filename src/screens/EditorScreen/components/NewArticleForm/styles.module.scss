@@ -1,0 +1,12 @@
+@import 'scss/components';
+@import 'scss/variables/colors';
+
+.input-wrapper {
+  max-width: 1000px;
+  width: 95vw;
+}
+
+.form-input {
+
+  @extend %custom-input;
+}
