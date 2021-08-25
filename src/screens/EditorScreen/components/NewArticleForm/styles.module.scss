@@ -10,3 +10,8 @@
 
   @extend %custom-input;
 }
+
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.65;
+}

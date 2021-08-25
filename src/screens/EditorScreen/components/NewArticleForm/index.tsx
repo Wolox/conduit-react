@@ -1,37 +1,72 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 
 import FormInput from 'components/FormInput';
 
 import ContentEditor from '../ContentEditor';
 
+import { INPUTS, MIN_LENGTH } from './constants';
 import styles from './styles.module.scss';
 
+interface FormData {
+  title: string;
+  description: string;
+  tags: string;
+}
+
+interface PostBody {
+  body: string;
+}
+
 function NewArticleForm() {
+  const { t } = useTranslation('EditorScreen');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }
+  } = useForm<FormData>();
+  const [postBody, setPostBody] = useState('');
+  const { description, tags, title } = INPUTS;
+  const isPostbodyLongEnough = postBody.length >= MIN_LENGTH;
+
+  const onSubmit = handleSubmit((data: FormData): FormData & PostBody => ({ ...data, body: postBody }));
+
   return (
-    <form className="column">
+    <form className="column" onSubmit={onSubmit}>
       <FormInput
-        name="title"
-        inputType="text"
+        name={title.name}
+        inputType={title.type}
         className={styles.inputWrapper}
         inputClassName={cn('full-width', styles.formInput)}
-        placeholder="Title"
+        placeholder={t(`${title.placeholder}`)}
+        inputRef={register(title.validations)}
+        error={t(errors?.title?.message as string) || ''}
       />
       <FormInput
-        name="description"
-        inputType="text"
+        name={description.name}
+        inputType={description.type}
         className={styles.inputWrapper}
         inputClassName={cn('full-width', styles.formInput)}
-        placeholder="Description"
+        placeholder={t(`${description.placeholder}`)}
+        inputRef={register(description.validations)}
+        error={t(errors?.description?.message as string) || ''}
       />
-      <ContentEditor />
+      <ContentEditor postBody={postBody} setPostBody={setPostBody} />
       <FormInput
-        name="tags"
-        inputType="text"
+        name={tags.name}
+        inputType={tags.type}
         className={styles.inputWrapper}
         inputClassName={cn('full-width', styles.formInput)}
-        placeholder="Tags"
+        placeholder={t(`${tags.placeholder}`)}
+        inputRef={register}
       />
-      <button type="submit" className="custom-btn">
+      <button
+        type="submit"
+        className={cn('custom-btn', { [styles.disabledBtn]: !isValid && !isPostbodyLongEnough })}
+        disabled={!isValid || !isPostbodyLongEnough}
+      >
         Submit post
       </button>
     </form>
