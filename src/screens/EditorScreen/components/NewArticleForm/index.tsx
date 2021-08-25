@@ -40,7 +40,7 @@ function NewArticleForm() {
         name={title.name}
         inputType={title.type}
         className={styles.inputWrapper}
-        inputClassName={cn('full-width', styles.formInput)}
+        inputClassName={cn('full-width', styles.formInput, { [styles.inputError]: !!errors?.title })}
         placeholder={t(`${title.placeholder}`)}
         inputRef={register(title.validations)}
         error={t(errors?.title?.message as string) || ''}
@@ -49,12 +49,16 @@ function NewArticleForm() {
         name={description.name}
         inputType={description.type}
         className={styles.inputWrapper}
-        inputClassName={cn('full-width', styles.formInput)}
+        inputClassName={cn('full-width', styles.formInput, { [styles.inputError]: !!errors.description })}
         placeholder={t(`${description.placeholder}`)}
         inputRef={register(description.validations)}
         error={t(errors?.description?.message as string) || ''}
       />
-      <ContentEditor postBody={postBody} setPostBody={setPostBody} />
+      <ContentEditor
+        isPostbodyLongEnough={isPostbodyLongEnough}
+        postBody={postBody}
+        setPostBody={setPostBody}
+      />
       <FormInput
         name={tags.name}
         inputType={tags.type}
