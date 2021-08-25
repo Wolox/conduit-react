@@ -11,9 +11,8 @@ function ArticleComments() {
   return (
     <>
       {isLoggedIn ? <ArticleCommentForm formData={MOCKED_CURRENT_USER} /> : <ArticlePrompt />}
-      {doesArticleHaveComments
-        ? MOCKED_COMMENTS.map((comment) => <ArticleComment key={comment.id} commentData={comment} />)
-        : null}
+      {doesArticleHaveComments &&
+        MOCKED_COMMENTS.map((comment) => <ArticleComment key={comment.id} commentData={comment} />)}
     </>
   );
 }

@@ -37,8 +37,7 @@ export const ROUTES = [
     exact: true,
     path: PATHS.article,
     component: Article,
-    title: 'Routes:articleTitle',
-    redirectTo: (user: UserProfile | null) => (user ? MAIN_PRIVATE_PATH : undefined)
+    title: 'Routes:articleTitle'
   },
   {
     exact: false,
