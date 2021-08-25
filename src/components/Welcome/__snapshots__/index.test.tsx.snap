@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Welcome renders component welcome 1`] = `
+<DocumentFragment>
+  <div
+    class="contentWelcome"
+  >
+    <h1
+      class="title"
+    >
+      conduit
+    </h1>
+    <p
+      class="description"
+    >
+      description
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders component welcome 1`] = `
+<DocumentFragment>
+  <div
+    class="contentWelcome"
+  >
+    <h1
+      class="title"
+    >
+      conduit
+    </h1>
+    <p
+      class="description"
+    >
+      Welcome:description
+    </p>
+  </div>
+</DocumentFragment>
+`;

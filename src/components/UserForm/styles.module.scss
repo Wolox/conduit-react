@@ -35,9 +35,19 @@
   color: $white;
   font-size: 20px;
   line-height: 25px;
+  min-width: 112px;
   padding: 12px 24px;
 
   &:hover {
     background-color: $green-apple;
   }
+}
+
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.loader-btn {
+  margin: 0 auto;
 }

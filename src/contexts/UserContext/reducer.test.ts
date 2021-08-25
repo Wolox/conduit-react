@@ -3,23 +3,19 @@ import { actionCreators, reducer } from './reducer';
 const EMPTY_STATE = { user: null };
 
 const INITIAL_USER = {
-  user: {
-    id: 1,
-    username: 'Mario',
-    email: 'mario@bros.com',
-    bio: null,
-    image: null,
-    token: null
-  }
+  id: 1,
+  username: 'Mario',
+  email: 'mario@bros.com',
+  bio: null,
+  image: null,
+  token: 'token'
 };
 
 const NEW_USER = {
-  user: {
-    ...INITIAL_USER.user,
-    id: 2,
-    username: 'Luigi',
-    email: 'luigi@bros.com'
-  }
+  ...INITIAL_USER,
+  id: 2,
+  username: 'Luigi',
+  email: 'luigi@bros.com'
 };
 
 test('setUser action sets the new user when there is no user', () => {

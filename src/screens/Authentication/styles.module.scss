@@ -23,8 +23,25 @@
   }
 }
 
-@media (min-width: $breakpoint-desktop) {
+.errors-list-item {
+  color: $red-matrix;
+  list-style-type: disc;
+  margin: 0 0 16px 18px;
+}
+
+.error-icon {
+  color: $red-matrix;
+}
+
+@media (min-width: $breakpoint-desktop-lg) {
   .container {
-    max-width: calc($breakpoint-desktop - 60px);
+    max-width: calc(#{$breakpoint-desktop-lg} - 60px);
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .form-container {
+    padding: 0 15px;
+    width: 100%;
   }
 }
