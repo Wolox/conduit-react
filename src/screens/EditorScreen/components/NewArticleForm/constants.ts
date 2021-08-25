@@ -9,8 +9,8 @@ export const INPUTS = {
     }
   },
   description: {
-    placeholder: 'titlePlaceholder',
-    name: 'title',
+    placeholder: 'descriptionPlaceholder',
+    name: 'description',
     type: 'text',
     validations: {
       required: { value: true, message: 'requiredError' },
@@ -24,4 +24,4 @@ export const INPUTS = {
   }
 };
 
-export const MIN_LENGTH = 6;
+export const MIN_LENGTH = 12;

@@ -1,9 +1,31 @@
+@import 'scss/fonts/_fonts';
 @import 'scss/variables/_colors';
 
 %container {
   display: contents;
   height: 20vh;
   min-height: 175px;
+
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  li {
+    color: $black;
+    display: block;
+    font: $unset;
+    font-weight: 500;
+  }
+
+  div,
+  p {
+    font-size: 18px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
 
   // These styles modify the div with class .ql-toolbar from the react-quill library
 

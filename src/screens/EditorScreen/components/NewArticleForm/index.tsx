@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
@@ -25,16 +25,17 @@ function NewArticleForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid }
-  } = useForm<FormData>();
+    formState: { isValid, errors }
+  } = useForm<FormData>({ mode: 'onTouched' });
   const [postBody, setPostBody] = useState('');
   const { description, tags, title } = INPUTS;
   const isPostbodyLongEnough = postBody.length >= MIN_LENGTH;
+  const isFormSubmittable = useMemo(() => !isPostbodyLongEnough || !isValid, [isPostbodyLongEnough, isValid]);
 
   const onSubmit = handleSubmit((data: FormData): FormData & PostBody => ({ ...data, body: postBody }));
 
   return (
-    <form className="column" onSubmit={onSubmit}>
+    <form className="column" onSubmit={onSubmit} autoComplete="off">
       <FormInput
         name={title.name}
         inputType={title.type}
@@ -64,8 +65,8 @@ function NewArticleForm() {
       />
       <button
         type="submit"
-        className={cn('custom-btn', { [styles.disabledBtn]: !isValid && !isPostbodyLongEnough })}
-        disabled={!isValid || !isPostbodyLongEnough}
+        className={cn('custom-btn', { [styles.disabledBtn]: isFormSubmittable })}
+        disabled={isFormSubmittable}
       >
         Submit post
       </button>
