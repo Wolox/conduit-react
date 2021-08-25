@@ -2,7 +2,7 @@
 @import 'scss/fonts/_fonts';
 
 .content-welcome {
-  background-color: $greenFern;
+  background-color: $green-fern;
   box-shadow: 0 8px 8px -8px $gray-shadow;
   margin-bottom: 32px;
   padding: 32px;
@@ -11,7 +11,7 @@
   .title {
     color: $white;
     display: block;
-    font-family: $Titillium;
+    font-family: $titillium;
     font-size: 56px;
     font-weight: 600;
     line-height: initial;
