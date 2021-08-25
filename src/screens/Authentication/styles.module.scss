@@ -1,5 +1,5 @@
-@import "scss/margins";
-@import "scss/variables/colors";
+@import 'scss/margins';
+@import 'scss/variables/colors';
 
 .container {
   margin: 24px auto;
@@ -29,7 +29,7 @@
   margin: 0 0 16px 18px;
 }
 
-.errorIcon {
+.error-icon {
   color: $red-matrix;
 }
 
