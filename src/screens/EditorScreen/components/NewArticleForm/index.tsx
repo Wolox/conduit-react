@@ -72,7 +72,7 @@ function NewArticleForm() {
         className={cn('custom-btn', { [styles.disabledBtn]: isFormSubmittable })}
         disabled={isFormSubmittable}
       >
-        Submit post
+        {t('publishPost')}
       </button>
     </form>
   );
