@@ -1,0 +1,19 @@
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+@import 'scss/variables/_content';
+
+.container {
+  border-bottom: 1px solid $black-opacity-ten;
+  margin: 0 auto 48px;
+  max-width: $max-content;
+  padding: 15px;
+  width: 95vw;
+}
+
+.content {
+  color: $outer-space;
+  font-family: $source-serif-pro;
+  font-size: 19px;
+  line-height: 29px;
+  padding: 29px 0 64px;
+}
