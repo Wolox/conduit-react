@@ -18,8 +18,8 @@ export const INPUTS = {
     }
   },
   tags: {
-    placeholder: 'tagsPlaceholder',
-    name: 'tags',
+    placeholder: 'tagListPlaceholder',
+    name: 'tagList',
     type: 'text'
   }
 };

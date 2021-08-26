@@ -1,9 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { generatePath, useHistory } from 'react-router-dom';
 import cn from 'classnames';
 
 import FormInput from 'components/FormInput';
+import PATHS from 'components/Routes/paths';
+import { addNewPost } from 'services/ArticleService';
 
 import ContentEditor from '../ContentEditor';
 
@@ -13,14 +17,11 @@ import styles from './styles.module.scss';
 interface FormData {
   title: string;
   description: string;
-  tags: string;
-}
-
-interface PostBody {
-  body: string;
+  tagList: string;
 }
 
 function NewArticleForm() {
+  const history = useHistory();
   const { t } = useTranslation('EditorScreen');
   const {
     register,
@@ -32,7 +33,16 @@ function NewArticleForm() {
   const isPostbodyLongEnough = postBody.length >= MIN_LENGTH;
   const isFormSubmittable = useMemo(() => !isPostbodyLongEnough || !isValid, [isPostbodyLongEnough, isValid]);
 
-  const onSubmit = handleSubmit((data: FormData): FormData & PostBody => ({ ...data, body: postBody }));
+  const { mutate } = useMutation(addNewPost, {
+    onSuccess: (data) => {
+      const articleToRedirect = generatePath(PATHS.article, { slug: data.data?.article.slug });
+      history.replace(articleToRedirect);
+    }
+  });
+
+  const onSubmit = handleSubmit((formData: FormData): void => {
+    mutate({ ...formData, body: postBody });
+  });
 
   return (
     <form className="column" onSubmit={onSubmit} autoComplete="off">
