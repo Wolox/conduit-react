@@ -42,7 +42,7 @@ function ContentEditor({ isPostbodyLongEnough, postBody, setPostBody }: Props) {
   }, [hasBeenBlurred]);
 
   return (
-    <>
+    <div data-testid="body-editor">
       <ReactQuill
         className={cn({
           [styles.containerIsfocused]: isFocused && !isError,
@@ -63,7 +63,7 @@ function ContentEditor({ isPostbodyLongEnough, postBody, setPostBody }: Props) {
           {doesPostBodyHaveLength ? t('minlengthError') : t('requiredError')}
         </span>
       )}
-    </>
+    </div>
   );
 }
 
