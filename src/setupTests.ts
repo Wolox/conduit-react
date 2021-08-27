@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom';
 import 'mutationobserver-shim';
+import { server } from 'mocks/server';
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 jest.mock('react-i18next', () => ({
   initReactI18next: {

@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
-import { ArticleParams } from 'interfaces/articleInterfaces';
+import { ArticleParams } from 'types/Article';
 
 import styles from './styles.module.scss';
 
