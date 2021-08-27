@@ -1,7 +1,6 @@
 import { FORM_TYPE } from 'screens/Authentication/constants';
 
 export const WHITE = '#FFF';
-export const USERNAME = 'username';
 export const EMAIL_OR_PASSWORD = 'email or password';
 
 export const ACTION_BY_TYPE = {
@@ -28,8 +27,14 @@ interface InputSections {
 
 type InputsStructure = Record<keyof UserFormKeys, InputSections>;
 
+export enum FormKeys {
+  USERNAME = 'username',
+  EMAIL = 'email',
+  PASSWORD = 'password'
+}
+
 export const INPUTS: InputsStructure = {
-  username: {
+  [FormKeys.USERNAME]: {
     placeholder: 'Username',
     type: 'text',
     validations: {
@@ -40,7 +45,7 @@ export const INPUTS: InputsStructure = {
       pattern: { value: /^[a-zA-Z0-9]*$/, message: 'Username is invalid' }
     }
   },
-  email: {
+  [FormKeys.EMAIL]: {
     placeholder: 'Email',
     type: 'email',
     validations: {
@@ -48,7 +53,7 @@ export const INPUTS: InputsStructure = {
       pattern: { value: /\S+@\S+\.\S+/, message: 'Email is invalid' }
     }
   },
-  password: {
+  [FormKeys.PASSWORD]: {
     placeholder: 'Password',
     type: 'password',
     validations: {

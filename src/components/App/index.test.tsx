@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from '.';
 
@@ -11,6 +12,12 @@ jest.mock(
 );
 
 test('renders without errors', () => {
-  render(<App />);
+  const queryClient = new QueryClient();
+
+  render(
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  );
   expect(screen.getByText('Routes')).toBeInTheDocument();
 });

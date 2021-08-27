@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 import 'scss/application.scss';
 
@@ -9,9 +10,13 @@ import App from 'components/App';
 import reportWebVitals from './reportWebVitals';
 
 const renderApp = () => {
+  const queryClient = new QueryClient();
+
   render(
     <StrictMode>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </StrictMode>,
     document.getElementById('root')
   );
