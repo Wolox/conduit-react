@@ -16,6 +16,7 @@
   font-size: 20px;
   height: auto;
   line-height: 25px;
+  margin-bottom: 5px;
   padding: 12px 24px;
   max-width: calc(#{$breakpoint-desktop-lg} - 60px);
 
@@ -65,6 +66,12 @@
 @media (max-width: $breakpoint-mobile) {
   .form-container {
     padding: 0 15px;
+    width: 100%;
+  }
+
+  .update-btn,
+  .logout-btn {
+    justify-content: center;
     width: 100%;
   }
 }

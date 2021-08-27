@@ -7,7 +7,7 @@ import { BackError } from 'utils/types';
 import FormInput from 'components/FormInput';
 import { FORM_TYPE } from 'screens/Authentication/constants';
 
-import { ACTION_BY_TYPE, EMAIL_OR_PASSWORD, INPUTS, UserFormKeys, USERNAME, WHITE } from './constants';
+import { ACTION_BY_TYPE, EMAIL_OR_PASSWORD, INPUTS, UserFormKeys, FormKeys, WHITE } from './constants';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -37,7 +37,7 @@ function UserForm({ formSubmit, isLoading, backErrors, formType }: Props) {
     <form onSubmit={onSubmit} className="column center">
       {Object.entries(INPUTS).map(([key, value]) => {
         const inputKey = key as keyof UserFormKeys;
-        if (formType === FORM_TYPE.LOGIN && key === USERNAME) {
+        if (formType === FORM_TYPE.LOGIN && key === FormKeys.USERNAME) {
           return null;
         }
 
