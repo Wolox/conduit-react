@@ -1,5 +1,5 @@
 /* eslint-disable require-await */
-import { render, screen, act, fireEvent } from '@testing-library/react';
+import { render, screen, act, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -60,7 +60,9 @@ describe('NewArticleForm', () => {
 
     // Typing long enough strings in title and description should make the previous errors disappear
     await act(async () => {
+      userEvent.clear(titleInput);
       userEvent.type(titleInput, 'Long enough');
+      userEvent.clear(descriptionInput);
       userEvent.type(descriptionInput, 'Long enough');
     });
 
@@ -76,5 +78,10 @@ describe('NewArticleForm', () => {
     });
 
     expect(submitBtn).toBeEnabled();
+
+    userEvent.click(submitBtn);
+
+    // On successful submission, it takes the user to the corresponding article
+    await waitFor(() => expect(history.entries[history.index].pathname).toBe('/article/luigi-bros'));
   });
 });
