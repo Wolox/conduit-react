@@ -11,19 +11,20 @@ interface Props {
 }
 
 function ListItem({ article }: Props) {
+  const { author, createdAt, favoritesCount, favorited, slug, title, description } = article;
   const { t } = useTranslation('ListItem');
   return (
     <div className={styles.item}>
       <Author
-        image={article.author.image}
-        username={article.author.username}
-        date={article.createdAt}
-        favorites={article.favoritesCount}
-        isFavorited={article.favorited}
-        slug={article.slug}
+        image={author.image}
+        username={author.username}
+        date={createdAt}
+        favorites={favoritesCount}
+        isFavorited={favorited}
+        slug={slug}
       />
-      <h1 className={styles.title}>{article.title}</h1>
-      <p className={styles.description}>{article.description}</p>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.description}>{description}</p>
       <span className={styles.more}>{t('read')}</span>
     </div>
   );
