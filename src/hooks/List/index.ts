@@ -5,36 +5,16 @@ import { DataEndpointArticles } from 'types/Article';
 
 import { ARTICLES_KEY, BY_AUTHOR_KEY, FAVORITES_KEY, FEED_KEY } from './constants';
 
-export const useArticles = (data: DataEndpointArticles) =>
-  useQuery([ARTICLES_KEY, data], () =>
-    articles({
-      limit: data.limit,
-      offset: data.offset
-    })
-  );
+export const useArticles = ({ limit, offset }: DataEndpointArticles) =>
+  useQuery([ARTICLES_KEY, { limit, offset }], () => articles({ limit, offset }));
 
-export const useFeed = (data: DataEndpointArticles) =>
-  useQuery([FEED_KEY, data], () =>
-    feed({
-      limit: data.limit,
-      offset: data.offset
-    })
-  );
+export const useFeed = ({ limit, offset }: DataEndpointArticles) =>
+  useQuery([FEED_KEY, { limit, offset }], () => feed({ limit, offset }));
 
-export const useArticlesByAuthor = (data: DataEndpointArticles) =>
-  useQuery([BY_AUTHOR_KEY, data], () =>
-    articlesByAuthor({
-      limit: data.limit,
-      offset: data.offset,
-      author: data.user || ''
-    })
-  );
+export const useArticlesByAuthor = ({ limit, offset, user: author = '' }: DataEndpointArticles) =>
+  useQuery([BY_AUTHOR_KEY, { limit, offset, author }], () => articlesByAuthor({ limit, offset, author }));
 
-export const useArticlesFavorites = (data: DataEndpointArticles) =>
-  useQuery([FAVORITES_KEY, data], () =>
-    articlesFavorites({
-      limit: data.limit,
-      offset: data.offset,
-      favorited: data.user || ''
-    })
+export const useArticlesFavorites = ({ limit, offset, user: favorited = '' }: DataEndpointArticles) =>
+  useQuery([FAVORITES_KEY, { limit, offset, favorited }], () =>
+    articlesFavorites({ limit, offset, favorited })
   );

@@ -14,9 +14,7 @@ function List({ data }: Props) {
   const { t } = useTranslation('List');
   return (
     <div>
-      {data?.articles.map((article) => (
-        <ListItem article={article} key={article.slug} />
-      ))}
+      {!!data?.articles && data.articles.map((article) => <ListItem article={article} key={article.slug} />)}
       {!data?.articlesCount && <div className={styles.emptyMessage}>{t('empty')}</div>}
     </div>
   );

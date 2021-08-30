@@ -23,7 +23,7 @@ function Tabs({ tabs }: Props) {
 
   return (
     <div>
-      <ul className={cn('row', 'middle', 'start', styles.tabs)}>
+      <ul className={cn('row middle start', styles.tabs)}>
         {tabs.map((actualTab) => (
           <li
             key={actualTab.text}

@@ -19,17 +19,17 @@ interface Props {
 }
 
 function Author({ image, username, date, favorites, isFavorited, slug }: Props) {
-  const mutation = useMutation(addRemoveFavorites);
+  const { mutate, data } = useMutation(addRemoveFavorites);
 
   const handleClickFavorited = useCallback(
     (favorite: boolean) => {
-      mutation.mutate({ slug, isFavorite: favorite });
+      mutate({ slug, isFavorite: favorite });
     },
-    [mutation, slug]
+    [mutate, slug]
   );
 
-  const favorited = mutation.data?.data?.article.favorited ?? isFavorited;
-  const count = mutation.data?.data?.article.favoritesCount ?? favorites;
+  const favorited = data?.data?.article.favorited ?? isFavorited;
+  const count = data?.data?.article.favoritesCount ?? favorites;
 
   return (
     <div className={styles.container}>
@@ -40,7 +40,7 @@ function Author({ image, username, date, favorites, isFavorited, slug }: Props) 
           <span>{date}</span>
         </div>
       </div>
-      <div className={cn('column', 'center', 'middle', styles.containerButton)}>
+      <div className={cn('column center middle', styles.containerButton)}>
         <button
           type="button"
           className={cn(styles.like, { [styles.active]: favorited })}
