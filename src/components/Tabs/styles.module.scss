@@ -1,11 +1,7 @@
 @import 'scss/variables/_colors';
 
 .tabs {
-  align-items: center;
   border-bottom: 1px solid $gray;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 
   .tab {
     color: $black;

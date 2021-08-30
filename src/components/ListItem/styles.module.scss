@@ -1,7 +1,7 @@
 @import 'scss/variables/_colors';
 
 .item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba($black, 0.1);
   padding: 24px;
 
   .title {

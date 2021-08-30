@@ -2,6 +2,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { memo, useCallback } from 'react';
 import { useMutation } from 'react-query';
+import cn from 'classnames';
 
 import { SIZE_ICONS_XS } from 'constants/icons';
 import { addRemoveFavorites } from 'services/ArticleService';
@@ -39,10 +40,10 @@ function Author({ image, username, date, favorites, isFavorited, slug }: Props) 
           <span>{date}</span>
         </div>
       </div>
-      <div className={styles.containerButton}>
+      <div className={cn('column', 'center', 'middle', styles.containerButton)}>
         <button
           type="button"
-          className={`${styles.like} ${favorited && styles.active}`}
+          className={cn(styles.like, { [styles.active]: favorited })}
           onClick={() => handleClickFavorited(favorited)}
         >
           <FontAwesomeIcon icon={faHeart} size={SIZE_ICONS_XS} className={styles.icon} />

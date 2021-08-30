@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import cn from 'classnames';
 
 import { useDispatch, useSelector } from 'contexts/TabsContext';
 import { actionCreators } from 'contexts/TabsContext/reducer';
@@ -22,12 +23,12 @@ function Tabs({ tabs }: Props) {
 
   return (
     <div>
-      <ul className={styles.tabs}>
+      <ul className={cn('row', 'middle', 'start', styles.tabs)}>
         {tabs.map((actualTab) => (
           <li
             key={actualTab.text}
             onClick={() => handleChangeTab(actualTab)}
-            className={`${styles.tab} ${tabActive.text === actualTab.text && styles.active}`}
+            className={cn(styles.tab, { [styles.active]: tabActive.text === actualTab.text })}
           >
             {t(actualTab.text)}
           </li>
