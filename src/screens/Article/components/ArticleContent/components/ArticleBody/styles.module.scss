@@ -8,12 +8,32 @@
   max-width: $max-content;
   padding: 15px;
   width: 95vw;
-}
 
-.content {
-  color: $outer-space;
-  font-family: $source-serif-pro;
-  font-size: 19px;
-  line-height: 29px;
-  padding: 29px 0 64px;
+  h1,
+  h2,
+  p,
+  a,
+  span,
+  li {
+    color: $dove-gray;
+    display: block;
+    font: $unset;
+    font-family: $source-serif-pro;
+    font-weight: 500;
+    line-height: 29px;
+  }
+
+  a {
+    display: inline;
+    color: $blue-corn-flower;
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
 }
