@@ -42,3 +42,14 @@ export interface CommentData {
 export interface ArticleParams {
   slug: string;
 }
+
+export interface Articles {
+  articles: Article[];
+  articlesCount: number;
+}
+
+export interface DataEndpointArticles {
+  limit: number;
+  offset: number;
+  user?: string;
+}
