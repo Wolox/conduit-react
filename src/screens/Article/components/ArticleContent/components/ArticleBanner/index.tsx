@@ -1,29 +1,28 @@
-import { generatePath, Link, useParams } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
-import { ArticleParams } from 'types/Article';
 
 import styles from './styles.module.scss';
 
 interface Props {
   bannerData: {
     avatar?: string;
-    articleDate: string;
+    articleDate: Date;
+    title: string;
     userName: string;
   };
 }
 
 function ArticleBanner({ bannerData }: Props) {
-  const { avatar, articleDate, userName } = bannerData;
-  const { slug } = useParams<ArticleParams>();
+  const { avatar, articleDate, title, userName } = bannerData;
   const userToRedirect = generatePath(PATHS.user, { username: userName });
 
   return (
     <div className={cn('row middle center full-width', styles.banner)}>
       <div className={cn('column start space-between', styles.container)}>
-        <h1 className={cn('m-bottom-6', styles.title)}>{slug}</h1>
+        <h1 className={cn('m-bottom-6', styles.title)}>{title}</h1>
         <div className="row">
           <Link to={userToRedirect}>
             <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />

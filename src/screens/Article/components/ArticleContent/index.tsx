@@ -1,15 +1,33 @@
-import { MOCKED_ARTICLE } from 'screens/Article/constants';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+
+import { articleBySlug } from 'services/ArticleService';
+import { ArticleParams } from 'types/Article';
 
 import ArticleBanner from './components/ArticleBanner';
 import ArticleBody from './components/ArticleBody';
 
 function ArticleContent() {
-  const { date: ArticleDate, content: ArticleText, author: ArticleAuthor } = MOCKED_ARTICLE;
+  const { slug } = useParams<ArticleParams>();
+
+  const { data, isLoading } = useQuery(`article-${slug}`, () => articleBySlug(slug));
+  const articleData = data?.data?.article;
 
   return (
     <>
-      <ArticleBanner bannerData={{ articleDate: ArticleDate, userName: ArticleAuthor }} />
-      <ArticleBody textContent={ArticleText} />
+      {isLoading && !articleData && <p>Loading</p>}
+      {!!articleData && (
+        <>
+          <ArticleBanner
+            bannerData={{
+              articleDate: articleData.createdAt,
+              title: articleData.title,
+              userName: articleData.author.username
+            }}
+          />
+          <ArticleBody textContent={articleData.body} />
+        </>
+      )}
     </>
   );
 }

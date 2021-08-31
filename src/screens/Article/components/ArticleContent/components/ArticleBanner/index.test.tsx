@@ -8,8 +8,11 @@ interface Props {
   history: History;
 }
 
+const MOCKED_DATE = new Date('2021-08-26T16:03:22.390Z');
+
 const MOCKED_ARTICLE = {
-  articleDate: 'Mon Jul 19 2021',
+  articleDate: MOCKED_DATE,
+  title: 'Great article',
   userName: 'Bowser'
 };
 
