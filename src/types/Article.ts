@@ -53,3 +53,32 @@ export interface DataEndpointArticles {
   offset: number;
   user?: string;
 }
+
+export interface NewPostPayload {
+  body: string;
+  description: string;
+  tagList: string;
+  title: string;
+}
+
+export interface FavoritesAddRemove {
+  slug: string;
+  isFavorite: boolean;
+}
+
+export interface Error {
+  message: string;
+}
+
+export interface Paginated {
+  limit: number;
+  offset: number;
+}
+
+export interface ArticlesByAuthor extends Paginated {
+  author: string;
+}
+
+export interface ArticlesFavorites extends Paginated {
+  favorited: string;
+}

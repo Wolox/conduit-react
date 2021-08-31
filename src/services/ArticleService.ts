@@ -1,38 +1,17 @@
 import { ApiResponse } from 'apisauce';
 
 import api from 'config/api';
-import type { ArticleResponse, Articles } from 'types/Article';
+import type {
+  ArticleResponse,
+  Articles,
+  ArticlesByAuthor,
+  ArticlesFavorites,
+  FavoritesAddRemove,
+  NewPostPayload,
+  Paginated
+} from 'types/Article';
 
 const MAIN_PATH = '/articles';
-
-interface NewPostPayload {
-  body: string;
-  description: string;
-  tagList: string;
-  title: string;
-}
-
-interface FavoritesAddRemove {
-  slug: string;
-  isFavorite: boolean;
-}
-
-export interface Error {
-  message: string;
-}
-
-export interface Paginated {
-  limit: number;
-  offset: number;
-}
-
-export interface ArticlesByAuthor extends Paginated {
-  author: string;
-}
-
-export interface ArticlesFavorites extends Paginated {
-  favorited: string;
-}
 
 export const articles = (payload: Paginated): Promise<ApiResponse<Articles>> => api.get(MAIN_PATH, payload);
 
