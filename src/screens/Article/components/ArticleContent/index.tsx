@@ -19,7 +19,9 @@ function ArticleContent() {
 
   // Redirect to the error screen if something goes wrong
   useEffect(() => {
-    if (!data?.ok || !!data.problem) {
+    // I'm explicitly stating false instead of !data?.ok
+    // because I don't want this to trigger when data is undefined
+    if (data?.ok === false || !!data?.problem) {
       history.replace(PATHS.errorScreen);
     }
   }, [data, history]);
