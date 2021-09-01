@@ -4,10 +4,11 @@
 
 .container {
   border-bottom: 1px solid $black-opacity-ten;
-  margin: 0 auto 48px;
+  margin: 48px auto;
   max-width: $max-content;
   padding: 15px;
   width: 95vw;
+  word-break: break-word;
 
   h1,
   h2,
@@ -23,10 +24,13 @@
     line-height: 29px;
   }
 
-  a {
+  a,
+  b,
+  strong,
+  em,
+  u {
     display: inline;
-    color: $blue-corn-flower;
-    text-decoration: underline;
+    font-family: $source-serif-pro;
   }
 
   h1 {
@@ -35,5 +39,40 @@
 
   h2 {
     font-size: 26px;
+  }
+
+  a {
+    color: $blue-corn-flower;
+    text-decoration: underline;
+
+    &:visited {
+      color: $studio;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  li {
+    display: list-item;
+  }
+
+  ol li {
+    list-style: decimal inside;
+  }
+
+  ul li {
+    list-style: disc inside;
   }
 }
