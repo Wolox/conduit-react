@@ -7,7 +7,8 @@ const paths = {
   settings: '/settings',
   profile: '/profile',
   article: '/article/:slug',
-  user: '/user/:username'
+  user: '/user/:username',
+  errorScreen: '/error'
 };
 
 export default paths;

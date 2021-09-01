@@ -1,0 +1,24 @@
+@import 'scss/variables/_colors';
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.inner-container {
+  max-width: 650px;
+}
+
+.message {
+  color: $black;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 24px;
+  padding: 0 10vw;
+  text-align: center;
+}
+
+.btn {
+  align-self: center;
+}
