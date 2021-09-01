@@ -15,7 +15,7 @@ function Error() {
       <div className={cn('column middle center', styles.innerContainer)}>
         <Logo isBig />
         <span className={cn('m-bottom-5 m-top-3', styles.message)}>{t('message')}</span>
-        <Link to={PATHS.home} className={cn('custom-btn', styles.btn)}>
+        <Link to={PATHS.home} className={cn('custom-btn', styles.btn)} replace>
           {t('btnText')}
         </Link>
       </div>
