@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
+import Loader from 'components/Loader';
 import { articleBySlug } from 'services/ArticleService';
 import { ArticleParams } from 'types/Article';
 
@@ -15,7 +16,7 @@ function ArticleContent() {
 
   return (
     <>
-      {isLoading && !articleData && <p>Loading</p>}
+      {isLoading && !articleData && <Loader />}
       {!!articleData && (
         <>
           <ArticleBanner
