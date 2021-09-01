@@ -2,8 +2,8 @@ export interface Article {
   title: string;
   slug: string;
   body: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   description: string;
   tagList: [];
   author: {

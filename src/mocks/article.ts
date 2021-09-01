@@ -1,14 +1,12 @@
 import { ArticleResponse } from 'types/Article';
 
-const date = new Date('2021-08-26T18:09:50.028Z');
-
 export const MOCKED_ARTICLE_RESPONSE: ArticleResponse = {
   article: {
     title: 'Luigi Bros',
     slug: 'luigi-bros',
     body: '<h1>Luigi rocks</h1><p><strong>Mario and Bowser suck</strong></p>',
-    createdAt: date,
-    updatedAt: date,
+    createdAt: '2021-08-26T18:09:50.028Z',
+    updatedAt: '2021-08-26T18:09:50.028Z',
     description: 'Luigi is better than Mario',
     tagList: [],
     author: {

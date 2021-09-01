@@ -3,13 +3,14 @@ import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
+import { formatDate } from 'utils/dateUtils/index';
 
 import styles from './styles.module.scss';
 
 interface Props {
   bannerData: {
     avatar?: string;
-    articleDate: Date;
+    articleDate: string;
     title: string;
     userName: string;
   };
@@ -17,6 +18,7 @@ interface Props {
 
 function ArticleBanner({ bannerData }: Props) {
   const { avatar, articleDate, title, userName } = bannerData;
+  const formattedDate = formatDate(articleDate);
   const userToRedirect = generatePath(PATHS.user, { username: userName });
 
   return (
@@ -31,7 +33,7 @@ function ArticleBanner({ bannerData }: Props) {
             <Link className={styles.userLink} to={userToRedirect}>
               {userName}
             </Link>
-            <span className={styles.date}>{articleDate}</span>
+            <span className={styles.date}>{formattedDate}</span>
           </div>
         </div>
       </div>
