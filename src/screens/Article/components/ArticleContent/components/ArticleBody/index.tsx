@@ -8,7 +8,8 @@ interface Props {
 }
 
 function ArticleBody({ textContent }: Props) {
-  const parsedBody = parse(DOMPurify.sanitize(textContent));
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const parsedBody = parse(DOMPurify.sanitize(textContent, { ADD_ATTR: ['target'] }));
 
   return (
     <article className="full-width">
