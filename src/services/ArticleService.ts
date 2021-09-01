@@ -1,43 +1,34 @@
 import { ApiResponse } from 'apisauce';
 
 import api from 'config/api';
-import { Articles, ResponseFavorites } from 'types/Article';
+import type {
+  ArticleResponse,
+  Articles,
+  ArticlesByAuthor,
+  ArticlesFavorites,
+  FavoritesAddRemove,
+  NewPostPayload,
+  Paginated
+} from 'types/Article';
 
-export interface Error {
-  message: string;
-}
+const MAIN_PATH = '/articles';
 
-export interface Paginated {
-  limit: number;
-  offset: number;
-}
-
-export interface ArticlesByAuthor extends Paginated {
-  author: string;
-}
-
-export interface ArticlesFavorites extends Paginated {
-  favorited: string;
-}
-
-interface FavoritesAddRemove {
-  slug: string;
-  isFavorite: boolean;
-}
-
-export const articles = (payload: Paginated): Promise<ApiResponse<Articles>> => api.get('/articles', payload);
+export const articles = (payload: Paginated): Promise<ApiResponse<Articles>> => api.get(MAIN_PATH, payload);
 
 export const feed = (payload: Paginated): Promise<ApiResponse<Articles>> =>
-  api.get('/articles/feed', payload);
+  api.get(`${MAIN_PATH}/feed`, payload);
 
 export const articlesByAuthor = (payload: ArticlesByAuthor): Promise<ApiResponse<Articles>> =>
-  api.get('/articles', payload);
+  api.get(MAIN_PATH, payload);
 
 export const articlesFavorites = (payload: ArticlesFavorites): Promise<ApiResponse<Articles>> =>
-  api.get('/articles', payload);
+  api.get(MAIN_PATH, payload);
 
 export const addRemoveFavorites = ({
   slug,
   isFavorite
-}: FavoritesAddRemove): Promise<ApiResponse<ResponseFavorites>> =>
-  isFavorite ? api.delete(`/articles/${slug}/favorite`) : api.post(`/articles/${slug}/favorite`);
+}: FavoritesAddRemove): Promise<ApiResponse<ArticleResponse>> =>
+  isFavorite ? api.delete(`${MAIN_PATH}/${slug}/favorite`) : api.post(`${MAIN_PATH}/${slug}/favorite`);
+
+export const addNewPost = (payload: NewPostPayload): Promise<ApiResponse<ArticleResponse>> =>
+  api.post(MAIN_PATH, payload);
