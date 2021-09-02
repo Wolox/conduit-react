@@ -8,7 +8,8 @@ import type {
   ArticlesFavorites,
   FavoritesAddRemove,
   NewPostPayload,
-  Paginated
+  Paginated,
+  CommentsResponse
 } from 'types/Article';
 
 const MAIN_PATH = '/articles';
@@ -35,3 +36,6 @@ export const addNewPost = (payload: NewPostPayload): Promise<ApiResponse<Article
 
 export const articleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse>> =>
   api.get(`${MAIN_PATH}/${slug}`);
+
+export const commentsBySlug = (slug: string): Promise<ApiResponse<CommentsResponse>> =>
+  api.get(`${MAIN_PATH}/${slug}/comments`);

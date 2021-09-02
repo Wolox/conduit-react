@@ -3,29 +3,30 @@ import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
-import type { CommentData } from 'types/Article';
+import type { Comment } from 'types/Article';
 
 import styles from './styles.module.scss';
 
 type Props = {
-  commentData: CommentData;
+  commentData: Comment;
 };
 
 function ArticleComment({ commentData }: Props) {
-  const { avatar, content, date, userName } = commentData;
-  const userToRedirect = generatePath(PATHS.user, { username: userName });
+  const { author, body, updatedAt } = commentData;
+  const { username, image } = author;
+  const userToRedirect = generatePath(PATHS.user, { username });
 
   return (
     <div className={styles.cardContainer}>
-      <p className={styles.cardComment}>{content}</p>
+      <p className={styles.cardComment}>{body}</p>
       <div className={cn('row middle', styles.cardFooter)}>
         <Link to={userToRedirect}>
-          <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
+          <img className={styles.userIcon} src={image || userPlaceholder} alt={username} />
         </Link>
         <Link className={styles.userLink} to={userToRedirect}>
-          {userName}
+          {username}
         </Link>
-        <span className={styles.date}>{date}</span>
+        <span className={styles.date}>{updatedAt}</span>
       </div>
     </div>
   );
