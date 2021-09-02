@@ -23,5 +23,6 @@ jest.mock('react-i18next', () => ({
 
 jest.mock('i18next', () => ({
   addResources: jest.fn(),
+  t: (key: string): string => key,
   use: () => ({ init: jest.fn() })
 }));

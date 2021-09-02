@@ -19,3 +19,26 @@ export const MOCKED_ARTICLE_RESPONSE: ArticleResponse = {
     favoritesCount: 77
   }
 };
+
+export const MOCKED_ARTICLES: ArticleResponse[] = [
+  { ...MOCKED_ARTICLE_RESPONSE },
+  {
+    article: {
+      title: 'Mario Bros',
+      slug: 'luigi-bros',
+      body: '<h1>Mario rules</h1><p><strong>Who is that Luigi guy?</strong></p>',
+      updatedAt: '2021-08-26T18:10:05.028Z',
+      createdAt: '2021-08-26T18:10:05.028Z',
+      description: 'Mario is the ultimate king, everyone else sucks',
+      tagList: [],
+      author: {
+        username: 'mario_da_king',
+        bio: null,
+        image: 'mario-pic.png',
+        following: false
+      },
+      favorited: false,
+      favoritesCount: 77
+    }
+  }
+];

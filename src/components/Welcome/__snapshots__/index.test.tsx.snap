@@ -18,22 +18,3 @@ exports[`Component Welcome renders component welcome 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`renders component welcome 1`] = `
-<DocumentFragment>
-  <div
-    class="contentWelcome"
-  >
-    <h1
-      class="title"
-    >
-      conduit
-    </h1>
-    <p
-      class="description"
-    >
-      Welcome:description
-    </p>
-  </div>
-</DocumentFragment>
-`;
