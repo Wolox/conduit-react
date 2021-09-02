@@ -102,6 +102,7 @@ export interface CommentsResponse {
 }
 
 export interface CommentPayload {
+  slug: string;
   comment: {
     body: string;
   };
