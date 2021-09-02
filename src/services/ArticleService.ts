@@ -9,7 +9,9 @@ import type {
   FavoritesAddRemove,
   NewPostPayload,
   Paginated,
-  CommentsResponse
+  CommentsResponse,
+  CommentResponse,
+  CommentPayload
 } from 'types/Article';
 
 const MAIN_PATH = '/articles';
@@ -39,3 +41,6 @@ export const articleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse
 
 export const commentsBySlug = (slug: string): Promise<ApiResponse<CommentsResponse>> =>
   api.get(`${MAIN_PATH}/${slug}/comments`);
+
+export const addNewComment = (slug: string, payload: CommentPayload): Promise<ApiResponse<CommentResponse>> =>
+  api.post(`${MAIN_PATH}/${slug}/comments`, payload);

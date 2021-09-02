@@ -93,6 +93,16 @@ export interface Comment {
   author: Author;
 }
 
+export interface CommentResponse {
+  comment: Comment;
+}
+
 export interface CommentsResponse {
   comments: Comment[];
+}
+
+export interface CommentPayload {
+  comment: {
+    body: string;
+  };
 }

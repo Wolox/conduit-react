@@ -1,10 +1,15 @@
-import { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
+import FormInput from 'components/FormInput';
 
 import styles from './styles.module.scss';
+
+interface FormData {
+  body: string;
+}
 
 interface Props {
   formData: {
@@ -14,19 +19,37 @@ interface Props {
 }
 
 function ArticleCommentForm({ formData }: Props) {
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors }
+  } = useForm<FormData>({ mode: 'onChange' });
   const { t } = useTranslation('Article');
   const { avatar, userName } = formData;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const onSubmit = handleSubmit((data: FormData) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  });
 
   return (
-    <form onSubmit={handleSubmit} className={styles.container}>
-      <textarea className={cn('full-width', styles.textArea)} placeholder={t('formPlaceholder')} />
+    <form onSubmit={onSubmit} className={styles.container}>
+      <FormInput
+        className={cn('row', styles.inputWrapper)}
+        inputClassName={cn('full-width', styles.textArea, { [styles.inputError]: !!errors.body })}
+        placeholder={errors.body ? t('requiredError') : t('formPlaceholder')}
+        name="body"
+        inputType="text"
+        inputRef={register({ required: true })}
+        isTextarea
+      />
       <div className={cn('row space-between', styles.footer)}>
         <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
-        <button className={styles.button} type="submit">
+        <button
+          className={cn(styles.button, { [styles.disabledBtn]: !isValid })}
+          type="submit"
+          disabled={!isValid}
+        >
           {t('postComment')}
         </button>
       </div>
