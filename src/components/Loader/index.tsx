@@ -14,7 +14,13 @@ function Loader() {
     <div className={cn('column middle center', styles.container)}>
       <Logo isBig />
       <span className={styles.message}>{t('message')}</span>
-      <Loading name="cube-grid" color={WHITE} className={styles.loader} fadeIn="half" />
+      <Loading
+        name="cube-grid"
+        color={WHITE}
+        className={styles.loader}
+        fadeIn="half"
+        data-testid="loading-spinner"
+      />
     </div>
   );
 }
