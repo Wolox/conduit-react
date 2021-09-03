@@ -26,7 +26,7 @@ function ArticleCommentForm({ formData }: Props) {
   const {
     register,
     handleSubmit,
-    setValue,
+    reset,
     formState: { isValid, errors }
   } = useForm<FormData>({ mode: 'onChange' });
   const { t } = useTranslation('Article');
@@ -37,7 +37,7 @@ function ArticleCommentForm({ formData }: Props) {
   const { mutate } = useMutation(addNewComment, {
     onSuccess: () => {
       queryClient.refetchQueries(`article-${slug}-comments`);
-      setValue('body', '', { shouldValidate: false });
+      reset();
     }
   });
 
