@@ -8,4 +8,4 @@
 
 ## Trello Card
 
-[Change!] Link to the associated Trello card. 
+[Change!] Link to the associated Trello card.
