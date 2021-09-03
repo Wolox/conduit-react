@@ -10,6 +10,7 @@ import PATHS from 'components/Routes/paths';
 import { useSelector } from 'contexts/UserContext';
 import type { ArticleParams, Comment } from 'types/Article';
 import { deleteComment } from 'services/ArticleService';
+import { formatDate } from 'utils/dateUtils/index';
 
 import styles from './styles.module.scss';
 
@@ -23,6 +24,7 @@ function ArticleComment({ commentData, setCommentsData }: Props) {
   const user = useSelector((state) => state.user);
   const { slug } = useParams<ArticleParams>();
   const { author, body, updatedAt, id } = commentData;
+  const formattedDate = formatDate(updatedAt);
   const { username, image } = author;
   const userToRedirect = generatePath(PATHS.user, { username });
 
@@ -47,7 +49,7 @@ function ArticleComment({ commentData, setCommentsData }: Props) {
           <Link className={styles.userLink} to={userToRedirect}>
             {username}
           </Link>
-          <span className={styles.date}>{updatedAt}</span>
+          <span className={styles.date}>{formattedDate}</span>
         </div>
         {!!user && user.username === username && (
           <button type="button" onClick={handleClick}>
