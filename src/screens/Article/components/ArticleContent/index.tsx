@@ -14,7 +14,7 @@ function ArticleContent() {
   const history = useHistory();
   const { slug } = useParams<ArticleParams>();
 
-  const { data, isLoading } = useQuery(`article-${slug}`, () => articleBySlug(slug));
+  const { data, isLoading } = useQuery(['article', slug], () => articleBySlug(slug));
   const articleData = data?.data?.article;
 
   // Redirect to the error screen if something goes wrong

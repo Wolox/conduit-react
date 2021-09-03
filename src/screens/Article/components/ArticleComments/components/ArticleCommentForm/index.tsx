@@ -1,13 +1,15 @@
+import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import cn from 'classnames';
+import { ApiResponse } from 'apisauce';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import FormInput from 'components/FormInput';
 import { addNewComment } from 'services/ArticleService';
-import { ArticleParams } from 'types/Article';
+import type { ArticleParams, CommentResponse, Comment } from 'types/Article';
 
 import styles from './styles.module.scss';
 
@@ -17,12 +19,13 @@ interface FormData {
 
 interface Props {
   formData: {
-    avatar?: string;
-    userName: string;
+    avatar: string | null;
+    username: string;
   };
+  setCommentsData: Dispatch<SetStateAction<Comment[]>>;
 }
 
-function ArticleCommentForm({ formData }: Props) {
+function ArticleCommentForm({ formData, setCommentsData }: Props) {
   const {
     register,
     handleSubmit,
@@ -31,12 +34,11 @@ function ArticleCommentForm({ formData }: Props) {
   } = useForm<FormData>({ mode: 'onChange' });
   const { t } = useTranslation('Article');
   const { slug } = useParams<ArticleParams>();
-  const { avatar, userName } = formData;
+  const { avatar, username } = formData;
 
-  const queryClient = useQueryClient();
   const { mutate } = useMutation(addNewComment, {
-    onSuccess: () => {
-      queryClient.refetchQueries(`article-${slug}-comments`);
+    onSuccess: (data: ApiResponse<CommentResponse>) => {
+      setCommentsData((prevComments) => [...prevComments, { ...data.data?.comment }] as Comment[]);
       reset();
     }
   });
@@ -57,7 +59,7 @@ function ArticleCommentForm({ formData }: Props) {
         isTextarea
       />
       <div className={cn('row space-between', styles.footer)}>
-        <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
+        <img className={styles.userIcon} src={avatar || userPlaceholder} alt={username} />
         <button
           className={cn(styles.button, { [styles.disabledBtn]: !isValid })}
           type="submit"

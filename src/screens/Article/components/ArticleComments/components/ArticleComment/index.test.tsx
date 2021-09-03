@@ -38,7 +38,7 @@ describe('ArticleComment', () => {
   });
 
   it('displays proper comment content', () => {
-    const commentContent = screen.getByText(/cool post/i);
+    const commentContent = screen.getByText(/Your post sucks/i);
     expect(commentContent).toBeInTheDocument();
   });
   it('displays proper comment author name', () => {

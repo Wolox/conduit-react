@@ -11,7 +11,7 @@ interface Props {
 function WrappedComponent({ history }: Props) {
   return (
     <Router history={history}>
-      <ArticleCommentForm formData={{ userName: 'Luigi' }} />
+      <ArticleCommentForm formData={{ avatar: null, username: 'Luigi' }} setCommentsData={jest.fn()} />
     </Router>
   );
 }
