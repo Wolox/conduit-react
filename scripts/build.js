@@ -1,5 +1,16 @@
 const { spawn } = require('child_process');
 
+if(process.env.NODE_ENV === 'production') {
+  spawn(
+    `node ./node_modules/@rescripts/cli/bin/rescripts.js build`,
+    {
+      stdio: 'inherit',
+      shell: true
+    }
+  );
+  return;
+}
+
 const argv = require('minimist')(process.argv.slice(2));
 
 const { success, validateEnvs } = require('./utils');
