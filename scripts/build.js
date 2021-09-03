@@ -1,33 +1,30 @@
 const { spawn } = require('child_process');
+const { success, validateEnvs } = require('./utils');
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.VERCEL);
-console.log(process.env);
-if(process.env.NODE_ENV === 'production') {
+const build = (buildPrefixParams = '' || true) => {
   spawn(
-    `node ./node_modules/@rescripts/cli/bin/rescripts.js build`,
+    `node ${buildPrefixParams} ./node_modules/@rescripts/cli/bin/rescripts.js build`,
     {
       stdio: 'inherit',
       shell: true
     }
   );
-  return;
 }
 
-const argv = require('minimist')(process.argv.slice(2));
+let buildExtraParams = ''
+let successMessage = 'Building...'
 
-const { success, validateEnvs } = require('./utils');
+if (!process.env.VERCEL) {
+  const argv = require('minimist')(process.argv.slice(2));
 
-const env = argv._[0];
+  const env = argv._[0];
 
-validateEnvs(env);
+  validateEnvs(env);
 
-success(`Building '${env}'`);
+  buildExtraParams = `./node_modules/env-cmd/bin/env-cmd.js -f ./.env.${env}`;
+  successMessage = `Building '${env}'`;
+}
 
-spawn(
-  `node ./node_modules/env-cmd/bin/env-cmd.js -f ./.env.${env} ./node_modules/@rescripts/cli/bin/rescripts.js build`,
-  {
-    stdio: 'inherit',
-    shell: true
-  }
-);
+success(successMessage);
+
+build(buildExtraParams)
