@@ -39,7 +39,9 @@ function ArticleComments() {
       )}
       {!!commentsData &&
         doesArticleHaveComments &&
-        sortedComments.map((comment) => <ArticleComment key={comment.id} commentData={comment} />)}
+        sortedComments.map((comment) => (
+          <ArticleComment key={comment.id} commentData={comment} setCommentsData={setCommentsData} />
+        ))}
     </>
   );
 }

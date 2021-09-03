@@ -44,3 +44,6 @@ export const commentsBySlug = (slug: string): Promise<ApiResponse<CommentsRespon
 
 export const addNewComment = (payload: CommentPayload): Promise<ApiResponse<CommentResponse>> =>
   api.post(`${MAIN_PATH}/${payload.slug}/comments`, payload.comment);
+
+export const deleteComment = (params: { slug: string; id: number }): Promise<ApiResponse<void>> =>
+  api.delete(`${MAIN_PATH}/${params.slug}/comments/${params.id}`);

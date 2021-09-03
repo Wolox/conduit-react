@@ -1,25 +1,40 @@
-import { generatePath, Link } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
+import { generatePath, Link, useParams } from 'react-router-dom';
+import { useMutation } from 'react-query';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
-import type { Comment } from 'types/Article';
+import { useSelector } from 'contexts/UserContext';
+import type { ArticleParams, Comment } from 'types/Article';
+import { deleteComment } from 'services/ArticleService';
 
 import styles from './styles.module.scss';
 
 type Props = {
   commentData: Comment;
+  setCommentsData: Dispatch<SetStateAction<Comment[]>>;
 };
 
-function ArticleComment({ commentData }: Props) {
+function ArticleComment({ commentData, setCommentsData }: Props) {
   const ICON_SIZE = 'xs';
-  const { author, body, updatedAt } = commentData;
+  const user = useSelector((state) => state.user);
+  const { slug } = useParams<ArticleParams>();
+  const { author, body, updatedAt, id } = commentData;
   const { username, image } = author;
   const userToRedirect = generatePath(PATHS.user, { username });
 
-  const handleClick = () => null;
+  const { mutate } = useMutation(deleteComment, {
+    onSuccess: () => {
+      setCommentsData((prevComments) => prevComments.filter((comment) => comment.id !== id));
+    }
+  });
+
+  const handleClick = () => {
+    mutate({ slug, id });
+  };
 
   return (
     <div className={styles.cardContainer}>
@@ -34,9 +49,11 @@ function ArticleComment({ commentData }: Props) {
           </Link>
           <span className={styles.date}>{updatedAt}</span>
         </div>
-        <button type="button" onClick={handleClick}>
-          <FontAwesomeIcon icon={faTrashAlt} size={ICON_SIZE} className={styles.icon} />
-        </button>
+        {!!user && user.username === username && (
+          <button type="button" onClick={handleClick}>
+            <FontAwesomeIcon icon={faTrashAlt} size={ICON_SIZE} className={styles.icon} />
+          </button>
+        )}
       </div>
     </div>
   );

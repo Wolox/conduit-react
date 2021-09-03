@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory, History } from 'history';
 
@@ -24,10 +25,13 @@ const MOCKED_COMMENT: Comment = {
 };
 
 function WrappedComponent({ history }: Props) {
+  const queryClient = new QueryClient();
   return (
-    <Router history={history}>
-      <ArticleComment commentData={MOCKED_COMMENT} />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router history={history}>
+        <ArticleComment commentData={MOCKED_COMMENT} setCommentsData={jest.fn()} />
+      </Router>
+    </QueryClientProvider>
   );
 }
 
