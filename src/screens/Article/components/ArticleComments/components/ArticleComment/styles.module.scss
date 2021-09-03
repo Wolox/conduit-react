@@ -41,3 +41,14 @@
 .date {
   color: $silver;
 }
+
+.icon {
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in;
+  will-change: opacity;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+}
