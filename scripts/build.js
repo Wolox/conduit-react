@@ -1,5 +1,8 @@
 const { spawn } = require('child_process');
 
+console.log(process.env.NODE_ENV);
+console.log(process.env.VERCEL);
+console.log(process.env);
 if(process.env.NODE_ENV === 'production') {
   spawn(
     `node ./node_modules/@rescripts/cli/bin/rescripts.js build`,
