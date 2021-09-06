@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { generatePath, useHistory } from 'react-router-dom';
+import { useParams, generatePath, useHistory } from 'react-router-dom';
+import { useMutation, useQuery } from 'react-query';
 import cn from 'classnames';
 
 import FormInput from 'components/FormInput';
 import PATHS from 'components/Routes/paths';
-import { addNewPost } from 'services/ArticleService';
+import { addNewPost, articleBySlug } from 'services/ArticleService';
+import { ArticleParams } from 'types/Article';
 
 import ContentEditor from '../ContentEditor';
 
@@ -23,13 +24,27 @@ interface FormData {
 function NewArticleForm() {
   const history = useHistory();
   const { t } = useTranslation('EditorScreen');
+  const { slug } = useParams<ArticleParams>();
+
+  // I'm putting the API call first to set the form initial values if there's a slug
+  const { data: queryData } = useQuery(['article', slug], () => articleBySlug(slug), {
+    enabled: !!slug
+  });
+
+  const { description, tags, title } = INPUTS;
   const {
     register,
     handleSubmit,
     formState: { isValid, errors }
-  } = useForm<FormData>({ mode: 'onTouched' });
-  const [postBody, setPostBody] = useState('');
-  const { description, tags, title } = INPUTS;
+  } = useForm<FormData>({
+    mode: 'onTouched',
+    defaultValues: {
+      [title.name]: queryData?.data?.article.title || '',
+      [description.name]: queryData?.data?.article.description || '',
+      [tags.name]: queryData?.data?.article.tagList.join() || ''
+    }
+  });
+  const [postBody, setPostBody] = useState(queryData?.data?.article.body || '');
   const isPostbodyLongEnough = postBody.length >= MIN_LENGTH;
   const isFormSubmittable = useMemo(() => !isPostbodyLongEnough || !isValid, [isPostbodyLongEnough, isValid]);
 

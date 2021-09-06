@@ -2,6 +2,7 @@ import i18next from 'i18next';
 
 i18next.addResources('es', 'EditorScreen', {
   newPostHeading: 'Nuevo Artículo',
+  editPostHeading: 'Editar Artículo',
   titlePlaceholder: 'Título del artículo',
   descriptionPlaceholder: '¿De qué se trata este artículo?',
   editorPlaceholder: 'Escribe tu artículo',
@@ -13,6 +14,7 @@ i18next.addResources('es', 'EditorScreen', {
 
 i18next.addResources('en', 'EditorScreen', {
   newPostHeading: 'New Post',
+  editPostHeading: 'Edit Post',
   titlePlaceholder: 'Article title',
   descriptionPlaceholder: "What's this article about?",
   editorPlaceholder: 'Write your article',
