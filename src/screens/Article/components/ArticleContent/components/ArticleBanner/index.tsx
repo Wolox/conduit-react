@@ -1,13 +1,16 @@
-import { generatePath, Link, useParams } from 'react-router-dom';
+import { generatePath, Link, useHistory, useParams } from 'react-router-dom';
+import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { ApiResponse } from 'apisauce';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
 import { useSelector } from 'contexts/UserContext';
-import { ArticleParams } from 'types/Article';
+import { deleteArticleBySlug } from 'services/ArticleService';
+import { ArticleParams, ArticleResponse } from 'types/Article';
 import { formatDate } from 'utils/dateUtils/index';
 
 import styles from './styles.module.scss';
@@ -27,12 +30,24 @@ function ArticleBanner({ bannerData }: Props) {
   const formattedDate = formatDate(articleDate);
   const user = useSelector((state) => state.user);
   const { slug } = useParams<ArticleParams>();
+  const history = useHistory();
   const SIZE_ICONS_XS = 'xs';
 
   const userToRedirect = generatePath(PATHS.user, { username });
   const editorToRedirect = generatePath(PATHS.editorBySlug, { slug });
 
   const isOwnedByLoggedInUser = user?.username === username;
+
+  const { mutate } = useMutation(deleteArticleBySlug, {
+    onSuccess: (data: ApiResponse<ArticleResponse>) => {
+      if (data.ok) {
+        history.replace(PATHS.home);
+      } else {
+        history.replace(PATHS.errorScreen);
+      }
+    }
+  });
+  const handleDelete = () => mutate(slug);
 
   return (
     <div className={cn('row middle center full-width', styles.banner)}>
@@ -56,7 +71,7 @@ function ArticleBanner({ bannerData }: Props) {
                 <FontAwesomeIcon icon={faPen} size={SIZE_ICONS_XS} className="m-right-1" />
                 {t('editArticle')}
               </Link>
-              <button className={cn('m-left-1', styles.deleteBtn)} type="button">
+              <button className={cn('m-left-1', styles.deleteBtn)} type="button" onClick={handleDelete}>
                 <FontAwesomeIcon icon={faTrashAlt} size={SIZE_ICONS_XS} className="m-right-1" />
                 {t('deleteArticle')}
               </button>

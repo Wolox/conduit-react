@@ -39,6 +39,9 @@ export const addNewPost = (payload: NewPostPayload): Promise<ApiResponse<Article
 export const articleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse>> =>
   api.get(`${MAIN_PATH}/${slug}`);
 
+export const deleteArticleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse>> =>
+  api.delete(`${MAIN_PATH}/${slug}`);
+
 export const commentsBySlug = (slug: string): Promise<ApiResponse<CommentsResponse>> =>
   api.get(`${MAIN_PATH}/${slug}/comments`);
 
