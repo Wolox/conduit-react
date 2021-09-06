@@ -1,6 +1,8 @@
 import { generatePath, Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
+import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
@@ -25,6 +27,7 @@ function ArticleBanner({ bannerData }: Props) {
   const formattedDate = formatDate(articleDate);
   const user = useSelector((state) => state.user);
   const { slug } = useParams<ArticleParams>();
+  const SIZE_ICONS_XS = 'xs';
 
   const userToRedirect = generatePath(PATHS.user, { username });
   const editorToRedirect = generatePath(PATHS.editorBySlug, { slug });
@@ -49,10 +52,12 @@ function ArticleBanner({ bannerData }: Props) {
           </div>
           {isOwnedByLoggedInUser && (
             <div className="row middle">
-              <Link to={editorToRedirect} className="m-left-3">
+              <Link to={editorToRedirect} className={cn('m-left-3', styles.editBtn)}>
+                <FontAwesomeIcon icon={faPen} size={SIZE_ICONS_XS} className="m-right-1" />
                 {t('editArticle')}
               </Link>
-              <button className="m-left-3" type="button">
+              <button className={cn('m-left-1', styles.deleteBtn)} type="button">
+                <FontAwesomeIcon icon={faTrashAlt} size={SIZE_ICONS_XS} className="m-right-1" />
                 {t('deleteArticle')}
               </button>
             </div>
