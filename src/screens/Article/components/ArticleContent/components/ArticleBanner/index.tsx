@@ -52,9 +52,9 @@ function ArticleBanner({ bannerData }: Props) {
   return (
     <div className={cn('row middle center full-width', styles.banner)}>
       <div className={cn('column start space-between', styles.container)}>
-        <h1 className={cn('m-bottom-6', styles.title)}>{title}</h1>
-        <div className="row">
-          <div className="row">
+        <h1 className={cn('m-bottom-6 m-top-3', styles.title)}>{title}</h1>
+        <div className="row wrap">
+          <div className="row m-bottom-2 m-right-3 m-top-2">
             <Link to={userToRedirect}>
               <img className={styles.userIcon} src={avatar || userPlaceholder} alt={username} />
             </Link>
@@ -66,8 +66,8 @@ function ArticleBanner({ bannerData }: Props) {
             </div>
           </div>
           {isOwnedByLoggedInUser && (
-            <div className="row middle">
-              <Link to={editorToRedirect} className={cn('m-left-3', styles.editBtn)}>
+            <div className="row middle nowrap m-bottom-2 m-top-2">
+              <Link to={editorToRedirect} className={styles.editBtn}>
                 <FontAwesomeIcon icon={faPen} size={SIZE_ICONS_XS} className="m-right-1" />
                 {t('editArticle')}
               </Link>
