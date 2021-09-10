@@ -11,7 +11,7 @@ interface Props {
 const MOCKED_ARTICLE = {
   articleDate: '2021-08-26T16:03:22.390Z',
   title: 'Great article',
-  userName: 'Bowser'
+  username: 'Bowser'
 };
 
 function WrappedComponent({ history }: Props) {

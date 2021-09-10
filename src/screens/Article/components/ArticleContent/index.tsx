@@ -35,7 +35,7 @@ function ArticleContent() {
             bannerData={{
               articleDate: articleData.createdAt,
               title: articleData.title,
-              userName: articleData.author.username
+              username: articleData.author.username
             }}
           />
           <ArticleBody textContent={articleData.body} />

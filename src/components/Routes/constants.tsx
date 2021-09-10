@@ -43,6 +43,13 @@ export const ROUTES = [
     redirectTo: (user: UserProfile | null) => (user ? undefined : MAIN_PUBLIC_PATH)
   },
   {
+    exact: false,
+    path: PATHS.editorBySlug,
+    component: EditorScreen,
+    title: 'Routes:editorTitle',
+    redirectTo: (user: UserProfile | null) => (user ? undefined : MAIN_PUBLIC_PATH)
+  },
+  {
     exact: true,
     path: PATHS.errorScreen,
     component: Error,

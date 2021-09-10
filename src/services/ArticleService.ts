@@ -36,8 +36,16 @@ export const addRemoveFavorites = ({
 export const addNewPost = (payload: NewPostPayload): Promise<ApiResponse<ArticleResponse>> =>
   api.post(MAIN_PATH, payload);
 
+export const updatePost = (params: {
+  slug: string;
+  payload: NewPostPayload;
+}): Promise<ApiResponse<ArticleResponse>> => api.put(`${MAIN_PATH}/${params.slug}`, params.payload);
+
 export const articleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse>> =>
   api.get(`${MAIN_PATH}/${slug}`);
+
+export const deleteArticleBySlug = (slug: string): Promise<ApiResponse<ArticleResponse>> =>
+  api.delete(`${MAIN_PATH}/${slug}`);
 
 export const commentsBySlug = (slug: string): Promise<ApiResponse<CommentsResponse>> =>
   api.get(`${MAIN_PATH}/${slug}/comments`);
