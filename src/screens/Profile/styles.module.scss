@@ -1,0 +1,46 @@
+@import 'scss/variables/_colors';
+@import 'scss/variables/_content';
+
+.header {
+  background-color: $gray-light;
+  padding: 30px 20px;
+}
+
+.content-user {
+  text-align: center;
+
+  .image-profile {
+    border-radius: 100%;
+    width: 100px;
+  }
+
+  .username {
+    color: inherit;
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.content-button {
+  margin: 0 auto;
+  max-width: $max-content;
+  text-align: right;
+
+  .button {
+    border-radius: 3px;
+    border: 1px solid $silver;
+    color: $silver;
+    padding: 4px 8px;
+
+    &:hover {
+      background: $silver;
+      color: $white;
+    }
+  }
+}
+
+.content {
+  margin: 20px auto 0;
+  max-width: $max-content;
+}

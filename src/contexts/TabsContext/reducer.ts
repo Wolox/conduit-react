@@ -4,7 +4,7 @@ import { Reducer } from 'react';
 import { Tab } from 'components/Tabs/types';
 import { CONFIG_TAB_GLOBAL } from 'constants/tabs';
 
-interface TabContext {
+export interface TabContext {
   hashtag: Tab | null;
   tabActive: Tab;
 }

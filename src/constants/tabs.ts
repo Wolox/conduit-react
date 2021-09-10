@@ -1,5 +1,5 @@
 import { Tab } from 'components/Tabs/types';
-import { useArticles, useArticlesByAuthor, useFeed } from 'hooks/List';
+import { useArticles, useArticlesByAuthor, useArticlesFavorites, useFeed } from 'hooks/List';
 
 export const CONFIG_TAB_FEED: Tab = {
   text: 'Tabs:yourFeed',
@@ -18,5 +18,5 @@ export const CONFIG_TAB_MY_POSTS: Tab = {
 
 export const CONFIG_TAB_FAVORITES: Tab = {
   text: 'Tabs:favorites',
-  list: useArticlesByAuthor
+  list: useArticlesFavorites
 };
