@@ -4,16 +4,75 @@
 
 .container {
   border-bottom: 1px solid $black-opacity-ten;
-  margin: 0 auto 48px;
+  margin: 48px auto;
   max-width: $max-content;
   padding: 15px;
   width: 95vw;
-}
+  word-break: break-word;
 
-.content {
-  color: $outer-space;
-  font-family: $source-serif-pro;
-  font-size: 19px;
-  line-height: 29px;
-  padding: 29px 0 64px;
+  h1,
+  h2,
+  p,
+  a,
+  span,
+  li {
+    color: $dove-gray;
+    display: block;
+    font: $unset;
+    font-family: $source-serif-pro;
+    font-weight: 500;
+    line-height: 29px;
+  }
+
+  a,
+  b,
+  strong,
+  em,
+  u {
+    display: inline;
+    font-family: $source-serif-pro;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  a {
+    color: $blue-corn-flower;
+    text-decoration: underline;
+
+    &:visited {
+      color: $studio;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  li {
+    display: list-item;
+  }
+
+  ol li {
+    list-style: decimal inside;
+  }
+
+  ul li {
+    list-style: disc inside;
+  }
 }

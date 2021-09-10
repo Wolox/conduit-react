@@ -1,17 +1,19 @@
+export interface Author {
+  username: string;
+  bio: string | null;
+  image: string;
+  following: boolean;
+}
+
 export interface Article {
   title: string;
   slug: string;
   body: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   description: string;
   tagList: [];
-  author: {
-    username: string;
-    bio: string | null;
-    image: string;
-    following: boolean;
-  };
+  author: Author;
   favorited: false;
   favoritesCount: number;
 }
@@ -81,4 +83,27 @@ export interface ArticlesByAuthor extends Paginated {
 
 export interface ArticlesFavorites extends Paginated {
   favorited: string;
+}
+
+export interface Comment {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  body: string;
+  author: Author;
+}
+
+export interface CommentResponse {
+  comment: Comment;
+}
+
+export interface CommentsResponse {
+  comments: Comment[];
+}
+
+export interface CommentPayload {
+  slug: string;
+  comment: {
+    body: string;
+  };
 }

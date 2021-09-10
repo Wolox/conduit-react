@@ -6,7 +6,8 @@ i18next.addResources('es', 'Article', {
   signUp: 'regístrese',
   loggetOutMessage: ' para agregar comentarios sobre este artículo.',
   postComment: 'Publicar comentario',
-  formPlaceholder: 'Escribe un comentario...'
+  formPlaceholder: 'Escribe un comentario...',
+  requiredError: 'Este campo es requerido'
 });
 
 i18next.addResources('en', 'Article', {
@@ -15,5 +16,6 @@ i18next.addResources('en', 'Article', {
   signUp: 'sign up',
   loggetOutMessage: ' to add comments on this article.',
   postComment: 'Post comment',
-  formPlaceholder: 'Write a comment...'
+  formPlaceholder: 'Write a comment...',
+  requiredError: 'This field is required'
 });

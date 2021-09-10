@@ -9,7 +9,8 @@ interface Props {
 }
 
 const MOCKED_ARTICLE = {
-  articleDate: 'Mon Jul 19 2021',
+  articleDate: '2021-08-26T16:03:22.390Z',
+  title: 'Great article',
   userName: 'Bowser'
 };
 
@@ -26,7 +27,7 @@ describe('ArticleBanner', () => {
     const history = createMemoryHistory();
     render(<WrappedComponent history={history} />);
 
-    const articleDate = screen.getByText(/mon jul 19 2021/i);
+    const articleDate = screen.getByText(/Dates:thu Dates:aug 26 2021/i);
     expect(articleDate).toBeInTheDocument();
   });
   it('displays custom avatar when provided', () => {

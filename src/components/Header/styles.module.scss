@@ -1,4 +1,3 @@
-@import 'scss/fonts/_fonts';
 @import 'scss/variables/_colors';
 @import 'scss/variables/_content';
 @import 'scss/margins';
@@ -9,16 +8,9 @@
   justify-content: space-between;
   margin: 0 auto;
   max-width: $max-content;
+  overflow-x: hidden;
   padding: 15px;
   width: 95vw;
-}
-
-.logo {
-  color: $green-fern;
-  cursor: pointer;
-  font-family: $titillium;
-  font-size: 30px;
-  font-weight: 600;
 }
 
 .list-items {
