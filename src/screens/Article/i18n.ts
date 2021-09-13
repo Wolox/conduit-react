@@ -6,7 +6,9 @@ i18next.addResources('es', 'Article', {
   signUp: 'regístrese',
   loggetOutMessage: ' para agregar comentarios sobre este artículo.',
   postComment: 'Publicar comentario',
-  formPlaceholder: 'Escribe un comentario...'
+  formPlaceholder: 'Escribe un comentario...',
+  empty: 'No hay artículos aquí... todavía',
+  finishList: 'No hay más articulos'
 });
 
 i18next.addResources('en', 'Article', {
@@ -15,5 +17,7 @@ i18next.addResources('en', 'Article', {
   signUp: 'sign up',
   loggetOutMessage: ' to add comments on this article.',
   postComment: 'Post comment',
-  formPlaceholder: 'Write a comment...'
+  formPlaceholder: 'Write a comment...',
+  empty: 'No articles are here... yet',
+  finishList: 'there are no more articles'
 });

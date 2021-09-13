@@ -1,3 +1,6 @@
+import { ApiResponse } from 'apisauce';
+import { UseInfiniteQueryOptions } from 'react-query';
+
 export interface Article {
   title: string;
   slug: string;
@@ -52,6 +55,7 @@ export interface DataEndpointArticles {
   limit: number;
   offset: number;
   user?: string;
+  options?: UseInfiniteQueryOptions<ApiResponse<Articles>>;
 }
 
 export interface NewPostPayload {
