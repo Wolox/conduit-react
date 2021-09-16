@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 interface Props {
   image: string;
   username: string;
-  date: Date;
+  date: string;
   favorites: number;
   isFavorited: boolean;
   slug: string;
