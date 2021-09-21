@@ -1,26 +1,60 @@
+@import 'scss/components';
 @import 'scss/fonts/_fonts';
 @import 'scss/variables/_colors';
 
 .container {
-  border: 1px solid $mercury;
-  border-radius: 4px;
   margin: 0 auto 12px;
   max-width: 728px;
   width: calc(90vw - 2px);
 }
 
-.text-area {
+.input-wrapper {
+  height: auto;
+  min-height: 118px;
+}
+
+.text-area,
+%text-area {
+
+  @extend %custom-input;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   font-family: $source-sans-pro;
   font-size: 16px;
-  height: 115px;
+  height: 100%;
   line-height: 20px;
+  margin: 0;
+  max-height: 300px;
+  min-height: 118px;
   padding: 20px;
   resize: vertical;
 }
 
+.input-error {
+
+  @extend %text-area;
+  border-bottom: 1px solid $mercury;
+  border: 1px solid $red;
+
+  &:focus {
+    border: 1px solid $red;
+  }
+
+  &::placeholder {
+    color: $red;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
 .footer {
   background-color: $wild-sand;
-  border-top: 1px solid $mercury;
+  border-bottom: 1px solid $mercury;
+  border-left: 1px solid $mercury;
+  border-right: 1px solid $mercury;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 12px 20px;
 }
 
@@ -42,4 +76,9 @@
   &:hover {
     background-color: $green-goblin;
   }
+}
+
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.65;
 }

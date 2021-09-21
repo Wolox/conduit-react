@@ -4,6 +4,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 import { useSelector } from 'contexts/UserContext';
+import Logo from 'components/Logo';
 import PATHS from 'components/Routes/paths';
 import { SIZE_ICONS_XS } from 'constants/icons';
 
@@ -18,7 +19,7 @@ function Header() {
 
   return (
     <div className={styles.contentHeader}>
-      <div className={styles.logo}>conduit</div>
+      <Logo />
       <div>
         <ul className={styles.listItems}>
           <li className={styles.item}>

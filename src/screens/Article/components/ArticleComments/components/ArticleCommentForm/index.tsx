@@ -1,32 +1,70 @@
-import { FormEvent } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from 'react-query';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import cn from 'classnames';
+import { ApiResponse } from 'apisauce';
 
 import userPlaceholder from 'assets/user-placeholder.jpeg';
+import FormInput from 'components/FormInput';
+import { addNewComment } from 'services/ArticleService';
+import type { ArticleParams, CommentResponse, Comment } from 'types/Article';
 
 import styles from './styles.module.scss';
 
-interface Props {
-  formData: {
-    avatar?: string;
-    userName: string;
-  };
+interface FormData {
+  body: string;
 }
 
-function ArticleCommentForm({ formData }: Props) {
-  const { t } = useTranslation('Article');
-  const { avatar, userName } = formData;
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+interface Props {
+  formData: {
+    avatar: string | null;
+    username: string;
   };
+  setCommentsData: Dispatch<SetStateAction<Comment[]>>;
+}
+
+function ArticleCommentForm({ formData, setCommentsData }: Props) {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid, errors }
+  } = useForm<FormData>({ mode: 'onChange' });
+  const { t } = useTranslation('Article');
+  const { slug } = useParams<ArticleParams>();
+  const { avatar, username } = formData;
+
+  const { mutate } = useMutation(addNewComment, {
+    onSuccess: (data: ApiResponse<CommentResponse>) => {
+      setCommentsData((prevComments) => [...prevComments, { ...data.data?.comment }] as Comment[]);
+      reset();
+    }
+  });
+
+  const onSubmit = handleSubmit((data: FormData) => {
+    mutate({ slug, comment: { ...data } });
+  });
 
   return (
-    <form onSubmit={handleSubmit} className={styles.container}>
-      <textarea className={cn('full-width', styles.textArea)} placeholder={t('formPlaceholder')} />
+    <form onSubmit={onSubmit} className={styles.container}>
+      <FormInput
+        className={cn('row', styles.inputWrapper)}
+        inputClassName={cn('full-width', styles.textArea, { [styles.inputError]: !!errors.body })}
+        placeholder={errors.body ? t('requiredError') : t('formPlaceholder')}
+        name="body"
+        inputType="text"
+        inputRef={register({ required: true })}
+        isTextarea
+      />
       <div className={cn('row space-between', styles.footer)}>
-        <img className={styles.userIcon} src={avatar || userPlaceholder} alt={userName} />
-        <button className={styles.button} type="submit">
+        <img className={styles.userIcon} src={avatar || userPlaceholder} alt={username} />
+        <button
+          className={cn(styles.button, { [styles.disabledBtn]: !isValid })}
+          type="submit"
+          disabled={!isValid}
+        >
           {t('postComment')}
         </button>
       </div>
