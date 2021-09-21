@@ -1,6 +1,6 @@
 import { ArticleResponse } from 'types/Article';
 
-const date = new Date('2021-08-26T18:09:50.028Z');
+const date = '2021-08-26T18:09:50.028Z';
 
 export const MOCKED_ARTICLE_RESPONSE: ArticleResponse = {
   article: {
