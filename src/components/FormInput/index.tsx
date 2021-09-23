@@ -22,6 +22,7 @@ interface Props {
   touched?: boolean;
   submitCount?: number;
   inputRef?: any;
+  defaultValue?: string | number | readonly string[];
 }
 
 function FormInput({
@@ -43,7 +44,8 @@ function FormInput({
   readOnly = false,
   touched,
   submitCount,
-  inputRef
+  inputRef,
+  defaultValue
 }: Props) {
   const InputComponent = isTextarea ? 'textarea' : 'input';
   const showError =
@@ -70,6 +72,7 @@ function FormInput({
         disabled={disabled}
         readOnly={readOnly}
         ref={inputRef}
+        defaultValue={defaultValue}
       />
       <span
         id={`${name}-error`}
