@@ -26,14 +26,12 @@ function WrappedHeaderAuthenticated({ userState, history }: Props) {
 describe('Print the menu for logged in users', () => {
   const userState: UserState = {
     user: {
-      user: {
-        id: 1,
-        username: 'User',
-        email: 'user@domain.com',
-        bio: null,
-        image: null,
-        token: null
-      }
+      id: 1,
+      username: 'User',
+      email: 'user@domain.com',
+      bio: null,
+      image: null,
+      token: 'token'
     }
   };
 

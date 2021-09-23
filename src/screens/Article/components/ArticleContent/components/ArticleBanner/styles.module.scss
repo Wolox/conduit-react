@@ -1,0 +1,85 @@
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+@import 'scss/variables/_content';
+
+.banner {
+  background-color: $mine-shaft;
+  min-height: 20vh;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $max-content;
+  padding: 15px;
+  width: 95vw;
+}
+
+.title {
+  color: $white;
+  font-family: $source-sans-pro;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.user-icon {
+  border-radius: 32px;
+  height: 32px;
+  margin-right: 8px;
+  width: 32px;
+}
+
+.user-link {
+  color: $white;
+  font-family: $source-sans-pro;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.date {
+  color: $silver;
+  font-family: $source-sans-pro;
+  font-size: 12px;
+}
+
+%article-btn {
+  border: 1px solid;
+  border-radius: 3px;
+  opacity: 0.8;
+  padding: 4px 8px;
+  transition: all 0.1s;
+  user-select: none;
+
+  &:hover {
+    background-color: $gray;
+    color: $white;
+    opacity: 1;
+  }
+}
+
+.edit-btn {
+
+  @extend %article-btn;
+  border-color: $gray;
+  color: $gray;
+
+  &:hover {
+    background-color: $gray;
+  }
+}
+
+.delete-btn {
+
+  @extend %article-btn;
+  border-color: $red-matrix;
+  color: $red-matrix;
+
+  &:hover {
+    background-color: $red-matrix;
+  }
+}

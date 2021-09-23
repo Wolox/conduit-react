@@ -1,0 +1,116 @@
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+
+%container {
+  display: contents;
+  height: 20vh;
+  min-height: 175px;
+
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  li {
+    color: $dove-gray;
+    display: block;
+    font: $unset;
+    font-weight: 500;
+  }
+
+  div,
+  p {
+    font-size: 20px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  // These styles modify the div with class .ql-toolbar from the react-quill library
+
+  div:nth-of-type(1) {
+    background-color: $mercury;
+    border-radius: 5px 5px 0 0 / 5px 5px 0 0;
+    max-width: 95vw;
+  }
+
+  // These styles modify the div with class .ql-container from the react-quill library
+
+  div:nth-of-type(2) {
+    border-radius: 0 0 5px 5px / 0 0 5px 5px;
+    height: auto;
+    margin-bottom: 25px;
+    max-height: 50vh;
+    max-width: 95vw;
+    min-height: 160px;
+
+    // These styles modify the div with class .ql-editor from the react-quill library
+
+    div:nth-of-type(1) {
+      background-color: initial;
+      max-height: 50vh;
+      min-height: 160px;
+      overflow-y: scroll;
+      resize: vertical;
+
+      // These styles modify the editor's placeholder text from the react-quill library
+
+      &::before {
+        color: $silver-chalice;
+        font-size: 20px;
+        font-style: normal;
+      }
+    }
+  }
+}
+
+.container-isfocused {
+
+  @extend %container;
+
+  div:nth-of-type(1) {
+    border-left-color: $blue-corn-flower;
+    border-right-color: $blue-corn-flower;
+    border-top-color: $blue-corn-flower;
+  }
+
+  div:nth-of-type(2) {
+    border-bottom-color: $blue-corn-flower;
+    border-left-color: $blue-corn-flower;
+    border-right-color: $blue-corn-flower;
+  }
+}
+
+.container-notfocused {
+
+  @extend %container;
+
+  div:nth-of-type(1) {
+    border-left-color: $gray;
+    border-right-color: $gray;
+    border-top-color: $gray;
+  }
+
+  div:nth-of-type(2) {
+    border-bottom-color: $gray;
+    border-left-color: $gray;
+    border-right-color: $gray;
+  }
+}
+
+.container-iserror {
+
+  @extend %container;
+
+  div:nth-of-type(2) {
+    border-bottom: 2px solid $red;
+    margin-bottom: 5px;
+  }
+}
+
+.error-msg {
+  color: $red;
+  height: 20px;
+  font-size: 12px;
+}

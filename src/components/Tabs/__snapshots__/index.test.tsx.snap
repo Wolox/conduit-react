@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Tabs Renders component 1`] = `
+<DocumentFragment>
+  <div>
+    <ul
+      class="row middle start tabs"
+    >
+      <li
+        class="tab active"
+      >
+        FACEBOOK
+      </li>
+      <li
+        class="tab"
+      >
+        INSTAGRAM
+      </li>
+      <li
+        class="tab active"
+      >
+        TWITTER_TAG
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
