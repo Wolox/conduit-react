@@ -29,8 +29,6 @@ describe('when there is a user', () => {
       id: 1,
       username: 'Felipe',
       email: 'piperiver7@gmail.com',
-      bio: null,
-      image: null,
       token: 'token'
     }
   };

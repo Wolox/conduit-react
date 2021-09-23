@@ -8,6 +8,7 @@ import { userProfileMock } from './user';
 
 const handlers = [
   rest.get('/articles', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(MOCKED_ARTICLES))),
+  rest.put('/users', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(userProfileMock))),
   rest.post('/users', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(userProfileMock))),
   rest.post('/users/login', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(userProfileMock))),
   rest.post('/articles', (_req, res, ctx) =>

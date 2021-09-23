@@ -1,7 +1,6 @@
 import { FORM_TYPE } from 'screens/Authentication/constants';
 
 export const WHITE = '#FFF';
-export const USERNAME = 'username';
 export const EMAIL_OR_PASSWORD = 'email or password';
 
 export const ACTION_BY_TYPE = {
@@ -28,34 +27,40 @@ interface InputSections {
 
 type InputsStructure = Record<keyof UserFormKeys, InputSections>;
 
+export enum FormKeys {
+  USERNAME = 'username',
+  EMAIL = 'email',
+  PASSWORD = 'password'
+}
+
 export const INPUTS: InputsStructure = {
-  username: {
-    placeholder: 'Username',
+  [FormKeys.USERNAME]: {
+    placeholder: 'UserForm:username',
     type: 'text',
     validations: {
       required: {
         value: true,
-        message: "Username is invalid can't be blank"
+        message: 'UserForm:usernameRequiredMessage'
       },
-      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'Username is invalid' }
+      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'UserForm:usernameInvalidMessage' }
     }
   },
-  email: {
-    placeholder: 'Email',
+  [FormKeys.EMAIL]: {
+    placeholder: 'UserForm:email',
     type: 'email',
     validations: {
-      required: { value: true, message: "Email can't be blank" },
-      pattern: { value: /\S+@\S+\.\S+/, message: 'Email is invalid' }
+      required: { value: true, message: 'UserForm:emailRequiredMessage' },
+      pattern: { value: /\S+@\S+\.\S+/, message: 'UserForm:emailInvalidMessage' }
     }
   },
-  password: {
-    placeholder: 'Password',
+  [FormKeys.PASSWORD]: {
+    placeholder: 'UserForm:password',
     type: 'password',
     validations: {
-      required: { value: true, message: "Password can't be blank" },
+      required: { value: true, message: 'UserForm:passwordRequiredMessage' },
       minLength: {
         value: 6,
-        message: 'Password is too short (minimum is 6 characters)'
+        message: 'UserForm:passwordLengthMessage'
       }
     }
   }

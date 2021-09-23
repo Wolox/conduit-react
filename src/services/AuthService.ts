@@ -44,7 +44,10 @@ export const setApiTokenHeader = (token: string) => {
 
 export const getCurrentUserToken = () => LocalStorageService.getValue(TOKEN_FIELD_NAME);
 
-export const removeCurrentUserToken = () => LocalStorageService.removeValue(TOKEN_FIELD_NAME);
+export const removeCurrentUserToken = () => {
+  api.deleteHeader('Authorization');
+  LocalStorageService.removeValue(TOKEN_FIELD_NAME);
+};
 
 export const login = (credentials: LoginUser): Promise<ApiResponse<AuthResponse>> =>
   api.post('/users/login', credentials);

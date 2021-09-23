@@ -7,8 +7,9 @@ i18next.addResources('es', 'Routes', {
   loginTitle: 'Iniciar sesión',
   loginDescription: '',
   registerTitle: 'Registrarse',
-  editorTitle: 'Editor',
   articleTitle: 'Artículo',
+  settings: 'Ajustes',
+  editorTitle: 'Editor',
   error: 'Error'
 });
 
@@ -18,7 +19,8 @@ i18next.addResources('en', 'Routes', {
   loginTitle: 'Sign in',
   loginDescription: '',
   registerTitle: 'Sign up',
-  editorTitle: 'Editor',
   articleTitle: 'Article',
+  settings: 'Settings',
+  editorTitle: 'Editor',
   error: 'Error'
 });
