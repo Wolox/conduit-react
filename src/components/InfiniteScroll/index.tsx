@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { THRESHOLD } from './constants';
 import styles from './styles.module.scss';
 
 type ElementType = JSX.Element | string;
@@ -52,7 +53,7 @@ function InfiniteScroll({ children, onLoadMore, isLoading, hasMore, loader, endM
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleNextPage, {
-      threshold: 0.9
+      threshold: THRESHOLD
     });
 
     if (contentListRef.current) {

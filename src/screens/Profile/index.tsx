@@ -53,7 +53,7 @@ function Profile() {
     <Layout>
       <div className={styles.header}>
         <div className={styles.contentUser}>
-          <img src={user?.image || userPlaceholder} className={styles.imageProfile} />
+          <img src={user?.image || userPlaceholder} className={styles.imageProfile} alt={user?.username} />
           <h2 className={cn('m-top-3', styles.username)}>{user?.username}</h2>
         </div>
         <div className={styles.contentButton}>
