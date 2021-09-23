@@ -9,6 +9,8 @@ i18next.addResources('es', 'Article', {
   deleteArticle: 'Eliminar Artículo',
   postComment: 'Publicar comentario',
   formPlaceholder: 'Escribe un comentario...',
+  empty: 'No hay artículos aquí... todavía',
+  finishList: 'No hay más articulos',
   requiredError: 'Este campo es requerido'
 });
 
@@ -21,5 +23,7 @@ i18next.addResources('en', 'Article', {
   deleteArticle: 'Delete Article',
   postComment: 'Post comment',
   formPlaceholder: 'Write a comment...',
+  empty: 'No articles are here... yet',
+  finishList: 'there are no more articles',
   requiredError: 'This field is required'
 });

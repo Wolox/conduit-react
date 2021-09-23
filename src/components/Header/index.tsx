@@ -23,7 +23,7 @@ function Header() {
       <div>
         <ul className={styles.listItems}>
           <li className={styles.item}>
-            <NavLink to={PATHS.home} activeClassName={styles.active} className={styles.link}>
+            <NavLink to={PATHS.home} activeClassName={styles.active} className={styles.link} exact>
               <FontAwesomeIcon icon={faHome} size="xs" className={styles.icon} />
               <span className={styles.text}>{t('home')}</span>
             </NavLink>

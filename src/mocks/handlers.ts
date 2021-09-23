@@ -13,6 +13,12 @@ const handlers = [
   rest.post('/users/login', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(userProfileMock))),
   rest.post('/articles', (_req, res, ctx) =>
     res(ctx.status(STATUS_CODES.ok), ctx.json(MOCKED_ARTICLE_RESPONSE))
+  ),
+  rest.post('/articles/titleArticle/favorite', (req, res, ctx) =>
+    res(ctx.status(STATUS_CODES.ok), ctx.json({ data: MOCKED_ARTICLE_RESPONSE }))
+  ),
+  rest.delete('/articles/titleArticle/favorite', (req, res, ctx) =>
+    res(ctx.status(STATUS_CODES.ok), ctx.json({ data: MOCKED_ARTICLE_RESPONSE }))
   )
 ];
 

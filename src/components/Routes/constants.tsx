@@ -10,6 +10,7 @@ const EditorScreen = lazy(() => import('screens/EditorScreen'));
 const Login = lazy(() => import('screens/Authentication/Login'));
 const Register = lazy(() => import('screens/Authentication/Register'));
 const Article = lazy(() => import('screens/Article'));
+const Profile = lazy(() => import('screens/Profile'));
 const Error = lazy(() => import('screens/Error'));
 const Settings = lazy(() => import('screens/Settings'));
 // Add imports for screens above (FOR GENERATORS, DO NOT REMOVE)
@@ -61,6 +62,12 @@ export const ROUTES = [
     path: PATHS.article,
     component: Article,
     title: 'Routes:articleTitle'
+  },
+  {
+    exact: true,
+    path: PATHS.profile,
+    component: Profile,
+    title: 'Routes:profileTitle'
   },
   {
     exact: true,
