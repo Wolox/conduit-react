@@ -35,32 +35,32 @@ export enum FormKeys {
 
 export const INPUTS: InputsStructure = {
   [FormKeys.USERNAME]: {
-    placeholder: 'Username',
+    placeholder: 'UserForm:username',
     type: 'text',
     validations: {
       required: {
         value: true,
-        message: "Username is invalid can't be blank"
+        message: 'UserForm:usernameRequiredMessage'
       },
-      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'Username is invalid' }
+      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'UserForm:usernameInvalidMessage' }
     }
   },
   [FormKeys.EMAIL]: {
-    placeholder: 'Email',
+    placeholder: 'UserForm:email',
     type: 'email',
     validations: {
-      required: { value: true, message: "Email can't be blank" },
-      pattern: { value: /\S+@\S+\.\S+/, message: 'Email is invalid' }
+      required: { value: true, message: 'UserForm:emailRequiredMessage' },
+      pattern: { value: /\S+@\S+\.\S+/, message: 'UserForm:emailInvalidMessage' }
     }
   },
   [FormKeys.PASSWORD]: {
-    placeholder: 'Password',
+    placeholder: 'UserForm:password',
     type: 'password',
     validations: {
-      required: { value: true, message: "Password can't be blank" },
+      required: { value: true, message: 'UserForm:passwordRequiredMessage' },
       minLength: {
         value: 6,
-        message: 'Password is too short (minimum is 6 characters)'
+        message: 'UserForm:passwordLengthMessage'
       }
     }
   }

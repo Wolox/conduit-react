@@ -76,9 +76,12 @@ function Settings() {
                     [styles.inputError]: hasErrors(inputKey)
                   })}
                   errorClassName={hasErrors(inputKey) ? styles.error : styles.hideError}
-                  error={errors[inputKey]?.message || (backErrors?.[key] && `${key} ${backErrors?.[key][0]}`)}
+                  error={
+                    (errors[inputKey]?.message && t(errors[inputKey]?.message || '')) ||
+                    (backErrors?.[key] && `${key} ${backErrors?.[key][0]}`)
+                  }
                   name={key}
-                  placeholder={input.placeholder}
+                  placeholder={t(input.placeholder)}
                   isTextarea={input.isTextArea}
                   defaultValue={user?.[key as keyof UserProfile]}
                   inputRef={register(input.validations || {})}
@@ -95,7 +98,7 @@ function Settings() {
             />
           </form>
           <hr className={styles.divisor} />
-          <Button text="Or click here to logout." onClickAction={handleLogout} className={styles.logoutBtn} />
+          <Button text={t('btnLogout')} onClickAction={handleLogout} className={styles.logoutBtn} />
         </div>
       </div>
     </Layout>

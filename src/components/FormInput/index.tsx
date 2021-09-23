@@ -22,7 +22,7 @@ interface Props {
   touched?: boolean;
   submitCount?: number;
   inputRef?: any;
-  defaultValue?: string | number | readonly string[] | undefined;
+  defaultValue?: string | number | readonly string[];
 }
 
 function FormInput({

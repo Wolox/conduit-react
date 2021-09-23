@@ -17,8 +17,8 @@
   height: auto;
   line-height: 25px;
   margin-bottom: 5px;
-  padding: 12px 24px;
   max-width: calc(#{$breakpoint-desktop-lg} - 60px);
+  padding: 12px 24px;
 
   &:focus {
     border-bottom: 1px solid $blue-corn-flower;
@@ -37,10 +37,10 @@
 }
 
 .divisor {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 16px;
+  margin-bottom: 16px;
   border: 0;
-  border-top: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .logout-btn {

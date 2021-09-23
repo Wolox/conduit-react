@@ -17,40 +17,40 @@ export const WHITE = '#FFF';
 
 export const INPUTS: SettingInputs = {
   image: {
-    placeholder: 'URL of profile picture',
+    placeholder: 'Settings:imagePlaceholder',
     type: 'text'
   },
   username: {
-    placeholder: 'Username',
+    placeholder: 'Settings:usernamePlaceholder',
     type: 'text',
     validations: {
       required: {
         value: true,
-        message: "Username is invalid can't be blank"
+        message: 'Settings:usernameRequired'
       },
-      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'Username is invalid' }
+      pattern: { value: /^[a-zA-Z0-9]*$/, message: 'Settings:usernameInvalid' }
     }
   },
   bio: {
-    placeholder: 'Short bio about you',
+    placeholder: 'Settings:bioPlaceholder',
     type: 'text',
     isTextArea: true
   },
   email: {
-    placeholder: 'Email',
+    placeholder: 'Settings:emailPlaceholder',
     type: 'email',
     validations: {
-      required: { value: true, message: "Email can't be blank" },
-      pattern: { value: /\S+@\S+\.\S+/, message: 'Email is invalid' }
+      required: { value: true, message: 'Settings:emailRequired' },
+      pattern: { value: /\S+@\S+\.\S+/, message: 'Settings:emailInvalid' }
     }
   },
   password: {
-    placeholder: 'New Password',
+    placeholder: 'Settings:passwordPlaceholder',
     type: 'password',
     validations: {
       minLength: {
         value: 6,
-        message: 'Password is too short (minimum is 6 characters)'
+        message: 'Settings:passwordLength'
       }
     }
   }

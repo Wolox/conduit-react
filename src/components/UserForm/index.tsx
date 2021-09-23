@@ -50,7 +50,10 @@ function UserForm({ formSubmit, isLoading, backErrors, formType }: Props) {
             })}
             errorClassName={hasErrors(inputKey) ? styles.error : styles.hideError}
             showErrorWithoutText={!!backErrors?.[EMAIL_OR_PASSWORD]}
-            error={errors[inputKey]?.message || (backErrors?.[key] && `${key} ${backErrors?.[key][0]}`)}
+            error={
+              (errors[inputKey]?.message && t(errors[inputKey]?.message || '')) ||
+              (backErrors?.[key] && `${key} ${backErrors?.[key][0]}`)
+            }
             placeholder={t(value.placeholder)}
             inputRef={register(formType === FORM_TYPE.REGISTER ? value.validations : {})}
             name={key}
