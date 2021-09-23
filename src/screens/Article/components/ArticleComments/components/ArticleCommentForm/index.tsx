@@ -19,7 +19,7 @@ interface FormData {
 
 interface Props {
   formData: {
-    avatar: string | null;
+    avatar?: string;
     username: string;
   };
   setCommentsData: Dispatch<SetStateAction<Comment[]>>;
