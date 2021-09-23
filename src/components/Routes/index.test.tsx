@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { StateContext } from 'contexts/UserContext';
@@ -36,7 +36,7 @@ describe('when there is a user', () => {
   test('shows Home screen when being on the home path', async () => {
     window.history.pushState({}, '', PATHS.home);
     render(<WrappedRoutes userState={userState} />);
-    await waitFor(() => expect(screen.getByText(/Home:loggedIn/)).toBeInTheDocument());
+    expect(await screen.findByText(/Header:profile/)).toBeInTheDocument();
   });
 });
 

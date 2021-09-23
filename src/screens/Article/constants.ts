@@ -1,6 +1,6 @@
-import type { Article, CommentData, CurrentUser } from 'interfaces/articleInterfaces';
+import type { ArticleScreenData, CommentData, CurrentUser } from 'types/Article';
 
-export const MOCKED_ARTICLE: Article = {
+export const MOCKED_ARTICLE: ArticleScreenData = {
   author: 'SuperUser',
   date: 'Sun Aug 01 2021',
   content:

@@ -64,9 +64,7 @@ function UserForm({ formSubmit, isLoading, backErrors, formType }: Props) {
       })}
       <button
         type="submit"
-        className={cn(styles.signUpBtn, {
-          [styles.disabledBtn]: isLoading
-        })}
+        className={cn('custom-btn', { [styles.disabledBtn]: isLoading })}
         disabled={isLoading}
       >
         {isLoading ? (
