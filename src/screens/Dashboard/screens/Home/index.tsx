@@ -1,72 +1,71 @@
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
 
-import { actionCreators as authActions } from 'contexts/UserContext/reducer';
-import { useDispatch as useUserDispatch } from 'contexts/UserContext';
-import { logout, removeCurrentUserToken } from 'services/AuthService';
-import FormInput from 'components/FormInput';
 import Layout from 'components/Layout';
+import Tabs from 'components/Tabs';
+import { useSelector as useSelectorUser } from 'contexts/UserContext';
+// import List from 'components/List';
+import Welcome from 'components/Welcome';
+import { useSelector as useSelectorTabs, withContextProvider } from 'contexts/TabsContext';
+import InfiniteScroll from 'components/InfiniteScroll';
+import ListItem from 'components/ListItem';
 
-import logo from './assets/logo.svg';
 import styles from './styles.module.scss';
-import { withContextProvider, useSelector, useDispatch } from './context';
-import { actionCreators } from './context/reducer';
-
-interface TechForm {
-  tech: string;
-}
+import { LIMIT, TABS_LOGIN, TABS_LOGOUT } from './constants';
 
 function Home() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation('Article');
+  const { user } = useSelectorUser((state) => state);
+  const { tabActive } = useSelectorTabs((state) => state);
 
-  // Example of how to use these custom hooks
-  const tech = useSelector((state) => state.tech);
-  const dispatch = useDispatch();
-  const userDispatch = useUserDispatch();
-  const { register, handleSubmit } = useForm<TechForm>();
-
-  const handleLogout = async () => {
-    await logout();
-    userDispatch(authActions.resetUser());
-    removeCurrentUserToken();
-  };
-
-  const handleChangeLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es');
-  };
-
-  const onSubmit = handleSubmit((values) => {
-    if (values.tech) {
-      dispatch(actionCreators.setTech(values.tech));
+  const { data: response, fetchNextPage, hasNextPage, isFetching, isLoading } = tabActive.list({
+    offset: 0,
+    limit: LIMIT,
+    options: {
+      getNextPageParam: (lastPage, pages) => {
+        let shown = 0;
+        pages.forEach((page) => {
+          shown += page.data?.articles.length || 0;
+        });
+        return shown < (lastPage.data?.articlesCount || 0) ? pages.length : undefined;
+      }
     }
   });
 
+  const handleNextPage = useCallback(() => {
+    if (!isFetching && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, hasNextPage, isFetching]);
+
   return (
     <Layout>
-      <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <img src={logo} className={styles.appLogo} alt="logo" />
-          <p className={styles.text}>{t('Home:loggedIn')}</p>
-          <p className={styles.text}>{t('Home:techIs', { tech })}</p>
-          <form className="column center m-bottom-10" onSubmit={onSubmit}>
-            <FormInput
-              className="m-bottom-2"
-              placeholder={t('Home:newTech')}
-              inputRef={register()}
-              name="tech"
-              inputType="text"
-            />
-            <button className={styles.appLink} type="submit">
-              {t('Home:setNewTech')}
-            </button>
-          </form>
-          <button type="button" onClick={handleChangeLanguage} className={`m-bottom-4 ${styles.appLink}`}>
-            {t('Home:changeLang')}
-          </button>
-          <button type="button" className={styles.appLink} onClick={handleLogout}>
-            {t('Home:logout')}
-          </button>
-        </header>
+      <Welcome />
+      <div className={styles.content}>
+        <div className={styles.contentList}>
+          <Tabs tabs={user ? TABS_LOGIN : TABS_LOGOUT} />
+          {isFetching || response?.pages[0].data?.articles.length ? (
+            <InfiniteScroll
+              onLoadMore={handleNextPage}
+              hasMore={hasNextPage || false}
+              isLoading={isFetching}
+              endMessage={<div className="custom-alert">{t('Article:finishList')}</div>}
+            >
+              {!isLoading &&
+                response?.pages.map(({ data: pageData }, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <React.Fragment key={index}>
+                    {pageData?.articles.map((article) => (
+                      <ListItem article={article} key={article.slug} />
+                    ))}
+                  </React.Fragment>
+                ))}
+            </InfiniteScroll>
+          ) : (
+            <div className="custom-alert">{t('empty')}</div>
+          )}
+        </div>
+        <div className={styles.contentTags}>Tags</div>
       </div>
     </Layout>
   );

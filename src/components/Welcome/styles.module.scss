@@ -1,0 +1,28 @@
+@import 'scss/variables/_colors';
+@import 'scss/fonts/_fonts';
+
+.content-welcome {
+  background-color: $green-fern;
+  box-shadow: 0 8px 8px -8px $gray-shadow;
+  margin-bottom: 32px;
+  padding: 32px;
+  text-align: center;
+
+  .title {
+    color: $white;
+    display: block;
+    font-family: $titillium;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: initial;
+    padding-bottom: 8px;
+    text-shadow: 0 1px 3px $gray-shadow;
+  }
+
+  .description {
+    color: $white;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: initial;
+  }
+}

@@ -1,0 +1,77 @@
+@import 'scss/margins';
+@import 'scss/variables/colors';
+
+.container {
+  margin: 24px auto;
+}
+
+.title {
+  color: $black;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.form-input {
+  border: solid 1px rgba($black, 0.15);
+  font-size: 20px;
+  height: auto;
+  line-height: 25px;
+  margin-bottom: 5px;
+  max-width: calc(#{$breakpoint-desktop-lg} - 60px);
+  padding: 12px 24px;
+
+  &:focus {
+    border-bottom: 1px solid $blue-corn-flower;
+    border-color: $blue-corn-flower;
+    outline: none;
+  }
+
+  &.input-error {
+    border-bottom: solid 2px $red-matrix;
+  }
+}
+
+.bio {
+  height: 200px;
+  resize: vertical;
+}
+
+.divisor {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn {
+  background-color: $white;
+  border: solid 1px $red-matrix;
+  color: $red-matrix;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: $red-matrix;
+    color: $white;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-lg) {
+  .container {
+    max-width: calc(#{$breakpoint-desktop-lg} - 60px);
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .form-container {
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  .update-btn,
+  .logout-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
