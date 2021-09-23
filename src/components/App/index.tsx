@@ -1,18 +1,43 @@
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { useEffect, useState } from 'react';
+import { useMutation } from 'react-query';
 
-import { withContextProvider } from 'contexts/UserContext';
 import Routes from 'components/Routes';
+import { withContextProvider, useDispatch as useUserDispatch } from 'contexts/UserContext';
+import { actionCreators as authActions } from 'contexts/UserContext/reducer';
+import { getCurrentUserToken, getUser, setApiTokenHeader } from 'services/AuthService';
 
 import 'scss/application.scss';
 
 function App() {
-  const queryClient = new QueryClient();
+  const userDispatch = useUserDispatch();
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Routes />
-    </QueryClientProvider>
-  );
+  const { mutate } = useMutation(() => getUser(), {
+    onSettled: (data) => {
+      if (data?.data && data?.ok) {
+        const {
+          data: { user }
+        } = data;
+        if (user) {
+          userDispatch(authActions.setUser(user));
+          setLoading(false);
+        }
+      }
+    }
+  });
+
+  useEffect(() => {
+    const token = getCurrentUserToken();
+    if (token) {
+      setApiTokenHeader(token);
+      mutate();
+    } else {
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return loading ? <h1>Loading...</h1> : <Routes />;
 }
 
 export default withContextProvider(App);

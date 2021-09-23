@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   disabled?: boolean;
   error?: string;
+  showErrorWithoutText?: boolean;
   errorClassName?: string;
   inputClassName?: string;
   isTextarea?: boolean;
@@ -21,12 +22,14 @@ interface Props {
   touched?: boolean;
   submitCount?: number;
   inputRef?: any;
+  defaultValue?: string | number | readonly string[];
 }
 
 function FormInput({
   className = '',
   disabled = false,
   error = '',
+  showErrorWithoutText = false,
   errorClassName = '',
   inputClassName = '',
   isTextarea = false,
@@ -41,11 +44,14 @@ function FormInput({
   readOnly = false,
   touched,
   submitCount,
-  inputRef
+  inputRef,
+  defaultValue
 }: Props) {
   const InputComponent = isTextarea ? 'textarea' : 'input';
   const showError =
-    (touched === undefined || touched) && error && (submitCount === undefined || submitCount > 0);
+    (touched === undefined || touched) &&
+    (error || showErrorWithoutText) &&
+    (submitCount === undefined || submitCount > 0);
 
   return (
     <div className={`column start ${className}`}>
@@ -66,6 +72,7 @@ function FormInput({
         disabled={disabled}
         readOnly={readOnly}
         ref={inputRef}
+        defaultValue={defaultValue}
       />
       <span
         id={`${name}-error`}

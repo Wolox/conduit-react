@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom';
 import 'mutationobserver-shim';
+import { server } from 'mocks/server';
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 jest.mock('react-i18next', () => ({
   initReactI18next: {
@@ -18,5 +23,6 @@ jest.mock('react-i18next', () => ({
 
 jest.mock('i18next', () => ({
   addResources: jest.fn(),
+  t: (key: string): string => key,
   use: () => ({ init: jest.fn() })
 }));

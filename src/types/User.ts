@@ -1,10 +1,9 @@
 export interface UserProfile {
-  user: {
-    id: number;
-    username: string;
-    email: string;
-    bio: string | null;
-    image: string | null;
-    token: string | null;
-  };
+  id: number;
+  username: string;
+  email: string;
+  bio?: string;
+  image?: string;
+  token: string;
+  password?: string;
 }

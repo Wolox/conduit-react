@@ -4,8 +4,12 @@ const paths = {
   recoverPassword: '/recover_password',
   register: '/register',
   editor: '/editor',
+  editorBySlug: '/editor/:slug',
   settings: '/settings',
-  profile: '/profile'
+  profile: '/profile',
+  article: '/article/:slug',
+  user: '/user/:username',
+  errorScreen: '/error'
 };
 
 export default paths;
