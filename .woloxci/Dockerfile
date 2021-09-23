@@ -5,7 +5,6 @@ RUN mkdir /home/node/.npm-global \
  && echo "export PATH=/home/node/.npm-global/bin:$PATH" >> /home/node/.profile
 RUN . /home/node/.profile
 
-COPY package-lock.json . 
 COPY package.json .
 
 RUN npm ci 
