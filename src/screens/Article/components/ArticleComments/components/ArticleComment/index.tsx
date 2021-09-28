@@ -5,12 +5,12 @@ import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
 import { useSelector } from 'contexts/UserContext';
 import type { ArticleParams, Comment } from 'types/Article';
 import { deleteComment } from 'services/ArticleService';
 import { formatDate } from 'utils/dateUtils/index';
+import { getAvatar } from 'utils/avatarUtils';
 
 import styles from './styles.module.scss';
 
@@ -38,13 +38,15 @@ function ArticleComment({ commentData, setCommentsData }: Props) {
     mutate({ slug, id });
   };
 
+  const { icon } = getAvatar(image || '');
+
   return (
     <div className={styles.cardContainer}>
       <p className={styles.cardComment}>{body}</p>
       <div className={cn('row middle space-between', styles.cardFooter)}>
         <div className="row middle">
           <Link to={userToRedirect}>
-            <img className={styles.userIcon} src={image || userPlaceholder} alt={username} />
+            <img className={styles.userIcon} src={icon} alt={username} />
           </Link>
           <Link className={styles.userLink} to={userToRedirect}>
             {username}

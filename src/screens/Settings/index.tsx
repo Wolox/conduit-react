@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
@@ -15,6 +15,7 @@ import { SettingsParam, updateUser } from 'services/Settings';
 import FormInput from 'components/FormInput';
 import paths from 'components/Routes/paths';
 import { BackError } from 'utils/types';
+import Avatars from 'components/Avatars';
 
 import styles from './styles.module.scss';
 import { INPUTS } from './constants';
@@ -24,6 +25,7 @@ function Settings() {
   const { t } = useTranslation('Settings');
   const userDispatch = useUserDispatch();
   const user = useSelector((state) => state.user);
+  const [avatar, setAvatar] = useState(user?.image);
   const [backErrors, setBackErrors] = useState<BackError | undefined>({});
 
   const {
@@ -43,18 +45,21 @@ function Settings() {
     }
   });
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     userDispatch(authActions.resetUser());
     removeCurrentUserToken();
-  };
+  }, [userDispatch]);
 
   const onSubmit = handleSubmit((values: UserProfile) => {
     if (values.password === '') {
       delete values.password;
     }
+    values.image = avatar;
     mutate({ user: values });
   });
-
+  const changeAvatar = useCallback((avatarSelected: string) => {
+    setAvatar(avatarSelected);
+  }, []);
   const hasErrors = (key: keyof UserProfile) => !!(backErrors?.[key as string] || errors[key]);
 
   return (
@@ -63,6 +68,8 @@ function Settings() {
         <h1 className={cn('m-bottom-2', styles.title)}>{t('yourSettings')}</h1>
         <div className={cn('half-width', styles.formContainer)}>
           <form className="column">
+            <Avatars avatar={avatar} changeAvatar={changeAvatar} />
+
             {Object.entries(INPUTS).map(([key, input]) => {
               const inputKey = key as keyof UserProfile;
 

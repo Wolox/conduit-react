@@ -35,7 +35,7 @@ function Modal({ children, closeModal, open, className }: Props) {
       onClick={handleOnClick}
       ref={contentModal}
     >
-      <div className={className}>{children}</div>
+      <div className={cn(className, styles.modalBody)}>{children}</div>
     </div>
   );
 }

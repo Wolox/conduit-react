@@ -10,10 +10,10 @@ import { useSelector as useSelectorTabs, withContextProvider, useDispatch } from
 import { useSelector as useSelectorUser } from 'contexts/UserContext';
 import { actionCreators } from 'contexts/TabsContext/reducer';
 import { CONFIG_TAB_MY_POSTS } from 'constants/tabs';
-import userPlaceholder from 'assets/user-placeholder.jpeg';
 import { SIZE_ICONS_XS } from 'constants/icons';
 import InfiniteScroll from 'components/InfiniteScroll';
 import ListItem from 'components/ListItem';
+import { getAvatar } from 'utils/avatarUtils';
 
 import { LIMIT, TABS } from './constants';
 import styles from './styles.module.scss';
@@ -45,6 +45,8 @@ function Profile() {
     }
   }, [fetchNextPage, hasNextPage, isFetching]);
 
+  const { icon, name } = getAvatar(user?.image || '');
+
   useEffect(() => {
     dispatch(actionCreators.activeTab(CONFIG_TAB_MY_POSTS));
   }, [dispatch]);
@@ -53,7 +55,7 @@ function Profile() {
     <Layout>
       <div className={styles.header}>
         <div className={styles.contentUser}>
-          <img src={user?.image || userPlaceholder} className={styles.imageProfile} alt={user?.username} />
+          <img src={icon} className={styles.imageProfile} alt={name} />
           <h2 className={cn('m-top-3', styles.username)}>{user?.username}</h2>
         </div>
         <div className={styles.contentButton}>

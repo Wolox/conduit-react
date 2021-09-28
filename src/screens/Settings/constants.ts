@@ -16,10 +16,6 @@ type SettingInputs = Record<
 export const WHITE = '#FFF';
 
 export const INPUTS: SettingInputs = {
-  image: {
-    placeholder: 'Settings:imagePlaceholder',
-    type: 'text'
-  },
   username: {
     placeholder: 'Settings:usernamePlaceholder',
     type: 'text',
