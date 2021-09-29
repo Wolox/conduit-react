@@ -13,44 +13,44 @@ describe('#UserForm', () => {
   });
 
   test('Username error: empty field', async () => {
-    userEvent.type(screen.getByPlaceholderText('Username'), '');
+    userEvent.type(screen.getByPlaceholderText('UserForm:username'), '');
     userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText(/Username is invalid can't be blank/i)).toBeInTheDocument();
+    expect(await screen.findByText(/UserForm:usernameRequiredMessage/i)).toBeInTheDocument();
   });
 
   test('Email error: empty field', async () => {
-    userEvent.type(screen.getByPlaceholderText('Email'), '');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), '');
     userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText(/Email can't be blank/i)).toBeInTheDocument();
+    expect(await screen.findByText(/UserForm:emailRequiredMessage/i)).toBeInTheDocument();
   });
 
   test('Email error: invalid field', async () => {
-    userEvent.type(screen.getByPlaceholderText('Email'), 'renzo');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'renzo');
     userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText(/Email is invalid/i)).toBeInTheDocument();
+    expect(await screen.findByText(/UserForm:emailInvalidMessage/i)).toBeInTheDocument();
   });
 
   test('Password error: empty field', async () => {
-    userEvent.type(screen.getByPlaceholderText('Password'), '');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '');
     userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText(/Password can't be blank/i)).toBeInTheDocument();
+    expect(await screen.findByText(/UserForm:passwordRequiredMessage/i)).toBeInTheDocument();
   });
 
   test('Password error: short password', async () => {
-    userEvent.type(screen.getByPlaceholderText('Password'), '123');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123');
     userEvent.click(screen.getByRole('button'));
 
-    expect(await screen.findByText('Password is too short (minimum is 6 characters)')).toBeInTheDocument();
+    expect(await screen.findByText('UserForm:passwordLengthMessage')).toBeInTheDocument();
   });
 
   test('Form is submitted', async () => {
-    userEvent.type(screen.getByPlaceholderText('Username'), 'Renzo');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'renzo@wolox.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), '123456');
+    userEvent.type(screen.getByPlaceholderText('UserForm:username'), 'Renzo');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'renzo@wolox.com');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123456');
     userEvent.click(screen.getByRole('button'));
 
     await waitFor(() => expect(mockOnSubmit).toBeCalledTimes(1));
