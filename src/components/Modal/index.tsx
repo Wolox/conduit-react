@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import React, { useEffect, useRef } from 'react';
 
-import { KEY_ESCAPE } from './constants';
+import { KEY_ESCAPE, TEST_ID_SHADOW } from './constants';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -32,7 +32,12 @@ function Modal({ children, closeModal, open, className }: Props) {
   return (
     <>
       {open && (
-        <div className={styles.contentModal} onClick={handleOnClick} ref={contentModal}>
+        <div
+          className={styles.contentModal}
+          onClick={handleOnClick}
+          ref={contentModal}
+          data-testid={TEST_ID_SHADOW}
+        >
           <div className={cn(className, styles.modalBody)}>{children}</div>
         </div>
       )}
