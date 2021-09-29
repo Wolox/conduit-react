@@ -42,8 +42,8 @@ describe('#User Settings', () => {
   test('Settings updated successfully', async () => {
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Username'), 'user');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'user@test.com');
+    userEvent.type(screen.getByPlaceholderText('Settings:usernamePlaceholder'), 'user');
+    userEvent.type(screen.getByPlaceholderText('Settings:emailPlaceholder'), 'user@test.com');
     userEvent.click(screen.getByRole('button', { name: 'updateSettings' }));
 
     await waitFor(() => expect(history.entries[history.index].pathname).toBe('/'));
@@ -61,17 +61,17 @@ describe('#User Settings', () => {
 
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Username'), 'user');
-    userEvent.type(screen.getByPlaceholderText('Email'), '');
+    userEvent.type(screen.getByPlaceholderText('Settings:usernamePlaceholder'), 'user');
+    userEvent.type(screen.getByPlaceholderText('Settings:emailPlaceholder'), '');
     userEvent.click(screen.getByRole('button', { name: 'updateSettings' }));
 
-    expect(await screen.findByText("Email can't be blank")).toBeInTheDocument();
+    expect(await screen.findByText('Settings:emailRequired')).toBeInTheDocument();
   });
 
   test('Logout user', async () => {
     renderCom();
 
-    userEvent.click(screen.getByRole('button', { name: 'Or click here to logout.' }));
+    userEvent.click(screen.getByRole('button', { name: 'btnLogout' }));
 
     await waitFor(() => expect(history.entries[history.index].pathname).toBe('/'));
   });
