@@ -51,8 +51,8 @@ describe('#Login', () => {
 
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Email'), 'user');
-    userEvent.type(screen.getByPlaceholderText('Password'), '123');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'user');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123');
     userEvent.click(screen.getByRole('button'));
 
     expect(await screen.findByText('email or password is invalid')).toBeInTheDocument();
@@ -61,8 +61,8 @@ describe('#Login', () => {
   test('Form submitted correctly', async () => {
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Email'), 'renzo21@wolox.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), '123456');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'renzo21@wolox.com');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123456');
     userEvent.click(screen.getByRole('button'));
 
     await waitFor(() => expect(history.entries[history.index].pathname).toBe('/'));
