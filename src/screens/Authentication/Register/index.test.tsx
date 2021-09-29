@@ -48,9 +48,9 @@ describe('#Register', () => {
   test('Register form submitted correctly', async () => {
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Username'), 'User');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'mock@user.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), '123456');
+    userEvent.type(screen.getByPlaceholderText('UserForm:username'), 'User');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'mock@user.com');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123456');
     userEvent.click(screen.getByRole('button'));
 
     await waitFor(() => expect(history.entries[history.index].pathname).toBe('/'));
@@ -68,9 +68,9 @@ describe('#Register', () => {
 
     renderCom();
 
-    userEvent.type(screen.getByPlaceholderText('Username'), 'User');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'mock@user.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), '123456');
+    userEvent.type(screen.getByPlaceholderText('UserForm:username'), 'User');
+    userEvent.type(screen.getByPlaceholderText('UserForm:email'), 'mock@user.com');
+    userEvent.type(screen.getByPlaceholderText('UserForm:password'), '123456');
     userEvent.click(screen.getByRole('button'));
 
     expect(await screen.findByText('username has already been taken')).toBeInTheDocument();
