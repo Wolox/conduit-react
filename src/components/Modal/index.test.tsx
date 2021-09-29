@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Router } from 'react-router';
 
-import { TEST_ID_SHADOW } from './constants';
+import { TEST_ID_CONTENT, TEST_ID_SHADOW } from './constants';
 
 import Modal from '.';
 
@@ -43,6 +43,18 @@ describe('Component Modal', () => {
     expect(contentModal).toBeInTheDocument();
   });
 
+  test('Not Display the modal when props open is false', () => {
+    render(
+      <Wrapped>
+        <Modal closeModal={jest.fn()} open={false}>
+          <div>Hello Word</div>
+        </Modal>
+      </Wrapped>
+    );
+    const contentModal = screen.queryByText('Hello Word');
+    expect(contentModal).not.toBeInTheDocument();
+  });
+
   test('Function for close modal is called when press Escape', () => {
     const closeModal = jest.fn();
     render(
@@ -78,5 +90,18 @@ describe('Component Modal', () => {
     userEvent.click(contentModal);
 
     expect(closeModal).toBeCalled();
+  });
+
+  test('Add the class in the container of the children when it is sent in the props', () => {
+    const classSend = 'classSend';
+    render(
+      <Wrapped>
+        <Modal closeModal={jest.fn()} open className={classSend}>
+          <div>Hello Word</div>
+        </Modal>
+      </Wrapped>
+    );
+    const contentChildren = screen.getByTestId(TEST_ID_CONTENT);
+    expect(contentChildren).toHaveClass(classSend);
   });
 });

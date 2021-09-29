@@ -8,6 +8,7 @@ exports[`Component Modal Renders component 1`] = `
   >
     <div
       class="modalBody"
+      data-testid="contentChildren"
     >
       <div>
         Hello Word
