@@ -2,7 +2,7 @@ import { create } from 'apisauce';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-if (baseURL === 'http://wolox.com' || !baseURL) {
+if (process.env.NODE_ENV !== "test" && (baseURL === 'http://wolox.com' || !baseURL)) {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
 }
 
