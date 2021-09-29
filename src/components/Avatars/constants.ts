@@ -8,8 +8,6 @@ import Woman3 from 'assets/avatars/Woman3.png';
 import Woman4 from 'assets/avatars/Woman4.png';
 import { Avatar } from 'types/Avatar';
 
-// export const AVATARS = [Man2, Man3, Man4, Woman1, Woman2, Woman3, Woman4];
-
 export const AVATARS: Avatar[] = [
   { name: 'Man1', icon: Man1 },
   { name: 'Man2', icon: Man2 },

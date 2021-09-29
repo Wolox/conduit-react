@@ -13,7 +13,7 @@ exports[`Component ListItem Renders Component 1`] = `
       >
         <img
           class="image"
-          src="luigi-pic.png"
+          src="user-placeholder.jpeg"
         />
         <div>
           <span
@@ -52,21 +52,25 @@ exports[`Component ListItem Renders Component 1`] = `
         </button>
       </div>
     </div>
-    <h1
-      class="title"
+    <a
+      href="/article/luigi-bros"
     >
-      Luigi Bros
-    </h1>
-    <p
-      class="description"
-    >
-      Luigi is better than Mario
-    </p>
-    <span
-      class="more"
-    >
-      read
-    </span>
+      <h1
+        class="title"
+      >
+        Luigi Bros
+      </h1>
+      <p
+        class="description"
+      >
+        Luigi is better than Mario
+      </p>
+      <span
+        class="more"
+      >
+        read
+      </span>
+    </a>
   </div>
 </DocumentFragment>
 `;
