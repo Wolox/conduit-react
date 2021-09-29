@@ -30,13 +30,13 @@ function Modal({ children, closeModal, open, className }: Props) {
     return () => window.removeEventListener('keydown', close);
   }, [closeModal]);
   return (
-    <div
-      className={cn(styles.contentModal, { [styles.hidden]: !open })}
-      onClick={handleOnClick}
-      ref={contentModal}
-    >
-      <div className={cn(className, styles.modalBody)}>{children}</div>
-    </div>
+    <>
+      {open && (
+        <div className={styles.contentModal} onClick={handleOnClick} ref={contentModal}>
+          <div className={cn(className, styles.modalBody)}>{children}</div>
+        </div>
+      )}
+    </>
   );
 }
 
