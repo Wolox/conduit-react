@@ -1,3 +1,4 @@
+import { AuthResponse } from 'services/AuthService';
 import { UserProfile } from 'types/User';
 
 export const userProfileMock: UserProfile = {
@@ -5,4 +6,8 @@ export const userProfileMock: UserProfile = {
   username: 'user',
   email: 'user@email.com',
   token: 'token'
+};
+
+export const MOCK_USER: AuthResponse = {
+  user: userProfileMock
 };
