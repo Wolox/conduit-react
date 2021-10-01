@@ -4,6 +4,13 @@ import PATHS from 'components/Routes/paths';
 
 import { ItemsMenu } from './types';
 
+export const optionProfile = {
+  text: 'Header:profile',
+  href: PATHS.profile,
+  isProtected: true,
+  icon: faUser
+};
+
 export const ITEMS_MENU: ItemsMenu[] = [
   {
     text: 'Header:signIn',
@@ -18,10 +25,7 @@ export const ITEMS_MENU: ItemsMenu[] = [
     icon: faUserPlus
   },
   {
-    text: 'Header:profile',
-    href: PATHS.profile,
-    isProtected: true,
-    icon: faUser
+    ...optionProfile
   },
   {
     text: 'Header:editor',

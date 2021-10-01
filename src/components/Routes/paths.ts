@@ -6,7 +6,7 @@ const paths = {
   editor: '/editor',
   editorBySlug: '/editor/:slug',
   settings: '/settings',
-  profile: '/profile',
+  profile: '/profile/:username',
   article: '/article/:slug',
   user: '/user/:username',
   errorScreen: '/error'
