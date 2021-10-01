@@ -8,24 +8,28 @@ exports[`Component ListItem Renders Component 1`] = `
     <div
       class="container"
     >
-      <div
-        class="containerAuthor"
+      <a
+        href="/profile/luigi_da_boss"
       >
-        <img
-          class="image"
-          src="user-placeholder.jpeg"
-        />
-        <div>
-          <span
-            class="username"
-          >
-            luigi_da_boss
-          </span>
-          <span>
-            2021-08-26T18:09:50.028Z
-          </span>
+        <div
+          class="containerAuthor"
+        >
+          <img
+            class="image"
+            src="user-placeholder.jpeg"
+          />
+          <div>
+            <span
+              class="username"
+            >
+              luigi_da_boss
+            </span>
+            <span>
+              2021-08-26T18:09:50.028Z
+            </span>
+          </div>
         </div>
-      </div>
+      </a>
       <div
         class="column center middle containerButton"
       >

@@ -5,24 +5,28 @@ exports[`Component Author Renders component 1`] = `
   <div
     class="container"
   >
-    <div
-      class="containerAuthor"
+    <a
+      href="/profile/conduitWolox"
     >
-      <img
-        class="image"
-        src="conduit.png"
-      />
-      <div>
-        <span
-          class="username"
-        >
-          conduitWolox
-        </span>
-        <span>
-          07/07/7777
-        </span>
+      <div
+        class="containerAuthor"
+      >
+        <img
+          class="image"
+          src="conduit.png"
+        />
+        <div>
+          <span
+            class="username"
+          >
+            conduitWolox
+          </span>
+          <span>
+            07/07/7777
+          </span>
+        </div>
       </div>
-    </div>
+    </a>
     <div
       class="column center middle containerButton"
     >

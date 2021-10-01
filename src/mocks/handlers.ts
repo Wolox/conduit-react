@@ -20,7 +20,8 @@ const handlers = [
   rest.delete('/articles/titleArticle/favorite', (req, res, ctx) =>
     res(ctx.status(STATUS_CODES.ok), ctx.json({ data: MOCKED_ARTICLE_RESPONSE }))
   ),
-  rest.get('/user', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json({ data: MOCK_USER })))
+  rest.get('/user', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json({ data: MOCK_USER }))),
+  rest.put('/user', (_req, res, ctx) => res(ctx.status(STATUS_CODES.ok), ctx.json(MOCK_USER)))
 ];
 
 export { handlers, rest, api };
