@@ -20,32 +20,35 @@ function WrappedRoutes({ userState }: { userState: UserState }) {
   );
 }
 
-// Since The BrowserRouter component is inside out Router, we can't use memory history.
-// That's why we use window to navigate
-
-describe('when there is a user', () => {
-  const userState: UserState = {
-    user: {
-      id: 1,
-      username: 'Felipe',
-      email: 'piperiver7@gmail.com',
-      token: 'token'
-    }
-  };
-
-  test('shows Home screen when being on the home path', async () => {
-    window.history.pushState({}, '', PATHS.home);
+describe('Component Routes', () => {
+  test('Display public screen (Login)  when user not login', async () => {
+    const userState = { user: null };
+    window.history.pushState({}, '', PATHS.login);
     render(<WrappedRoutes userState={userState} />);
-    expect(await screen.findByText(/Header:profile/)).toBeInTheDocument();
+    expect(await screen.findByText(/conduit/)).toBeInTheDocument();
+    expect(await screen.findByText(/Header:signIn/)).toBeInTheDocument();
   });
-});
 
-describe('when there is no user', () => {
-  const userState = { user: null };
-
-  test('redirects to Login screen when on the home path', async () => {
+  test('Redirect user to login if access to private screen without login', async () => {
+    const userState = { user: null };
     window.history.pushState({}, '', PATHS.home);
     render(<WrappedRoutes userState={userState} />);
     expect(await screen.findByText(/conduit/)).toBeInTheDocument();
+    expect(await screen.findByText(/Header:signIn/)).toBeInTheDocument();
+  });
+
+  test('Display private screen (Settings) when user login', async () => {
+    const userState: UserState = {
+      user: {
+        id: 1,
+        username: 'Mario Bross',
+        email: 'Mario@wolox.com',
+        token: 'token'
+      }
+    };
+    window.history.pushState({}, '', PATHS.settings);
+    render(<WrappedRoutes userState={userState} />);
+    expect(await screen.findByText(/conduit/)).toBeInTheDocument();
+    expect(await screen.findByText(/yourSettings/)).toBeInTheDocument();
   });
 });

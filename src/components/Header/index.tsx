@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { NavLink } from 'react-router-dom';
+import { generatePath, NavLink } from 'react-router-dom';
 
 import { useSelector } from 'contexts/UserContext';
 import Logo from 'components/Logo';
 import PATHS from 'components/Routes/paths';
 import { SIZE_ICONS_XS } from 'constants/icons';
 
-import { ITEMS_MENU } from './constants';
+import { ITEMS_MENU, optionProfile } from './constants';
 import styles from './styles.module.scss';
 
 function Header() {
@@ -30,7 +30,15 @@ function Header() {
           </li>
           {items.map(({ text, href, icon }) => (
             <li className={styles.item} key={href}>
-              <NavLink to={href} activeClassName={styles.active} className={styles.link}>
+              <NavLink
+                to={
+                  optionProfile.text === text
+                    ? generatePath(PATHS.profile, { username: user?.username })
+                    : href
+                }
+                activeClassName={styles.active}
+                className={styles.link}
+              >
                 <FontAwesomeIcon icon={icon} size={SIZE_ICONS_XS} className={styles.icon} />
                 <span className={styles.text}>{t(text)}</span>
               </NavLink>

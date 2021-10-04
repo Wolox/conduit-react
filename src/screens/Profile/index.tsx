@@ -1,33 +1,39 @@
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import cn from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { Redirect, useParams } from 'react-router';
 
 import Layout from 'components/Layout';
 import Tabs from 'components/Tabs';
 import { useSelector as useSelectorTabs, withContextProvider, useDispatch } from 'contexts/TabsContext';
-import { useSelector as useSelectorUser } from 'contexts/UserContext';
 import { actionCreators } from 'contexts/TabsContext/reducer';
 import { CONFIG_TAB_MY_POSTS } from 'constants/tabs';
-import { SIZE_ICONS_XS } from 'constants/icons';
 import InfiniteScroll from 'components/InfiniteScroll';
 import ListItem from 'components/ListItem';
-import { getAvatar } from 'utils/avatarUtils';
+import { UserProfileSlug } from 'types/profile';
+import { useGetProfile } from 'hooks/Profile';
+import paths from 'components/Routes/paths';
+import { useSelector as useSelectorUser } from 'contexts/UserContext';
 
-import { LIMIT, TABS } from './constants';
+import { LIMIT, TABS_LOGIN, TABS_LOGOUT } from './constants';
 import styles from './styles.module.scss';
+import HeaderSection from './HeaderSection';
 
 function Profile() {
   const { t } = useTranslation(['Profile', 'Article']);
   const dispatch = useDispatch();
-  const { tabActive } = useSelectorTabs((state) => state);
   const { user } = useSelectorUser((state) => state);
+  const { tabActive } = useSelectorTabs((state) => state);
+  const { username } = useParams<UserProfileSlug>();
+
+  const { data: responseProfile, isLoading: isLoadingProfile } = useGetProfile({
+    username
+  });
+  const { profile } = responseProfile?.data || { profile: null };
 
   const { data: response, fetchNextPage, hasNextPage, isFetching, isLoading } = tabActive.list({
     offset: 0,
     limit: LIMIT,
-    user: user?.username,
+    user: profile?.username,
     options: {
       getNextPageParam: (lastPage, pages) => {
         let shown = 0;
@@ -35,7 +41,8 @@ function Profile() {
           shown += page.data?.articles.length || 0;
         });
         return shown < (lastPage.data?.articlesCount || 0) ? pages.length : undefined;
-      }
+      },
+      enabled: !!profile?.username
     }
   });
 
@@ -45,28 +52,16 @@ function Profile() {
     }
   }, [fetchNextPage, hasNextPage, isFetching]);
 
-  const { icon, name } = getAvatar(user?.image || '');
-
   useEffect(() => {
     dispatch(actionCreators.activeTab(CONFIG_TAB_MY_POSTS));
   }, [dispatch]);
 
   return (
     <Layout>
-      <div className={styles.header}>
-        <div className={styles.contentUser}>
-          <img src={icon} className={styles.imageProfile} alt={name} />
-          <h2 className={cn('m-top-3', styles.username)}>{user?.username}</h2>
-        </div>
-        <div className={styles.contentButton}>
-          <button type="button" className={cn('m-top-2', styles.button)}>
-            <FontAwesomeIcon icon={faCog} size={SIZE_ICONS_XS} className={styles.icon} />
-            {t('Profile:editProfile')}
-          </button>
-        </div>
-      </div>
+      {!isLoadingProfile && !profile && <Redirect to={paths.home} />}
+      <HeaderSection profile={profile} isLoadingProfile={isLoadingProfile} />
       <div className={styles.content}>
-        <Tabs tabs={TABS} />
+        <Tabs tabs={user ? TABS_LOGIN : TABS_LOGOUT} />
         {isFetching || response?.pages[0].data?.articles.length ? (
           <InfiniteScroll
             onLoadMore={handleNextPage}

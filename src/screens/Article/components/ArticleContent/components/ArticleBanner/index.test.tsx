@@ -1,11 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import { createMemoryHistory, History } from 'history';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { AVATARS } from 'components/Avatars/constants';
 
 import ArticleBanner from '.';
 
 interface Props {
   history: History;
+  children: React.ReactNode;
 }
 
 const MOCKED_ARTICLE = {
@@ -14,41 +18,60 @@ const MOCKED_ARTICLE = {
   username: 'Bowser'
 };
 
-function WrappedComponent({ history }: Props) {
+const route = '/acticle/ABC123';
+const path = '/acticle/:slug';
+
+function WrappedComponent({ history, children }: Props) {
+  const queryClient = new QueryClient();
   return (
-    <Router history={history}>
-      <ArticleBanner bannerData={MOCKED_ARTICLE} />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router history={history}>
+        <Route path={path}>{children}</Route>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
 describe('ArticleBanner', () => {
   it('displays correct date', () => {
-    const history = createMemoryHistory();
-    render(<WrappedComponent history={history} />);
+    const history = createMemoryHistory({ initialEntries: [route] });
+    render(
+      <WrappedComponent history={history}>
+        <ArticleBanner bannerData={MOCKED_ARTICLE} />
+      </WrappedComponent>
+    );
 
     const articleDate = screen.getByText(/Dates:thu Dates:aug 26 2021/i);
     expect(articleDate).toBeInTheDocument();
   });
   it('displays custom avatar when provided', () => {
+    const history = createMemoryHistory({ initialEntries: [route] });
+    const avatar = AVATARS[0];
     render(
-      <Router history={createMemoryHistory()}>
-        <ArticleBanner bannerData={{ ...MOCKED_ARTICLE, avatar: 'angry_bowser.png' }} />
-      </Router>
+      <WrappedComponent history={history}>
+        <ArticleBanner bannerData={{ ...MOCKED_ARTICLE, avatar: avatar.name }} />
+      </WrappedComponent>
     );
     const userAvatar = screen.getByRole('img', { name: /bowser/i });
-    expect(userAvatar).toHaveAttribute('src', 'angry_bowser.png');
+    expect(userAvatar).toHaveAttribute('src', avatar.icon);
   });
   it('displays placeholder avatar when avatar is not provided', () => {
-    const history = createMemoryHistory();
-    render(<WrappedComponent history={history} />);
-
+    const history = createMemoryHistory({ initialEntries: [route] });
+    render(
+      <WrappedComponent history={history}>
+        <ArticleBanner bannerData={MOCKED_ARTICLE} />
+      </WrappedComponent>
+    );
     const userAvatar = screen.getByRole('img', { name: /bowser/i });
     expect(userAvatar).toHaveAttribute('src', 'user-placeholder.jpeg');
   });
   it('contains correct navigation link', () => {
-    const history = createMemoryHistory();
-    render(<WrappedComponent history={history} />);
+    const history = createMemoryHistory({ initialEntries: [route] });
+    render(
+      <WrappedComponent history={history}>
+        <ArticleBanner bannerData={MOCKED_ARTICLE} />
+      </WrappedComponent>
+    );
 
     const userAvatar = screen.getByText(/bowser/i);
     expect(userAvatar).toHaveAttribute('href', '/user/Bowser');

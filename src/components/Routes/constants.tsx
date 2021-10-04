@@ -81,7 +81,6 @@ export const ROUTES = [
     path: PATHS.home,
     component: Home,
     title: 'Routes:homeTitle',
-    description: 'Routes:homeDescription',
-    redirectTo: (user: UserProfile | null) => (user ? undefined : MAIN_PUBLIC_PATH)
+    description: 'Routes:homeDescription'
   }
 ];

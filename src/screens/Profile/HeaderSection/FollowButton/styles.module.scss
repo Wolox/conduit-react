@@ -1,0 +1,27 @@
+@import 'scss/variables/_colors';
+
+.button {
+  border-radius: 3px;
+  border: 1px solid $silver;
+  color: $silver;
+  padding: 4px 8px;
+
+  &:hover {
+    background: $silver;
+    color: $white;
+  }
+}
+
+.active {
+  background: $green-fern;
+  color: $white;
+
+  &:hover {
+    background: $green-fern;
+    color: $white;
+  }
+}
+
+.icon {
+  margin-right: 5px;
+}
