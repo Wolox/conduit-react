@@ -5,6 +5,7 @@ import Routes from 'components/Routes';
 import { withContextProvider, useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { actionCreators as authActions } from 'contexts/UserContext/reducer';
 import { getCurrentUserToken, getUser, setApiTokenHeader } from 'services/AuthService';
+import Loader from 'components/Loader';
 
 import 'scss/application.scss';
 
@@ -37,7 +38,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return loading ? <h1>Loading...</h1> : <Routes />;
+  return loading ? <Loader /> : <Routes />;
 }
 
 export default withContextProvider(App);

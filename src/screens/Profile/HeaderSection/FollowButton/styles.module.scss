@@ -12,6 +12,16 @@
   }
 }
 
+.active {
+  background: $green-fern;
+  color: $white;
+
+  &:hover {
+    background: $green-fern;
+    color: $white;
+  }
+}
+
 .icon {
   margin-right: 5px;
 }

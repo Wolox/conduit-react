@@ -25,11 +25,9 @@ function HeaderSection({ profile, isLoadingProfile }: Props) {
         />
       </div>
       <div className={styles.contentButton}>
-        {user?.username === profile?.username ? (
-          <SettingsButton />
-        ) : (
-          <FollowButton username={profile?.username || ''} />
-        )}
+        {user && profile && user.username === profile.username && <SettingsButton />}
+
+        {user && profile && user.username !== profile.username && <FollowButton profile={profile} />}
       </div>
     </div>
   );
