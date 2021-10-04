@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
 function SettingsButton() {
   const { t } = useTranslation('Profile');
   return (
-    <Link to={paths.home} className={cn('m-top-2', styles.button)}>
+    <Link to={paths.settings} className={cn('m-top-2', styles.button)}>
       <FontAwesomeIcon icon={faCog} size={SIZE_ICONS_XS} className={styles.icon} />
       {t('editProfile')}
     </Link>

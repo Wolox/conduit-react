@@ -12,14 +12,16 @@ import ListItem from 'components/ListItem';
 import { UserProfileSlug } from 'types/profile';
 import { useGetProfile } from 'hooks/Profile';
 import paths from 'components/Routes/paths';
+import { useSelector as useSelectorUser } from 'contexts/UserContext';
 
-import { LIMIT, TABS } from './constants';
+import { LIMIT, TABS_LOGIN, TABS_LOGOUT } from './constants';
 import styles from './styles.module.scss';
 import HeaderSection from './HeaderSection';
 
 function Profile() {
   const { t } = useTranslation(['Profile', 'Article']);
   const dispatch = useDispatch();
+  const { user } = useSelectorUser((state) => state);
   const { tabActive } = useSelectorTabs((state) => state);
   const { username } = useParams<UserProfileSlug>();
 
@@ -59,7 +61,7 @@ function Profile() {
       {!isLoadingProfile && !profile && <Redirect to={paths.home} />}
       <HeaderSection profile={profile} isLoadingProfile={isLoadingProfile} />
       <div className={styles.content}>
-        <Tabs tabs={TABS} />
+        <Tabs tabs={user ? TABS_LOGIN : TABS_LOGOUT} />
         {isFetching || response?.pages[0].data?.articles.length ? (
           <InfiniteScroll
             onLoadMore={handleNextPage}

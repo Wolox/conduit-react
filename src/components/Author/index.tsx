@@ -8,6 +8,7 @@ import { generatePath, Link } from 'react-router-dom';
 import { SIZE_ICONS_XS } from 'constants/icons';
 import { addRemoveFavorites } from 'services/ArticleService';
 import PATHS from 'components/Routes/paths';
+import { useSelector as useSelectorUser } from 'contexts/UserContext';
 
 import styles from './styles.module.scss';
 
@@ -21,13 +22,16 @@ interface Props {
 }
 
 function Author({ image, username, date, favorites, isFavorited, slug }: Props) {
+  const { user } = useSelectorUser((state) => state);
   const { mutate, data } = useMutation(addRemoveFavorites);
 
   const handleClickFavorited = useCallback(
     (favorite: boolean) => {
-      mutate({ slug, isFavorite: favorite });
+      if (user) {
+        mutate({ slug, isFavorite: favorite });
+      }
     },
-    [mutate, slug]
+    [mutate, slug, user]
   );
 
   const favorited = data?.data?.article.favorited ?? isFavorited;
@@ -49,6 +53,7 @@ function Author({ image, username, date, favorites, isFavorited, slug }: Props) 
           type="button"
           className={cn(styles.like, { [styles.active]: favorited })}
           onClick={() => handleClickFavorited(favorited)}
+          disabled={!user}
         >
           <FontAwesomeIcon icon={faHeart} size={SIZE_ICONS_XS} className={styles.icon} />
           {count}
