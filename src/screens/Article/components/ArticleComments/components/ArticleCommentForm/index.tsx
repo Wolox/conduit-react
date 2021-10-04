@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import cn from 'classnames';
 import { ApiResponse } from 'apisauce';
 
-import userPlaceholder from 'assets/user-placeholder.jpeg';
 import FormInput from 'components/FormInput';
 import { addNewComment } from 'services/ArticleService';
 import type { ArticleParams, CommentResponse, Comment } from 'types/Article';
+import { getAvatar } from 'utils/avatarUtils';
 
 import styles from './styles.module.scss';
 
@@ -47,6 +47,8 @@ function ArticleCommentForm({ formData, setCommentsData }: Props) {
     mutate({ slug, comment: { ...data } });
   });
 
+  const { icon } = getAvatar(avatar || '');
+
   return (
     <form onSubmit={onSubmit} className={styles.container}>
       <FormInput
@@ -59,7 +61,7 @@ function ArticleCommentForm({ formData, setCommentsData }: Props) {
         isTextarea
       />
       <div className={cn('row space-between', styles.footer)}>
-        <img className={styles.userIcon} src={avatar || userPlaceholder} alt={username} />
+        <img className={styles.userIcon} src={icon} alt={username} />
         <button
           className={cn(styles.button, { [styles.disabledBtn]: !isValid })}
           type="submit"

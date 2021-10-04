@@ -5,6 +5,7 @@ import { generatePath, Link } from 'react-router-dom';
 import Author from 'components/Author';
 import PATHS from 'components/Routes/paths';
 import { Article } from 'types/Article';
+import { getAvatar } from 'utils/avatarUtils';
 
 import styles from './styles.module.scss';
 
@@ -13,15 +14,23 @@ interface Props {
 }
 
 function ListItem({ article }: Props) {
-  const { author, createdAt, favoritesCount, favorited, slug, title, description } = article;
+  const {
+    author: { image, username },
+    createdAt,
+    favoritesCount,
+    favorited,
+    slug,
+    title,
+    description
+  } = article;
   const pathToArticle = generatePath(PATHS.article, { slug });
   const { t } = useTranslation('ListItem');
-
+  const { icon } = getAvatar(image || '');
   return (
     <div className={styles.item}>
       <Author
-        image={author.image}
-        username={author.username}
+        image={icon}
+        username={username}
         date={createdAt}
         favorites={favoritesCount}
         isFavorited={favorited}

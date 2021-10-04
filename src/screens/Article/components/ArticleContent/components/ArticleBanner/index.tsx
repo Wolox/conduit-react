@@ -6,12 +6,12 @@ import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { ApiResponse } from 'apisauce';
 
-import userPlaceholder from 'assets/user-placeholder.jpeg';
 import PATHS from 'components/Routes/paths';
 import { useSelector } from 'contexts/UserContext';
 import { deleteArticleBySlug } from 'services/ArticleService';
 import { ArticleParams, ArticleResponse } from 'types/Article';
 import { formatDate } from 'utils/dateUtils/index';
+import { getAvatar } from 'utils/avatarUtils';
 
 import styles from './styles.module.scss';
 
@@ -49,6 +49,8 @@ function ArticleBanner({ bannerData }: Props) {
   });
   const handleDelete = () => mutate(slug);
 
+  const { icon } = getAvatar(avatar || '');
+
   return (
     <div className={cn('row middle center full-width', styles.banner)}>
       <div className={cn('column start space-between', styles.container)}>
@@ -56,7 +58,7 @@ function ArticleBanner({ bannerData }: Props) {
         <div className="row wrap">
           <div className="row m-bottom-2 m-right-3 m-top-2">
             <Link to={userToRedirect}>
-              <img className={styles.userIcon} src={avatar || userPlaceholder} alt={username} />
+              <img className={styles.userIcon} src={icon} alt={username} />
             </Link>
             <div className="column middle">
               <Link className={styles.userLink} to={userToRedirect}>

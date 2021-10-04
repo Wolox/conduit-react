@@ -1,0 +1,28 @@
+@import 'scss/variables/_colors';
+
+.content-modal {
+  align-items: center;
+  background: rgba($black, 0.5);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.modal-body {
+  background-color: $white;
+  border-radius: 15px;
+  max-height: 90%;
+  overflow-x: auto;
+  width: 80%;
+}
+
+.hidden {
+  display: none;
+}
