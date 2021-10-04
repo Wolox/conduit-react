@@ -1,8 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import cn from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { Redirect, useParams } from 'react-router';
 
 import Layout from 'components/Layout';
@@ -10,16 +7,15 @@ import Tabs from 'components/Tabs';
 import { useSelector as useSelectorTabs, withContextProvider, useDispatch } from 'contexts/TabsContext';
 import { actionCreators } from 'contexts/TabsContext/reducer';
 import { CONFIG_TAB_MY_POSTS } from 'constants/tabs';
-import { SIZE_ICONS_XS } from 'constants/icons';
 import InfiniteScroll from 'components/InfiniteScroll';
 import ListItem from 'components/ListItem';
-import { getAvatar } from 'utils/avatarUtils';
 import { UserProfileSlug } from 'types/profile';
 import { useGetProfile } from 'hooks/Profile';
 import paths from 'components/Routes/paths';
 
 import { LIMIT, TABS } from './constants';
 import styles from './styles.module.scss';
+import HeaderSection from './HeaderSection';
 
 function Profile() {
   const { t } = useTranslation(['Profile', 'Article']);
@@ -54,8 +50,6 @@ function Profile() {
     }
   }, [fetchNextPage, hasNextPage, isFetching]);
 
-  const { icon, name } = getAvatar(profile?.image || '');
-
   useEffect(() => {
     dispatch(actionCreators.activeTab(CONFIG_TAB_MY_POSTS));
   }, [dispatch]);
@@ -63,24 +57,7 @@ function Profile() {
   return (
     <Layout>
       {!isLoadingProfile && !profile && <Redirect to={paths.home} />}
-      <div className={styles.header}>
-        <div className={styles.contentUser}>
-          {isLoadingProfile ? (
-            <div className="spinner" />
-          ) : (
-            <>
-              <img src={icon} className={styles.imageProfile} alt={name} />
-              <h2 className={cn('m-top-3', styles.username)}>{profile?.username}</h2>
-            </>
-          )}
-        </div>
-        <div className={styles.contentButton}>
-          <button type="button" className={cn('m-top-2', styles.button)}>
-            <FontAwesomeIcon icon={faCog} size={SIZE_ICONS_XS} className={styles.icon} />
-            {t('Profile:editProfile')}
-          </button>
-        </div>
-      </div>
+      <HeaderSection profile={profile} isLoadingProfile={isLoadingProfile} />
       <div className={styles.content}>
         <Tabs tabs={TABS} />
         {isFetching || response?.pages[0].data?.articles.length ? (
