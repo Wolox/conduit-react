@@ -65,7 +65,9 @@ function Home() {
             <div className="custom-alert">{t('empty')}</div>
           )}
         </div>
-        <div className={styles.contentTags}>Tags</div>
+        <div className={styles.contentTags}>
+          <text>Tags</text>
+        </div>
       </div>
     </Layout>
   );

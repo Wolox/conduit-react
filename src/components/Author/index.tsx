@@ -19,9 +19,10 @@ interface Props {
   favorites: number;
   isFavorited: boolean;
   slug: string;
+  following: boolean;
 }
 
-function Author({ image, username, date, favorites, isFavorited, slug }: Props) {
+function Author({ image, username, date, favorites, isFavorited, slug, following }: Props) {
   const { user } = useSelectorUser((state) => state);
   const { mutate, data } = useMutation(addRemoveFavorites);
 
@@ -45,6 +46,7 @@ function Author({ image, username, date, favorites, isFavorited, slug }: Props) 
           <div>
             <span className={styles.username}>{username}</span>
             <span>{date}</span>
+            <span data-testId="isUserFollow">{following ? '*** You follow this user' : ''}</span>
           </div>
         </div>
       </Link>
