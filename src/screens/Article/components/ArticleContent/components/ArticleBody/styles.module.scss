@@ -76,3 +76,22 @@
     list-style: disc inside;
   }
 }
+
+.content-tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  margin-top: 10px;
+  
+  .tag {
+    border: 1px solid $gray;
+    border-radius: 10px;
+    padding: 5px 20px;
+    position: relative;
+    background-color: $green-fern;
+    font-size: 12px;
+    text-align: center;
+
+    }
+}

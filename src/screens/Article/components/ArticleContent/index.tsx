@@ -38,7 +38,7 @@ function ArticleContent() {
               username: articleData.author.username
             }}
           />
-          <ArticleBody textContent={articleData.body} />
+          <ArticleBody textContent={articleData.body} tagList={articleData.tagList} />
         </>
       )}
     </>
