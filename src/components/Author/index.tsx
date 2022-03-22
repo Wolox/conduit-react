@@ -46,9 +46,7 @@ function Author({ image, username, date, favorites, isFavorited, slug, following
           <div>
             <span className={styles.username}>{username}</span>
             <span>{date}</span>
-            {following && (
-              <span data-testid="isUserFollow">{'*** You follow this user'}</span>
-             )}
+            {following && <span data-testid="isUserFollow">*** You follow this user</span>}
           </div>
         </div>
       </Link>

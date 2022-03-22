@@ -17,11 +17,11 @@ function ArticleBody({ textContent, tagList }: Props) {
   return (
     <article className="full-width">
       {tagList.length && (
-        <div className={styles.container}>
+        <div className={styles.tagsContainer}>
           <div className={styles.contentTags}>
             <div>Tags: </div>
-            {tagList.map((itemTag, index) => (
-              <div key={index.toString()} className={styles.tag}>
+            {tagList.map((itemTag) => (
+              <div key={itemTag} className={styles.tag}>
                 {itemTag}
               </div>
             ))}
