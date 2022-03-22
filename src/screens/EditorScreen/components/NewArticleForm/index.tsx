@@ -129,10 +129,10 @@ function NewArticleForm() {
         onKeyPress={(e) => handlePressKey(e)}
       />
 
-      {tagList.length && (
+      {tagList.length > 0 && (
         <div className={styles.contentTags}>
-          {tagList.map((itemTag, index) => (
-            <div key={index.toString()} className={styles.tag}>
+          {tagList.map((itemTag) => (
+            <div key={itemTag} className={styles.tag}>
               {itemTag}
               <span onClick={() => handleRemoveTag(itemTag)} className={styles.close}>
                 x

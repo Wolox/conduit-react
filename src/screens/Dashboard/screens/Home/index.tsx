@@ -66,7 +66,7 @@ function Home() {
           )}
         </div>
         <div className={styles.contentTags}>
-          <div>Tags</div>
+          <div>{t('tags')}</div>
         </div>
       </div>
     </Layout>
