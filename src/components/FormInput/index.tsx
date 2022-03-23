@@ -17,6 +17,7 @@ interface Props {
   onBlur?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onChange?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onFocus?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement> & React.KeyboardEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   readOnly?: boolean;
   touched?: boolean;
@@ -40,6 +41,7 @@ function FormInput({
   onBlur,
   onChange,
   onFocus,
+  onKeyPress,
   placeholder = '',
   readOnly = false,
   touched,
@@ -73,6 +75,7 @@ function FormInput({
         readOnly={readOnly}
         ref={inputRef}
         defaultValue={defaultValue}
+        onKeyPress={onKeyPress}
       />
       <span
         id={`${name}-error`}

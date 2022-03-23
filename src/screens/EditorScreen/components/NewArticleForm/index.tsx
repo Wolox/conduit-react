@@ -18,17 +18,23 @@ import styles from './styles.module.scss';
 interface FormData {
   title: string;
   description: string;
-  tagList: string;
+  tagList: Array<string>;
 }
 
 function NewArticleForm() {
   const history = useHistory();
   const { t } = useTranslation('EditorScreen');
   const { slug } = useParams<ArticleParams>();
+  const [tagList, setTagList] = useState<string[]>([]);
 
   // I'm putting the API call first to set the form initial values if there's a slug
   const { data: queryData } = useQuery(['article', slug], () => articleBySlug(slug), {
-    enabled: !!slug
+    enabled: !!slug,
+    onSuccess: ({ data }) => {
+      if (data?.article.tagList && data?.article.tagList.length) {
+        setTagList(data.article.tagList);
+      }
+    }
   });
 
   const { description, tags, title } = INPUTS;
@@ -41,7 +47,7 @@ function NewArticleForm() {
     defaultValues: {
       [title.name]: queryData?.data?.article.title || '',
       [description.name]: queryData?.data?.article.description || '',
-      [tags.name]: queryData?.data?.article.tagList.join() || ''
+      [tags.name]: ''
     }
   });
   const [postBody, setPostBody] = useState(queryData?.data?.article.body || '');
@@ -63,12 +69,32 @@ function NewArticleForm() {
   });
 
   const onSubmit = handleSubmit((formData: FormData): void => {
+    formData.tagList = tagList;
     if (slug) {
       updatePostMutation({ slug, payload: { ...formData, body: postBody } });
     } else {
       newPostMutation({ ...formData, body: postBody });
     }
   });
+
+  const handleRemoveTag = (itemTag: string) => {
+    setTagList((currentTags) => currentTags.filter((currentTag) => currentTag !== itemTag));
+  };
+
+  const handlePressKey = (
+    e: React.KeyboardEvent<HTMLInputElement> & React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    const { value } = e.currentTarget;
+    if (e.key === 'Enter') {
+      if (value !== '' && (tagList.length === 0 || tagList.indexOf(value))) {
+        setTagList([...tagList, value]);
+        e.currentTarget.value = '';
+      } else {
+        e.currentTarget.value = '';
+      }
+      e.preventDefault();
+    }
+  };
 
   return (
     <form className="column" onSubmit={onSubmit} autoComplete="off">
@@ -102,7 +128,22 @@ function NewArticleForm() {
         inputClassName={cn('full-width', styles.formInput)}
         placeholder={t(`${tags.placeholder}`)}
         inputRef={register}
+        onKeyPress={(e) => handlePressKey(e)}
+        error=""
       />
+
+      {tagList.length > 0 && (
+        <div className={styles.contentTags}>
+          {tagList.map((itemTag) => (
+            <div key={itemTag} className={styles.tag}>
+              {itemTag}
+              <span onClick={() => handleRemoveTag(itemTag)} className={styles.close}>
+                x
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
       <button
         type="submit"
         className={cn('custom-btn', { [styles.disabledBtn]: isFormSubmittable })}

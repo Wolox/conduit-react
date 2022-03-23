@@ -63,7 +63,7 @@ export interface DataEndpointArticles {
 export interface NewPostPayload {
   body: string;
   description: string;
-  tagList: string;
+  tagList: Array<string>;
   title: string;
 }
 

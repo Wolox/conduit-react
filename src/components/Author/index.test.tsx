@@ -16,7 +16,8 @@ const MOCK = {
   date: '07/07/7777',
   favorites: 10,
   isFavorited: true,
-  slug: 'titleArticle'
+  slug: 'titleArticle',
+  following: true
 };
 
 function Wrapped({ children }: { children: ReactNode }) {
@@ -83,5 +84,32 @@ describe('Component Author', () => {
       </Wrapped>
     );
     expect(screen.getByRole('button')).toHaveTextContent('10');
+  });
+
+  test('Display follow user', () => {
+    render(
+      <Wrapped>
+        <Author {...MOCK} following />
+      </Wrapped>
+    );
+    expect(screen.getByTestId('isUserFollow')).toHaveTextContent('*** You follow this user');
+  });
+
+  test('Not display follow user when false', () => {
+    render(
+      <Wrapped>
+        <Author {...MOCK} following={false} />
+      </Wrapped>
+    );
+    expect(screen.getByTestId('isUserFollow')).toHaveTextContent('');
+  });
+
+  test('Not display follow user when null', () => {
+    render(
+      <Wrapped>
+        <Author {...MOCK} following={false} />
+      </Wrapped>
+    );
+    expect(screen.getByTestId('isUserFollow')).toHaveTextContent('');
   });
 });

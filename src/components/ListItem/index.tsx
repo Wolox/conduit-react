@@ -15,7 +15,7 @@ interface Props {
 
 function ListItem({ article }: Props) {
   const {
-    author: { image, username },
+    author: { image, username, following },
     createdAt,
     favoritesCount,
     favorited,
@@ -35,6 +35,7 @@ function ListItem({ article }: Props) {
         favorites={favoritesCount}
         isFavorited={favorited}
         slug={slug}
+        following={following}
       />
       <Link to={pathToArticle}>
         <h1 className={styles.title}>{title}</h1>
