@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+// import { useQuery } from 'react-query';
 
 import Layout from 'components/Layout';
 import Tabs from 'components/Tabs';
@@ -9,6 +10,7 @@ import Welcome from 'components/Welcome';
 import { useSelector as useSelectorTabs, withContextProvider } from 'contexts/TabsContext';
 import InfiniteScroll from 'components/InfiniteScroll';
 import ListItem from 'components/ListItem';
+//
 
 import styles from './styles.module.scss';
 import { LIMIT, TABS_LOGIN, TABS_LOGOUT } from './constants';
@@ -17,7 +19,6 @@ function Home() {
   const { t } = useTranslation('Article');
   const { user } = useSelectorUser((state) => state);
   const { tabActive } = useSelectorTabs((state) => state);
-
   const { data: response, fetchNextPage, hasNextPage, isFetching, isLoading } = tabActive.list({
     offset: 0,
     limit: LIMIT,
@@ -31,6 +32,8 @@ function Home() {
       }
     }
   });
+
+  const tags = ['oneTag', 'otherTag'];
 
   const handleNextPage = useCallback(() => {
     if (!isFetching && hasNextPage) {
@@ -65,7 +68,18 @@ function Home() {
             <div className="custom-alert">{t('empty')}</div>
           )}
         </div>
-        <div className={styles.contentTags}>Tags</div>
+        <div className={styles.tagsContainer}>
+          <text>Tags</text>
+          {tags.length > 0 && (
+            <div className={styles.contentTags}>
+              {tags.map((tag: string) => (
+                <div className={styles.tag} key={tag}>
+                  {tag}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </Layout>
   );
