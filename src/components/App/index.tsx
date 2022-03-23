@@ -4,7 +4,12 @@ import { useMutation } from 'react-query';
 import Routes from 'components/Routes';
 import { withContextProvider, useDispatch as useUserDispatch } from 'contexts/UserContext';
 import { actionCreators as authActions } from 'contexts/UserContext/reducer';
-import { getCurrentUserToken, getUser, setApiTokenHeader } from 'services/AuthService';
+import {
+  getCurrentUserToken,
+  getUser,
+  removeCurrentUserToken,
+  setApiTokenHeader
+} from 'services/AuthService';
 import Loader from 'components/Loader';
 
 import 'scss/application.scss';
@@ -23,6 +28,9 @@ function App() {
           userDispatch(authActions.setUser(user));
           setLoading(false);
         }
+      } else {
+        removeCurrentUserToken();
+        setLoading(false);
       }
     }
   });

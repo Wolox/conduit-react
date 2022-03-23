@@ -11,7 +11,8 @@ i18next.addResources('es', 'Article', {
   formPlaceholder: 'Escribe un comentario...',
   empty: 'No hay artículos aquí... todavía',
   finishList: 'No hay más articulos',
-  requiredError: 'Este campo es requerido'
+  requiredError: 'Este campo es requerido',
+  tags: 'Tags'
 });
 
 i18next.addResources('en', 'Article', {
@@ -25,5 +26,6 @@ i18next.addResources('en', 'Article', {
   formPlaceholder: 'Write a comment...',
   empty: 'No articles are here... yet',
   finishList: 'there are no more articles',
-  requiredError: 'This field is required'
+  requiredError: 'This field is required',
+  tags: 'Tags'
 });

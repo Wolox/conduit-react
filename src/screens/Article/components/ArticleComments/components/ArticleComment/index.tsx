@@ -52,6 +52,7 @@ function ArticleComment({ commentData, setCommentsData }: Props) {
             {username}
           </Link>
           <span className={styles.date}>{formattedDate}</span>
+          {author.following && <span data-testid="isUserFollow">*** You follow this user</span>}
         </div>
         {!!user && user.username === username && (
           <button type="button" onClick={handleClick}>
