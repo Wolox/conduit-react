@@ -27,6 +27,7 @@
   gap: 8px;
   display: flex;
   flex-wrap: wrap;
+  padding: 5px 1px;
   
   .tag {
     border: 1px solid $gray;
@@ -37,5 +38,13 @@
     background-color: #818a91;
     padding: 3px;
     color: white;
+    max-width: 200px;
+    max-height: 20px;
+    overflow: scroll;
+    &:hover {
+      background-color: $green-fern;
+      color: $white;
+      border-color: $black;
+    }
     }
 }

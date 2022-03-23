@@ -1,16 +1,15 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 
 import Layout from 'components/Layout';
 import Tabs from 'components/Tabs';
 import { useSelector as useSelectorUser } from 'contexts/UserContext';
-// import List from 'components/List';
 import Welcome from 'components/Welcome';
 import { useSelector as useSelectorTabs, withContextProvider } from 'contexts/TabsContext';
 import InfiniteScroll from 'components/InfiniteScroll';
 import ListItem from 'components/ListItem';
-//
+import { tags } from 'services/tags';
 
 import styles from './styles.module.scss';
 import { LIMIT, TABS_LOGIN, TABS_LOGOUT } from './constants';
@@ -33,7 +32,8 @@ function Home() {
     }
   });
 
-  const tags = ['oneTag', 'otherTag'];
+  const { data: queryTags } = useQuery(['tags'], () => tags());
+  const tagsL = queryTags?.data?.tags || [];
 
   const handleNextPage = useCallback(() => {
     if (!isFetching && hasNextPage) {
@@ -41,6 +41,13 @@ function Home() {
     }
   }, [fetchNextPage, hasNextPage, isFetching]);
 
+  const handleTagClick = (event: React.MouseEvent<HTMLElement>) => {
+    const a = event.target as HTMLInputElement;
+    console.log(a.innerHTML);
+    // Create new tab with articles filtered by tab.
+    // Change to new tab
+    // Set tag as selected(change color to green)
+  };
   return (
     <Layout>
       <Welcome />
@@ -69,11 +76,11 @@ function Home() {
           )}
         </div>
         <div className={styles.tagsContainer}>
-          <text>Tags</text>
-          {tags.length > 0 && (
+          <div>Tags</div>
+          {tagsL?.length > 0 && (
             <div className={styles.contentTags}>
-              {tags.map((tag: string) => (
-                <div className={styles.tag} key={tag}>
+              {tagsL?.map((tag: string) => (
+                <div className={styles.tag} key={tag} onClick={handleTagClick}>
                   {tag}
                 </div>
               ))}
