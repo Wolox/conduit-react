@@ -46,5 +46,9 @@
       color: $white;
       border-color: $black;
     }
+
+    &.active {
+      background-color: darken($color: $green-fern, $amount: 1);
     }
+  }
 }
