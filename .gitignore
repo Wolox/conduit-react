@@ -21,3 +21,5 @@ yarn-error.log*
 
 aws.js
 .vercel
+
+.env
