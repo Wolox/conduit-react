@@ -9,6 +9,7 @@ import type {
   FavoritesAddRemove,
   NewPostPayload,
   Paginated,
+  PaginatedByTag,
   CommentsResponse,
   CommentResponse,
   CommentPayload
@@ -16,7 +17,8 @@ import type {
 
 const MAIN_PATH = '/articles';
 
-export const articles = (payload: Paginated): Promise<ApiResponse<Articles>> => api.get(MAIN_PATH, payload);
+export const articles = (payload: PaginatedByTag): Promise<ApiResponse<Articles>> =>
+  api.get(MAIN_PATH, payload);
 
 export const feed = (payload: Paginated): Promise<ApiResponse<Articles>> =>
   api.get(`${MAIN_PATH}/feed`, payload);

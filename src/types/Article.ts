@@ -60,6 +60,10 @@ export interface DataEndpointArticles {
   options?: UseInfiniteQueryOptions<ApiResponse<Articles>>;
 }
 
+export interface DataEndpointArticlesByTags extends DataEndpointArticles {
+  tag?: string;
+}
+
 export interface NewPostPayload {
   body: string;
   description: string;
@@ -79,6 +83,10 @@ export interface Error {
 export interface Paginated {
   limit: number;
   offset: number;
+}
+
+export interface PaginatedByTag extends Paginated {
+  tag?: string;
 }
 
 export interface ArticlesByAuthor extends Paginated {

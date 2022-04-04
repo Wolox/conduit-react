@@ -10,15 +10,17 @@ import { Tab } from './types';
 
 interface Props {
   tabs: Tab[];
+  onResetTag?: () => void;
 }
 
-function Tabs({ tabs }: Props) {
+function Tabs({ tabs, onResetTag }: Props) {
   const { t } = useTranslation('Tabs');
   const { hashtag, tabActive } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const handleChangeTab = (tab: Tab) => {
     dispatch(actionCreators.activeTab(tab));
+    onResetTag?.();
   };
 
   return (

@@ -86,8 +86,10 @@ function NewArticleForm() {
   ) => {
     const { value } = e.currentTarget;
     if (e.key === 'Enter') {
-      if (value !== '') {
+      if (value !== '' && (tagList.length === 0 || tagList.indexOf(value))) {
         setTagList([...tagList, value]);
+        e.currentTarget.value = '';
+      } else {
         e.currentTarget.value = '';
       }
       e.preventDefault();
@@ -127,6 +129,7 @@ function NewArticleForm() {
         placeholder={t(`${tags.placeholder}`)}
         inputRef={register}
         onKeyPress={(e) => handlePressKey(e)}
+        error=""
       />
 
       {tagList.length > 0 && (
