@@ -1,0 +1,99 @@
+@import 'scss/variables/_colors';
+
+.unlabeled-field {
+  margin-top: 30px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.quarter-width {
+  width: 25%;
+}
+
+.text-error {
+  color: $red;
+}
+
+.input-error {
+  border: 1px solid $red;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.custom-btn {
+  align-self: flex-end;
+  background-color: $green-fern;
+  border-radius: 5px;
+  color: $white;
+  font-size: 20px;
+  line-height: 25px;
+  min-width: 112px;
+  padding: 12px 24px;
+
+  &:hover {
+    background-color: $green-apple;
+  }
+}
+
+.custom-input,
+%custom-input {
+  border: solid 1px rgba($black, 0.15);
+  font-size: 20px;
+  height: auto;
+  line-height: 25px;
+  margin-bottom: 5px;
+  padding: 12px 24px;
+
+  &:focus {
+    border-bottom: 1px solid $blue-corn-flower;
+    border-color: $blue-corn-flower;
+    outline: none;
+  }
+
+  &.input-error {
+    border-bottom: solid 2px $red-matrix;
+  }
+}
+
+.custom-alert {
+  font-style: italic;
+  margin: 20px;
+  text-align: center;
+}
+
+.spinner {
+  animation: spin 1s ease infinite;
+  border: 4px solid rgba($black, 0.1);
+  border-left-color: $green-fern;
+  border-radius: 50%;
+  height: 36px;
+  margin: 0 auto 10px;
+  width: 36px;
+}
+
+.spinner-xs {
+  animation: spin 1s ease infinite;
+  border: 2px solid rgba($black, 0.1);
+  border-left-color: $white;
+  border-radius: 50%;
+  height: 13px;
+  width: 13px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

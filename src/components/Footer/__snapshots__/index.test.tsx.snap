@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders component 1`] = `
+<DocumentFragment>
+  <div
+    class="year"
+  >
+    © 2021 
+    <a
+      class="link"
+      href="https://www.wolox.com.ar/"
+      rel="noreferrer"
+      target="_blank"
+    >
+      WOLOX
+    </a>
+  </div>
+</DocumentFragment>
+`;

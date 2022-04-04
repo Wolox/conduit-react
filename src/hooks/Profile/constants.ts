@@ -1,0 +1,1 @@
+export const KEY_GET_PROFILE = 'KEY_GET_PROFILE';

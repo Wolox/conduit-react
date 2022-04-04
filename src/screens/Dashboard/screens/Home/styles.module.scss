@@ -1,0 +1,54 @@
+@import 'scss/variables/_content';
+@import 'scss/fonts/_fonts';
+@import 'scss/variables/_colors';
+
+.content {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  max-width: $max-content;
+
+  .content-list {
+    width: 70%;
+  }
+}
+
+.tagsContainer {
+  padding: 5px 10px 10px;
+  word-break: break-word;
+  width: 30%;
+  background-color:#f3f3f3;
+  margin-left: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 60px;
+  border-radius: 5px;
+}
+.content-tags {
+  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 1px;
+  
+  .tag {
+    border: 1px solid $gray;
+    border-radius: 6px;
+    background-color: $green-fern;
+    font-size: 10px;
+    text-align: center;
+    background-color: #818a91;
+    padding: 3px;
+    color: white;
+    max-width: 200px;
+    max-height: 20px;
+    overflow: scroll;
+    &:hover {
+      background-color: $green-fern;
+      color: $white;
+      border-color: $black;
+    }
+
+    &.active {
+      background-color: darken($color: $green-fern, $amount: 1);
+    }
+  }
+}

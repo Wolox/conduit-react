@@ -1,0 +1,51 @@
+@import 'scss/components';
+@import 'scss/variables/colors';
+
+.input-wrapper {
+  max-width: 1000px;
+  width: 95vw;
+}
+
+.form-input {
+
+  @extend %custom-input;
+}
+
+.input-error {
+
+  @extend %custom-input;
+
+  &:focus {
+    border-bottom: 2px solid $red;
+  }
+}
+
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.content-tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+
+  .tag{
+    border: 1px solid $gray;
+    border-radius: 5px;
+    padding: 5px 20px;
+    position: relative;
+
+    .close {
+      color: $red;
+      cursor: pointer;
+      position: absolute;
+      right: 3px;
+      top: 1px;
+    }
+  }
+}

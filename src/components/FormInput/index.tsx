@@ -1,0 +1,92 @@
+import { ReactNode, FormEvent } from 'react';
+
+import styles from './styles.module.scss';
+
+interface Props {
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  showErrorWithoutText?: boolean;
+  errorClassName?: string;
+  inputClassName?: string;
+  isTextarea?: boolean;
+  inputType: string;
+  label?: ReactNode;
+  labelClassName?: string;
+  name: string;
+  onBlur?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onFocus?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement> & React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  readOnly?: boolean;
+  touched?: boolean;
+  submitCount?: number;
+  inputRef?: any;
+  defaultValue?: string | number | readonly string[];
+}
+
+function FormInput({
+  className = '',
+  disabled = false,
+  error = '',
+  showErrorWithoutText = false,
+  errorClassName = '',
+  inputClassName = '',
+  isTextarea = false,
+  inputType,
+  label = '',
+  labelClassName = '',
+  name,
+  onBlur,
+  onChange,
+  onFocus,
+  onKeyPress,
+  placeholder = '',
+  readOnly = false,
+  touched,
+  submitCount,
+  inputRef,
+  defaultValue
+}: Props) {
+  const InputComponent = isTextarea ? 'textarea' : 'input';
+  const showError =
+    (touched === undefined || touched) &&
+    (error || showErrorWithoutText) &&
+    (submitCount === undefined || submitCount > 0);
+
+  return (
+    <div className={`column start ${className}`}>
+      {label && (
+        <label htmlFor={name} className={`${labelClassName} m-bottom-1`}>
+          {label}
+        </label>
+      )}
+      <InputComponent
+        className={`${inputClassName} ${styles.input} ${showError ? styles.error : ''}`}
+        name={name}
+        id={name}
+        type={inputType}
+        placeholder={placeholder}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        disabled={disabled}
+        readOnly={readOnly}
+        ref={inputRef}
+        defaultValue={defaultValue}
+        onKeyPress={onKeyPress}
+      />
+      <span
+        id={`${name}-error`}
+        role="alert"
+        aria-hidden={!showError}
+        className={`${errorClassName} ${styles.errorText} ${showError ? styles.visible : ''}`}
+      >
+        {error}
+      </span>
+    </div>
+  );
+}
+
+export default FormInput;
